@@ -83,7 +83,7 @@ export default function ProblemSection() {
       // Generate/reset to default image
       // In production, this would call an actual image generation service
       return apiRequest("POST", "/api/challenge-media/generate", {
-        headline: "78% Failure Rate: The Problem",
+        headline: "The Problem: 78% Failure Rate",
         description: "Beginner traders fail due to lack of education, guidance, and community support",
       });
     },
