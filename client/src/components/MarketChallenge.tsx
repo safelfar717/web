@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   GraduationCap,
@@ -10,10 +9,6 @@ import {
   ShoppingCart,
   Lightbulb,
 } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 import educationBg from "@assets/generated_images/Interactive_education_platform_81bed62b.png";
 import communityBg from "@assets/generated_images/Live_trading_community_3f62992e.png";
 import aiBg from "@assets/generated_images/AI_powered_insights_f1c05b55.png";
@@ -83,30 +78,8 @@ const solutions = [
 ];
 
 export default function MarketChallenge() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const ctx = gsap.context(() => {
-      const solutionCards = section.querySelectorAll('[data-animate-card="true"]');
-      solutionCards.forEach((card) => {
-        gsap.to(card, {
-          boxShadow: "0 0 30px rgba(212, 175, 55, 0.6)",
-          duration: 1.5,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="py-24 bg-black">
+    <section className="py-24 bg-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2
@@ -128,7 +101,6 @@ export default function MarketChallenge() {
           {solutions.map((solution, index) => (
             <Card
               key={index}
-              data-animate-card="true"
               className="group relative overflow-hidden border-gold-20 hover-elevate transition-all duration-300 h-64"
               data-testid={`card-solution-${index}`}
             >
