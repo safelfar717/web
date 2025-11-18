@@ -1,5 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { GraduationCap, Users, Sparkles, TrendingUp, Copy, Trophy } from "lucide-react";
+import {
+  GraduationCap,
+  Users,
+  Sparkles,
+  TrendingUp,
+  Copy,
+  Trophy,
+} from "lucide-react";
 import educationBg from "@assets/generated_images/Interactive_education_platform_81bed62b.png";
 import communityBg from "@assets/generated_images/Live_trading_community_3f62992e.png";
 import aiBg from "@assets/generated_images/AI_powered_insights_f1c05b55.png";
@@ -11,39 +18,45 @@ const solutions = [
   {
     icon: GraduationCap,
     title: "Interactive Education",
-    description: "Ikuti edu gamifikasi kami dengan tingkat level & buktikan keahlian Anda dgn Sertifikasi",
-    background: educationBg
+    description:
+      "Ikuti edu gamifikasi kami dengan tingkat level & buktikan keahlian Anda dgn Sertifikasi",
+    background: educationBg,
   },
   {
     icon: Users,
     title: "Live Community",
-    description: "Tempat Kita Terkoneksi, Berbagi, Berdiskusi & Tumbuh bersama dalam Ekosistem Trading",
-    background: communityBg
+    description:
+      "Tempat Kita Terkoneksi, Berbagi, Berdiskusi & Tumbuh bersama dalam Ekosistem Trading",
+    background: communityBg,
   },
   {
     icon: Sparkles,
     title: "AI-Powered Insights",
-    description: "Buka Wawasan AI Trading Anda dari Inti Akurasi Analitik dan Presisi Trading Canggih saat ini",
-    background: aiBg
+    description:
+      "Buka Wawasan AI Trading Anda dari Inti Akurasi Analitik dan Presisi Trading Canggih saat ini",
+    background: aiBg,
   },
   {
     icon: TrendingUp,
     title: "Live Trading Signals",
-    description: "Nikmati sinyal Real-Time oleh EA & diversifikasi Analisis Ahli, dengan rekor akurasi mencapai 97%",
-    background: signalsBg
+    description:
+      "Nikmati sinyal Real-Time oleh EA & diversifikasi Analisis Ahli, dengan rekor akurasi mencapai 97%",
+    background: signalsBg,
   },
   {
     icon: Copy,
     title: "Copy Trading",
-    description: "Yuk ikuti dan Copy otomatis Trading dari para Master Trader! Belajar sambil Cuan",
-    background: copyBg
+    description:
+      "Yuk ikuti dan Copy otomatis Trading dari para Master Trader! Belajar sambil Cuan",
+    background: copyBg,
   },
   {
     icon: Trophy,
     title: "Trading Competitions",
-    description: "Kami menantang Anda! Tunjukkan pada dunia You are The Champion dan bawa pulang Hadiahnya!",
-    background: competitionBg
-  }
+    description:
+      "Kami menantang Anda! Tunjukkan pada dunia You are The Champion dan bawa pulang Hadiahnya!",
+    background: competitionBg,
+  },
 ];
 
 export default function MarketChallenge() {
@@ -51,35 +64,48 @@ export default function MarketChallenge() {
     <section className="py-24 bg-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-section-title">
-            Solusi: "NextGen"
+          <h2
+            className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
+            data-testid="text-section-title"
+          >
+            The Solution : "NextGen"
           </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto" data-testid="text-section-subtitle">
-            All-in-One Platform Trading Tools Professional, Analisa, Signal & Ecosystem untuk Trader Masa Kini
+          <p
+            className="text-muted-foreground text-lg max-w-3xl mx-auto"
+            data-testid="text-section-subtitle"
+          >
+            All-in-One Platform Trading Tools Professional, Analisa, Signal &
+            Ecosystem untuk Trader Masa Kini
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {solutions.map((solution, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="group relative overflow-hidden border-gold-20 hover-elevate transition-all duration-300 h-64"
               data-testid={`card-solution-${index}`}
             >
-              <div 
+              <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundImage: `url(${solution.background})` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
-              
+
               <CardContent className="relative h-full p-6 flex flex-col justify-end">
                 <div className="mb-4 w-12 h-12 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
                   <solution.icon className="text-primary" size={24} />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2" data-testid={`text-solution-title-${index}`}>
+                <h3
+                  className="text-xl font-semibold text-white mb-2"
+                  data-testid={`text-solution-title-${index}`}
+                >
                   {solution.title}
                 </h3>
-                <p className="text-white/90 text-sm leading-relaxed" data-testid={`text-solution-desc-${index}`}>
+                <p
+                  className="text-white/90 text-sm leading-relaxed"
+                  data-testid={`text-solution-desc-${index}`}
+                >
                   {solution.description}
                 </p>
               </CardContent>

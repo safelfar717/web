@@ -190,7 +190,7 @@ export default function ProblemSection() {
             ref={headlineRef}
             className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
             data-testid="text-problem-headline"
-          >The Problem: 78% Failure Rate </h2>
+          >The Problem : 78% Failure Rate </h2>
           <p
             ref={subtitleRef}
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
