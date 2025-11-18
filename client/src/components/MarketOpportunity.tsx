@@ -77,6 +77,20 @@ const stats = [
     label: "TAM",
     subtext: "Total Addressable Market Rp140 Triliun ($9B)",
   },
+  {
+    value: 0,
+    suffix: "",
+    label: "Why Now?",
+    subtext: "",
+    isFeatured: true,
+    isWhyNow: true,
+    bullets: [
+      "E-wallet adoption 60%+",
+      "Young population (median age: 29)",
+      "Rising middle class",
+      "Government push [financial inclusion]",
+    ],
+  },
 ];
 
 export default function MarketOpportunity() {
@@ -153,6 +167,39 @@ export default function MarketOpportunity() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {stats.map((stat, index) => {
             if (stat.isFeatured) {
+              if (stat.isWhyNow) {
+                return (
+                  <div
+                    key={index}
+                    data-featured="true"
+                    className="relative overflow-hidden rounded-lg border border-gold-20 h-64 md:col-span-3 lg:col-span-1"
+                    data-testid={`stat-featured-${index}`}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-gold/30 via-gold/10 to-transparent" />
+                    <div className="relative h-full flex flex-col items-center justify-center p-6">
+                      <h3
+                        className="text-3xl md:text-4xl font-bold text-gold-gradient text-center mb-4"
+                        data-testid={`stat-featured-label-${index}`}
+                      >
+                        {stat.label}
+                      </h3>
+                      <div className="space-y-2 text-left w-full max-w-xs">
+                        {stat.bullets?.map((bullet, bulletIndex) => (
+                          <div
+                            key={bulletIndex}
+                            className="flex items-start gap-2 text-foreground"
+                            data-testid={`stat-bullet-${index}-${bulletIndex}`}
+                          >
+                            <span className="text-gold-gradient text-lg flex-shrink-0">✓</span>
+                            <span className="text-sm md:text-base">{bullet}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              
               return (
                 <div
                   key={index}
@@ -188,7 +235,7 @@ export default function MarketOpportunity() {
                   data-testid={`stat-value-${index}`}
                 >
                   {stat.suffix === "T"
-                    ? `Rp ${(counts[index] || 0).toFixed(0)}${stat.suffix}`
+                    ? `${(counts[index] || 0).toFixed(0)}${stat.suffix}`
                     : `${(counts[index] || 0).toFixed(1)}${stat.suffix}`}
                 </div>
                 <div
