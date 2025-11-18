@@ -131,8 +131,8 @@ export default function MarketOpportunity() {
             className="text-muted-foreground text-lg max-w-3xl mx-auto"
             data-testid="text-opportunity-subtitle"
           >
-            Indonesia = Surga Fintech Belum Tergarap - A massive and growing
-            market ready for innovation
+            Indonesia = Surga Fintech Belum Tergarap - Market yang sangat besar
+            & terus bertumbuh, siap untuk ber-evolusi dan inovasi
           </p>
         </div>
 
