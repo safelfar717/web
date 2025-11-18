@@ -36,10 +36,22 @@ const stats = [
     subtext: "Growing at 42% year-over-year",
   },
   {
-    value: 6,
+    value: 40,
+    suffix: "M",
+    label: "Target 2030",
+    subtext: "OJK projection for retail investors",
+  },
+  {
+    value: 28.5,
+    suffix: "M",
+    label: "Potensi Market",
+    subtext: "NEW investors opportunity (2024-2030)",
+  },
+  {
+    value: 140,
     suffix: "T",
-    label: "Total Addressable Market",
-    subtext: "Based on 5M target users × Rp 1.2M ARPU",
+    label: "TAM",
+    subtext: "Total Addressable Market Rp140 Triliun ($9B)",
   },
 ];
 
