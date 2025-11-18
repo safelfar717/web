@@ -16,3 +16,19 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export const challengeMedia = pgTable("challenge_media", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  headline: text("headline").notNull(),
+  description: text("description").notNull(),
+  imageUrl: text("image_url").notNull(),
+  createdAt: text("created_at").notNull(),
+});
+
+export const insertChallengeMediaSchema = createInsertSchema(challengeMedia).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertChallengeMedia = z.infer<typeof insertChallengeMediaSchema>;
+export type ChallengeMedia = typeof challengeMedia.$inferSelect;
