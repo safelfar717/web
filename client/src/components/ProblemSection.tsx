@@ -9,7 +9,7 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { type ChallengeMedia } from "@shared/schema";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import defaultImage from "@assets/generated_images/stressed_trader_at_desk_f5aafa76.png";
+import defaultImage from "@assets/generated_images/Stressed_trader_financial_crisis_3de0c993.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -183,47 +183,6 @@ export default function ProblemSection() {
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2
-              ref={headlineRef}
-              className="text-4xl md:text-5xl font-bold text-gold-gradient mb-6"
-              data-testid="text-problem-headline"
-            >
-              78% Failure Rate: The Problem
-            </h2>
-            <p
-              ref={subtitleRef}
-              className="text-xl text-muted-foreground mb-8"
-              data-testid="text-problem-subtitle"
-            >
-              Beginner traders fail within 6 months due to lack of education, guidance, and community support
-            </p>
-
-            <div className="space-y-4">
-              {problems.map((problem, index) => (
-                <Card
-                  key={index}
-                  className="problem-card bg-card border-gold-20 hover-elevate"
-                  data-testid={`card-problem-${index}`}
-                >
-                  <CardContent className="p-4 flex items-start gap-4">
-                    <div className={`w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0`}>
-                      <problem.icon className={problem.color} size={20} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1" data-testid={`text-problem-title-${index}`}>
-                        {problem.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground" data-testid={`text-problem-desc-${index}`}>
-                        {problem.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          <div>
             <div
               ref={imageRef}
               className="relative rounded-lg overflow-hidden border border-gold-20"
@@ -297,6 +256,47 @@ export default function ProblemSection() {
                 </CardContent>
               </Card>
             )}
+          </div>
+
+          <div>
+            <h2
+              ref={headlineRef}
+              className="text-4xl md:text-5xl font-bold text-gold-gradient mb-6"
+              data-testid="text-problem-headline"
+            >
+              78% Failure Rate: The Problem
+            </h2>
+            <p
+              ref={subtitleRef}
+              className="text-xl text-muted-foreground mb-8"
+              data-testid="text-problem-subtitle"
+            >
+              Beginner traders fail within 6 months due to lack of education, guidance, and community support
+            </p>
+
+            <div className="space-y-4">
+              {problems.map((problem, index) => (
+                <Card
+                  key={index}
+                  className="problem-card bg-card border-gold-20 hover-elevate"
+                  data-testid={`card-problem-${index}`}
+                >
+                  <CardContent className="p-4 flex items-start gap-4">
+                    <div className={`w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0`}>
+                      <problem.icon className={problem.color} size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1" data-testid={`text-problem-title-${index}`}>
+                        {problem.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground" data-testid={`text-problem-desc-${index}`}>
+                        {problem.description}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
