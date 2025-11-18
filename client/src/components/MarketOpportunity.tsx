@@ -12,6 +12,24 @@ const stats = [
     subtext: "77% internet penetration with 213M active users",
   },
   {
+    value: 213,
+    suffix: "M",
+    label: "Internet Users",
+    subtext: "77% of population actively online",
+  },
+  {
+    value: 165,
+    suffix: "M",
+    label: "E-wallet Users",
+    subtext: "60% adoption rate for digital payments",
+  },
+  {
+    value: 135,
+    suffix: "M",
+    label: "Millennial + Gen Z",
+    subtext: "49% of population, digitally native traders",
+  },
+  {
     value: 11.5,
     suffix: "M",
     label: "Retail Investors (2024)",
