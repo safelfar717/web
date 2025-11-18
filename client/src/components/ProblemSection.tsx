@@ -105,7 +105,11 @@ export default function ProblemSection() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const headline = headlineRef.current;
+    const subtitle = subtitleRef.current;
+    const image = imageRef.current;
+    
+    if (!section || !headline || !subtitle || !image) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -116,22 +120,22 @@ export default function ProblemSection() {
         }
       });
 
-      tl.from(headlineRef.current, {
-        y: 50,
+      tl.from(image, {
+        scale: 0.9,
         opacity: 0,
         duration: 0.8,
         ease: "power3.out"
       })
-      .from(subtitleRef.current, {
+      .from(headline, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      }, "-=0.6")
+      .from(subtitle, {
         y: 30,
         opacity: 0,
         duration: 0.6,
-        ease: "power3.out"
-      }, "-=0.4")
-      .from(imageRef.current, {
-        scale: 0.9,
-        opacity: 0,
-        duration: 0.8,
         ease: "power3.out"
       }, "-=0.4")
       .from(".problem-card", {
