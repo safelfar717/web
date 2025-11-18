@@ -16,26 +16,26 @@ gsap.registerPlugin(ScrollTrigger);
 const problems = [
   {
     icon: DollarSign,
-    title: "Expensive & Inaccessible Education",
-    description: "Courses cost Rp 500K+ with no 'learn-to-earn' incentive",
+    title: "Edukasi yang Mahal & Sulit Diakses",
+    description: "Kursus offline Rp 5-15 juta, online Rp 500 ribu+, tanpa sistem 'belajar sambil menghasilkan'",
     color: "text-red-400"
   },
   {
     icon: MessageSquare,
-    title: "Untrustworthy Signals",
-    description: "Telegram groups full of scams, fake track records, zero accountability",
+    title: "Sinyal Trading Tidak Terpercaya",
+    description: "Grup Telegram penuh penipuan, rekam jejak palsu, tanpa akuntabilitas",
     color: "text-orange-400"
   },
   {
     icon: Globe,
-    title: "Global Platforms Not Local-Friendly",
-    description: "High minimums (Rp 1M+), English-only, no IDR/QRIS/OVO integration",
+    title: "Platform Global Tidak Ramah Lokal",
+    description: "Minimal deposit tinggi (Rp 1 juta+), hanya bahasa Inggris, tanpa integrasi IDR/QRIS/OVO",
     color: "text-blue-400"
   },
   {
     icon: AlertCircle,
-    title: "Trading is Lonely",
-    description: "Lack of supportive community leads to high dropout rates",
+    title: "Trading itu Kesepian",
+    description: "Tidak ada dukungan komunitas, tingkat putus sekolah tinggi, trader merasa sendirian",
     color: "text-yellow-400"
   }
 ];
