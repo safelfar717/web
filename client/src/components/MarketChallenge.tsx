@@ -6,6 +6,8 @@ import {
   TrendingUp,
   Copy,
   Trophy,
+  ShoppingCart,
+  Lightbulb,
 } from "lucide-react";
 import educationBg from "@assets/generated_images/Interactive_education_platform_81bed62b.png";
 import communityBg from "@assets/generated_images/Live_trading_community_3f62992e.png";
@@ -13,6 +15,8 @@ import aiBg from "@assets/generated_images/AI_powered_insights_f1c05b55.png";
 import signalsBg from "@assets/generated_images/Live_trading_signals_663372b9.png";
 import copyBg from "@assets/generated_images/Copy_trading_platform_68d95174.png";
 import competitionBg from "@assets/generated_images/Trading_competitions_7e53ac4c.png";
+import storeBg from "@assets/generated_images/Store_ecommerce_robot_trading_interface_53f3b3b5.png";
+import innovativeBg from "@assets/generated_images/Combined_platform_ecosystem_visualization_89220649.png";
 
 const solutions = [
   {
@@ -56,6 +60,20 @@ const solutions = [
     description:
       "Kami menantang Anda! Tunjukkan pada dunia You are The Champion dan bawa pulang Hadiahnya!",
     background: competitionBg,
+  },
+  {
+    icon: ShoppingCart,
+    title: "Store (UNIQUE!)",
+    description:
+      "Shop & Auto-Invest — Cashback from purchases goes directly into portfolio",
+    background: storeBg,
+  },
+  {
+    icon: Lightbulb,
+    title: "& Innovative Value",
+    description:
+      "Satu-satunya platform yang combine education, trading, social, dan commerce.",
+    background: innovativeBg,
   },
 ];
 
