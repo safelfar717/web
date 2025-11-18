@@ -70,7 +70,7 @@ const solutions = [
   },
   {
     icon: Lightbulb,
-    title: "& Innovative Value",
+    title: "Unique & Innovative Value",
     description:
       "Satu-satunya platform yang combine education, trading, social, dan commerce.",
     background: innovativeBg,
