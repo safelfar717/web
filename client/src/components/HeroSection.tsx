@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { TrendingUp } from "lucide-react";
 import gsap from "gsap";
-import heroBackground from "@assets/TradeHub-Social-Trading-Platform_1763479059330.jpg";
+import heroBackground from "@assets/generated_images/Trading_workspace_millennial_community_b2ff8f4b.png";
 
 export default function HeroSection() {
   const titleRef = useRef<HTMLHeadingElement>(null);
