@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import marketSizeBg from "@assets/generated_images/Indonesia_market_size_digital_visualization_7f61a500.png";
+import tradingNextGenBg from "@assets/generated_images/Millennials_Gen-Z_trading_community_8320f7a3.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,6 +46,14 @@ const stats = [
     subtext: "ARPU (Pendapatan Rata-Rata per Pengguna perTahun) | Pertumbuhan YoY: +42% | Modal rata-rata: Rp 5-10 M",
   },
   {
+    value: 0,
+    suffix: "",
+    label: "Trading Market NextGen",
+    subtext: "",
+    isFeatured: true,
+    background: tradingNextGenBg,
+  },
+  {
     value: 11.5,
     suffix: "M",
     label: "Retail Investors (2024)",
@@ -72,12 +81,10 @@ const stats = [
 
 export default function MarketOpportunity() {
   const sectionRef = useRef<HTMLElement>(null);
-  const featuredCardRef = useRef<HTMLDivElement>(null);
   const [counts, setCounts] = useState(stats.map(() => 0));
 
   useEffect(() => {
     const section = sectionRef.current;
-    const featuredCard = featuredCardRef.current;
     if (!section) return;
 
     const ctx = gsap.context(() => {
@@ -106,15 +113,16 @@ export default function MarketOpportunity() {
         },
       });
 
-      if (featuredCard) {
-        gsap.to(featuredCard, {
+      const featuredCards = section.querySelectorAll('[data-featured="true"]');
+      featuredCards.forEach((card) => {
+        gsap.to(card, {
           boxShadow: "0 0 30px rgba(212, 175, 55, 0.6)",
           duration: 1.5,
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
         });
-      }
+      });
     }, section);
 
     return () => ctx.revert();
@@ -148,7 +156,7 @@ export default function MarketOpportunity() {
               return (
                 <div
                   key={index}
-                  ref={featuredCardRef}
+                  data-featured="true"
                   className="relative overflow-hidden rounded-lg border border-gold-20 h-64 md:col-span-3 lg:col-span-1"
                   data-testid={`stat-featured-${index}`}
                 >
