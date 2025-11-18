@@ -39,6 +39,12 @@ const stats = [
     subtext: "49% of population, digitally native traders",
   },
   {
+    value: 1.2,
+    suffix: "M",
+    label: "Rp 1.2M/year",
+    subtext: "ARPU (Pendapatan Rata-Rata per Pengguna perTahun) | Pertumbuhan YoY: +42% | Modal rata-rata: Rp 5-10 M",
+  },
+  {
     value: 11.5,
     suffix: "M",
     label: "Retail Investors (2024)",
@@ -174,8 +180,8 @@ export default function MarketOpportunity() {
                   data-testid={`stat-value-${index}`}
                 >
                   {stat.suffix === "T"
-                    ? `Rp ${counts[index].toFixed(0)}${stat.suffix}`
-                    : `${counts[index].toFixed(1)}${stat.suffix}`}
+                    ? `Rp ${(counts[index] || 0).toFixed(0)}${stat.suffix}`
+                    : `${(counts[index] || 0).toFixed(1)}${stat.suffix}`}
                 </div>
                 <div
                   className="text-xl font-semibold text-foreground mb-3"
