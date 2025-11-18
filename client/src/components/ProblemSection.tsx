@@ -195,9 +195,7 @@ export default function ProblemSection() {
             ref={subtitleRef}
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
             data-testid="text-problem-subtitle"
-          >
-            Beginner traders fail within 6 months due to lack of education, guidance, and community support
-          </p>
+          >80% trader pemula menyerah dalam 6 bulan. Masalahnya bukan market — tapi Tanpa Edukasi, tanpa Mentor verified & Ekosistem yang tepat.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
