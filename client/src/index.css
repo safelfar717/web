@@ -2,51 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LIGHT MODE */
+/* LIGHT MODE - Not used, TradeX uses dark theme only */
 :root {
-  --button-outline: rgba(0,0,0, .10);
-  --badge-outline: rgba(0,0,0, .05);
-  --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
-  --background: 0 0% 100%;
-  --foreground: 0 0% 9%;
-  --border: 0 0% 89%;
-  --card: 0 0% 98%;
-  --card-foreground: 0 0% 9%;
-  --card-border: 0 0% 94%;
-  --sidebar: 0 0% 96%;
-  --sidebar-foreground: 0 0% 9%;
-  --sidebar-border: 0 0% 91%;
-  --sidebar-primary: 43 74% 49%;
-  --sidebar-primary-foreground: 43 15% 95%;
-  --sidebar-accent: 0 0% 92%;
-  --sidebar-accent-foreground: 0 0% 9%;
-  --sidebar-ring: 43 74% 49%;
-  --popover: 0 0% 94%;
-  --popover-foreground: 0 0% 9%;
-  --popover-border: 0 0% 88%;
-  --primary: 43 74% 30%;
-  --primary-foreground: 43 15% 95%;
-  --secondary: 0 0% 90%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 92%;
-  --muted-foreground: 0 0% 35%;
-  --accent: 43 18% 91%;
-  --accent-foreground: 0 0% 9%;
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .09);
+  --background: 0 0% 0%;
+  --foreground: 43 12% 92%;
+  --border: 43 74% 53%;
+  --card: 0 0% 4%;
+  --card-foreground: 43 12% 92%;
+  --card-border: 43 74% 53%;
+  --sidebar: 0 0% 6%;
+  --sidebar-foreground: 43 12% 92%;
+  --sidebar-border: 0 0% 11%;
+  --sidebar-primary: 43 74% 53%;
+  --sidebar-primary-foreground: 0 0% 9%;
+  --sidebar-accent: 0 0% 10%;
+  --sidebar-accent-foreground: 43 12% 92%;
+  --sidebar-ring: 43 74% 53%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 43 12% 92%;
+  --popover-border: 0 0% 13%;
+  --primary: 43 74% 53%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 43 12% 92%;
+  --muted: 0 0% 11%;
+  --muted-foreground: 43 8% 65%;
+  --accent: 43 18% 12%;
+  --accent-foreground: 43 12% 92%;
   --destructive: 0 84% 32%;
   --destructive-foreground: 0 15% 95%;
-  --input: 0 0% 70%;
-  --ring: 43 74% 49%;
-  --chart-1: 43 74% 30%;
-  --chart-2: 210 65% 28%;
-  --chart-3: 160 55% 25%;
-  --chart-4: 280 60% 28%;
-  --chart-5: 25 70% 32%;
-  --font-sans: Open Sans, sans-serif;
+  --input: 0 0% 30%;
+  --ring: 43 74% 53%;
+  --chart-1: 43 90% 65%;
+  --chart-2: 210 75% 70%;
+  --chart-3: 160 65% 68%;
+  --chart-4: 280 70% 72%;
+  --chart-5: 25 85% 68%;
+  --font-sans: Inter, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
-  --radius: .5rem;
+  --radius: .75rem;
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
@@ -196,6 +196,44 @@
  * need to be distinguished from eachother visually.
  */
 @layer utilities {
+  
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #F7E27A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Gold glow effect */
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2), 0 0 40px rgba(212, 175, 55, 0.1);
+  }
+  
+  .gold-glow-hover:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), 0 0 60px rgba(212, 175, 55, 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Gold border with opacity */
+  .border-gold-20 {
+    border-color: rgba(212, 175, 55, 0.2);
+  }
+  
+  /* Floating particles background */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delay {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 2s;
+  }
 
   /* Hide ugly search cancel button in Chrome until we can style it properly */
   input[type="search"]::-webkit-search-cancel-button {
