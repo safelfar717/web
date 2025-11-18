@@ -97,6 +97,29 @@ export default function MarketChallenge() {
           ease: "sine.inOut",
         });
       }
+
+      const storeIconContainer = section.querySelector('[data-store-icon-container="true"]');
+      if (storeIconContainer) {
+        gsap.to(storeIconContainer, {
+          boxShadow: "0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4)",
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      }
+
+      const storeIcon = section.querySelector('[data-store-icon="true"]');
+      if (storeIcon) {
+        gsap.to(storeIcon, {
+          x: 5,
+          y: -5,
+          duration: 1.2,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut",
+        });
+      }
     }, section);
 
     return () => ctx.revert();
@@ -136,8 +159,15 @@ export default function MarketChallenge() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
 
               <CardContent className="relative h-full p-6 flex flex-col justify-end">
-                <div className="mb-4 w-12 h-12 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
-                  <solution.icon className="text-primary" size={24} />
+                <div 
+                  className="mb-4 w-12 h-12 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30"
+                  data-store-icon-container={index === 6 ? "true" : undefined}
+                >
+                  <solution.icon 
+                    className="text-primary" 
+                    size={24}
+                    data-store-icon={index === 6 ? "true" : undefined}
+                  />
                 </div>
                 <h3
                   className="text-xl font-semibold text-white mb-2"
