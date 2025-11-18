@@ -8,7 +8,6 @@ export default function HeroSection() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
@@ -46,14 +45,6 @@ export default function HeroSection() {
         ease: "back.out(1.4)"
       }, "-=0.5");
     }
-    
-    // Animate stats with fade and slide up
-    tl.from(statsRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    }, "-=0.4");
   }, []);
 
   return (
@@ -105,32 +96,6 @@ export default function HeroSection() {
             >
               Learn More
             </Button>
-          </div>
-
-          {/* Trading Stats/Metrics */}
-          <div 
-            ref={statsRef}
-            className="pt-12 flex flex-wrap items-center justify-center gap-8 md:gap-12"
-            data-testid="container-stats"
-          >
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gold-gradient" data-testid="text-stat-users">
-                $2M+
-              </div>
-              <div className="text-sm text-gray-400 mt-1">Total Volume</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gold-gradient" data-testid="text-stat-trades">
-                $2.5B
-              </div>
-              <div className="text-sm text-gray-400 mt-1">Market Cap</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gold-gradient" data-testid="text-stat-success">
-                97%
-              </div>
-              <div className="text-sm text-gray-400 mt-1">Success Rate</div>
-            </div>
           </div>
         </div>
       </div>
