@@ -1,26 +1,48 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { DollarSign, AlertTriangle, Globe, Users } from "lucide-react";
+import { GraduationCap, Users, Sparkles, TrendingUp, Copy, Trophy } from "lucide-react";
+import educationBg from "@assets/generated_images/Interactive_education_platform_81bed62b.png";
+import communityBg from "@assets/generated_images/Live_trading_community_3f62992e.png";
+import aiBg from "@assets/generated_images/AI_powered_insights_f1c05b55.png";
+import signalsBg from "@assets/generated_images/Live_trading_signals_663372b9.png";
+import copyBg from "@assets/generated_images/Copy_trading_platform_68d95174.png";
+import competitionBg from "@assets/generated_images/Trading_competitions_7e53ac4c.png";
 
-const challenges = [
+const solutions = [
   {
-    icon: DollarSign,
-    title: "Expensive Education",
-    description: "Offline courses Rp 5-15M, online Rp 500K+, without 'learn-to-earn'"
-  },
-  {
-    icon: AlertTriangle,
-    title: "Unreliable Signals",
-    description: "Telegram groups full of scams, fake track records, zero accountability"
-  },
-  {
-    icon: Globe,
-    title: "Global Platforms",
-    description: "No IDR/QRIS/OVO integration, English-only interfaces, high minimums (Rp 1M+)"
+    icon: GraduationCap,
+    title: "Interactive Education",
+    description: "Ikuti edu gamifikasi kami dengan tingkat level & buktikan keahlian Anda dgn Sertifikasi",
+    background: educationBg
   },
   {
     icon: Users,
-    title: "Isolated Learning",
-    description: "No community support, leads to 42% dropout, traders feel alone"
+    title: "Live Community",
+    description: "Tempat Kita Terkoneksi, Berbagi, Berdiskusi & Tumbuh bersama dalam Ekosistem Trading",
+    background: communityBg
+  },
+  {
+    icon: Sparkles,
+    title: "AI-Powered Insights",
+    description: "Buka Wawasan AI Trading Anda dari Inti Akurasi Analitik dan Presisi Trading Canggih saat ini",
+    background: aiBg
+  },
+  {
+    icon: TrendingUp,
+    title: "Live Trading Signals",
+    description: "Nikmati sinyal Real-Time oleh EA & diversifikasi Analisis Ahli, dengan rekor akurasi mencapai 97%",
+    background: signalsBg
+  },
+  {
+    icon: Copy,
+    title: "Copy Trading",
+    description: "Yuk ikuti dan Copy otomatis Trading dari para Master Trader! Belajar sambil Cuan",
+    background: copyBg
+  },
+  {
+    icon: Trophy,
+    title: "Trading Competitions",
+    description: "Kami menantang Anda! Tunjukkan pada dunia You are The Champion dan bawa pulang Hadiahnya!",
+    background: competitionBg
   }
 ];
 
@@ -30,29 +52,35 @@ export default function MarketChallenge() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-section-title">
-            The Market Challenge
+            Solusi: "NextGen"
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto" data-testid="text-section-subtitle">
-            78% of beginner traders fail within 6 months due to lack of education, guidance, and community support
+            All-in-One Platform Trading Tools Professional, Analisa, Signal & Ecosystem untuk Trader Masa Kini
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {challenges.map((challenge, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {solutions.map((solution, index) => (
             <Card 
               key={index} 
-              className="bg-card border-gold-20 hover-elevate transition-all duration-300"
-              data-testid={`card-challenge-${index}`}
+              className="group relative overflow-hidden border-gold-20 hover-elevate transition-all duration-300 h-64"
+              data-testid={`card-solution-${index}`}
             >
-              <CardContent className="p-6 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <challenge.icon className="text-primary" size={24} />
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                style={{ backgroundImage: `url(${solution.background})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
+              
+              <CardContent className="relative h-full p-6 flex flex-col justify-end">
+                <div className="mb-4 w-12 h-12 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
+                  <solution.icon className="text-primary" size={24} />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground" data-testid={`text-challenge-title-${index}`}>
-                  {challenge.title}
+                <h3 className="text-xl font-semibold text-white mb-2" data-testid={`text-solution-title-${index}`}>
+                  {solution.title}
                 </h3>
-                <p className="text-muted-foreground text-sm" data-testid={`text-challenge-desc-${index}`}>
-                  {challenge.description}
+                <p className="text-white/90 text-sm leading-relaxed" data-testid={`text-solution-desc-${index}`}>
+                  {solution.description}
                 </p>
               </CardContent>
             </Card>
