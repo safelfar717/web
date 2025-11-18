@@ -1,10 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import marketSizeBg from "@assets/generated_images/Indonesia_market_size_digital_visualization_7f61a500.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
+  {
+    value: 0,
+    suffix: "",
+    label: "Market Size Indonesia",
+    subtext: "",
+    isFeatured: true,
+    background: marketSizeBg,
+  },
   {
     value: 278,
     suffix: "M",
@@ -57,10 +66,12 @@ const stats = [
 
 export default function MarketOpportunity() {
   const sectionRef = useRef<HTMLElement>(null);
+  const featuredCardRef = useRef<HTMLDivElement>(null);
   const [counts, setCounts] = useState(stats.map(() => 0));
 
   useEffect(() => {
     const section = sectionRef.current;
+    const featuredCard = featuredCardRef.current;
     if (!section) return;
 
     const ctx = gsap.context(() => {
@@ -69,6 +80,7 @@ export default function MarketOpportunity() {
         start: "top 70%",
         onEnter: () => {
           stats.forEach((stat, index) => {
+            if (stat.isFeatured) return;
             gsap.to(
               { val: 0 },
               {
@@ -87,6 +99,16 @@ export default function MarketOpportunity() {
           });
         },
       });
+
+      if (featuredCard) {
+        gsap.to(featuredCard, {
+          boxShadow: "0 0 30px rgba(212, 175, 55, 0.6)",
+          duration: 1.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      }
     }, section);
 
     return () => ctx.revert();
@@ -115,34 +137,61 @@ export default function MarketOpportunity() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="text-center p-8 rounded-lg border border-gold-20 bg-card/50 backdrop-blur-sm hover-elevate"
-              data-testid={`stat-${index}`}
-            >
+          {stats.map((stat, index) => {
+            if (stat.isFeatured) {
+              return (
+                <div
+                  key={index}
+                  ref={featuredCardRef}
+                  className="relative overflow-hidden rounded-lg border border-gold-20 h-64 md:col-span-3 lg:col-span-1"
+                  data-testid={`stat-featured-${index}`}
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${stat.background})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
+                  <div className="relative h-full flex items-center justify-center">
+                    <h3
+                      className="text-3xl md:text-4xl font-bold text-gold-gradient text-center px-4"
+                      data-testid={`stat-featured-label-${index}`}
+                    >
+                      {stat.label}
+                    </h3>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
               <div
-                className="text-5xl md:text-6xl font-bold text-gold-gradient mb-2"
-                data-testid={`stat-value-${index}`}
+                key={index}
+                className="text-center p-8 rounded-lg border border-gold-20 bg-card/50 backdrop-blur-sm hover-elevate"
+                data-testid={`stat-${index}`}
               >
-                {stat.suffix === "T"
-                  ? `Rp ${counts[index].toFixed(0)}${stat.suffix}`
-                  : `${counts[index].toFixed(1)}${stat.suffix}`}
+                <div
+                  className="text-5xl md:text-6xl font-bold text-gold-gradient mb-2"
+                  data-testid={`stat-value-${index}`}
+                >
+                  {stat.suffix === "T"
+                    ? `Rp ${counts[index].toFixed(0)}${stat.suffix}`
+                    : `${counts[index].toFixed(1)}${stat.suffix}`}
+                </div>
+                <div
+                  className="text-xl font-semibold text-foreground mb-3"
+                  data-testid={`stat-label-${index}`}
+                >
+                  {stat.label}
+                </div>
+                <div
+                  className="text-sm text-muted-foreground"
+                  data-testid={`stat-subtext-${index}`}
+                >
+                  {stat.subtext}
+                </div>
               </div>
-              <div
-                className="text-xl font-semibold text-foreground mb-3"
-                data-testid={`stat-label-${index}`}
-              >
-                {stat.label}
-              </div>
-              <div
-                className="text-sm text-muted-foreground"
-                data-testid={`stat-subtext-${index}`}
-              >
-                {stat.subtext}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
