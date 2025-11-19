@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, X, AlertCircle, Star } from "lucide-react";
+import { X, Star, BadgeCheck, ShieldAlert } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -262,149 +262,149 @@ export default function EcosystemSection() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-gold-20/50 hover-elevate">
+                      <tr className="border-b border-gold-20/50 hover-elevate even:bg-primary/5">
                         <td className="py-3 px-4 text-foreground font-semibold">Education</td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <AlertCircle className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <ShieldAlert className="inline-block w-5 h-5 text-amber-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center bg-primary/5">
+                        <td className="py-3 px-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <Check className="w-5 h-5 text-primary" />
+                            <BadgeCheck className="w-5 h-5 text-primary" />
                             <span className="text-primary font-semibold">Comprehensive</span>
                           </div>
                         </td>
                       </tr>
-                      <tr className="border-b border-gold-20/50 hover-elevate">
+                      <tr className="border-b border-gold-20/50 hover-elevate even:bg-primary/5">
                         <td className="py-3 px-4 text-foreground font-semibold">Signals</td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center bg-primary/5">
+                        <td className="py-3 px-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <Check className="w-5 h-5 text-primary" />
+                            <BadgeCheck className="w-5 h-5 text-primary" />
                             <span className="text-primary font-semibold">Verified</span>
                           </div>
                         </td>
                       </tr>
-                      <tr className="border-b border-gold-20/50 hover-elevate">
+                      <tr className="border-b border-gold-20/50 hover-elevate even:bg-primary/5">
                         <td className="py-3 px-4 text-foreground font-semibold">Copy Trading</td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <Check className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <BadgeCheck className="inline-block w-5 h-5 text-green-500" />
                         </td>
-                        <td className="py-3 px-4 text-center bg-primary/5">
+                        <td className="py-3 px-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <Check className="w-5 h-5 text-primary" />
+                            <BadgeCheck className="w-5 h-5 text-primary" />
                             <span className="text-primary font-semibold">Enhanced</span>
                           </div>
                         </td>
                       </tr>
-                      <tr className="border-b border-gold-20/50 hover-elevate">
+                      <tr className="border-b border-gold-20/50 hover-elevate even:bg-primary/5">
                         <td className="py-3 px-4 text-foreground font-semibold">Social Feed</td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <Check className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <BadgeCheck className="inline-block w-5 h-5 text-green-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <AlertCircle className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <ShieldAlert className="inline-block w-5 h-5 text-amber-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <AlertCircle className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <ShieldAlert className="inline-block w-5 h-5 text-amber-500" />
                         </td>
-                        <td className="py-3 px-4 text-center bg-primary/5">
+                        <td className="py-3 px-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <Check className="w-5 h-5 text-primary" />
+                            <BadgeCheck className="w-5 h-5 text-primary" />
                             <span className="text-primary font-semibold">Instagram-like</span>
                           </div>
                         </td>
                       </tr>
-                      <tr className="border-b border-gold-20/50 hover-elevate">
+                      <tr className="border-b border-gold-20/50 hover-elevate even:bg-primary/5">
                         <td className="py-3 px-4 text-foreground font-semibold">Local Payment</td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <Check className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <BadgeCheck className="inline-block w-5 h-5 text-green-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <AlertCircle className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <ShieldAlert className="inline-block w-5 h-5 text-amber-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <Check className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <BadgeCheck className="inline-block w-5 h-5 text-green-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center bg-primary/5">
+                        <td className="py-3 px-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <Check className="w-5 h-5 text-primary" />
+                            <BadgeCheck className="w-5 h-5 text-primary" />
                             <span className="text-primary font-semibold">All e-wallets</span>
                           </div>
                         </td>
                       </tr>
-                      <tr className="border-b border-gold-20/50 hover-elevate">
+                      <tr className="border-b border-gold-20/50 hover-elevate even:bg-primary/5">
                         <td className="py-3 px-4 text-foreground font-semibold">Store</td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center bg-primary/10">
+                        <td className="py-3 px-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <Check className="w-5 h-5 text-primary" />
+                            <BadgeCheck className="w-5 h-5 text-primary" />
                             <span className="text-primary font-bold">UNIQUE!</span>
                           </div>
                         </td>
                       </tr>
-                      <tr className="hover-elevate">
+                      <tr className="hover-elevate even:bg-primary/5">
                         <td className="py-3 px-4 text-foreground font-semibold">Blockchain</td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <AlertCircle className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <ShieldAlert className="inline-block w-5 h-5 text-amber-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center text-muted-foreground">
-                          <X className="inline-block w-5 h-5" />
+                        <td className="py-3 px-4 text-center">
+                          <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center bg-primary/5">
+                        <td className="py-3 px-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <Check className="w-5 h-5 text-primary" />
+                            <BadgeCheck className="w-5 h-5 text-primary" />
                             <span className="text-primary font-semibold">Verified</span>
                           </div>
                         </td>
