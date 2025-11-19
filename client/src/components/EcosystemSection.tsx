@@ -256,7 +256,7 @@ export default function EcosystemSection() {
                         <th className="py-4 px-4 text-foreground font-bold text-center bg-primary/20">Binance</th>
                         <th className="py-4 px-4 text-foreground font-bold text-center bg-primary/20">Ajaib</th>
                         <th className="py-4 px-4 text-foreground font-bold text-center bg-primary/20">eToro</th>
-                        <th className="py-4 px-4 font-bold text-gold-gradient text-center bg-primary/20">TradeX</th>
+                        <th className="py-4 px-4 font-bold text-gold-gradient text-center bg-[#85651433]">TradeX</th>
                       </tr>
                     </thead>
                     <tbody>
