@@ -30,13 +30,15 @@ export default function EcosystemSection() {
       const competitors = map.querySelectorAll('[data-competitor]');
       const tradex = map.querySelector('[data-tradex]');
       const starIcon = map.querySelector('[data-star-icon]');
-      const axes = map.querySelectorAll('[data-axis]');
+      const horizontalAxis = map.querySelector('[data-axis="horizontal"]');
+      const verticalAxis = map.querySelector('[data-axis="vertical"]');
       const gridLines = map.querySelectorAll('[data-grid-line]');
 
-      gsap.set([competitors, tradex, axes, gridLines], { opacity: 0 });
+      gsap.set([competitors, tradex, horizontalAxis, verticalAxis, gridLines], { opacity: 0 });
       gsap.set(competitors, { scale: 0, y: 20 });
       gsap.set(tradex, { scale: 0 });
-      gsap.set(axes, { scaleX: 0 });
+      gsap.set(horizontalAxis, { scaleX: 0, transformOrigin: "left" });
+      gsap.set(verticalAxis, { scaleY: 0, transformOrigin: "top" });
       gsap.set(gridLines, { scaleY: 0 });
       if (starIcon) gsap.set(starIcon, { rotation: 0, scale: 1 });
 
@@ -53,13 +55,18 @@ export default function EcosystemSection() {
             stagger: 0.1,
             ease: "power2.out"
           })
-          .to(axes, {
+          .to(horizontalAxis, {
             scaleX: 1,
-            opacity: 0.3,
+            opacity: 0.8,
             duration: 0.8,
-            stagger: 0.2,
             ease: "power2.out"
           }, "-=0.4")
+          .to(verticalAxis, {
+            scaleY: 1,
+            opacity: 0.8,
+            duration: 0.8,
+            ease: "power2.out"
+          }, "-=0.6")
           .to(competitors, {
             scale: 1,
             y: 0,
@@ -170,12 +177,12 @@ export default function EcosystemSection() {
                   </div>
 
                   <div
-                    data-axis="true"
+                    data-axis="horizontal"
                     className="absolute left-0 right-0 h-0.5 bg-primary/80"
                     style={{ top: '50%' }}
                   />
                   <div
-                    data-axis="true"
+                    data-axis="vertical"
                     className="absolute top-0 bottom-0 w-0.5 bg-primary/80"
                     style={{ left: '50%' }}
                   />
