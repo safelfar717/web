@@ -40,9 +40,9 @@ const stats = [
     subtext: "49% of population, digitally native traders",
   },
   {
-    value: 1.2,
+    value: 21.5,
     suffix: "M",
-    label: "Rp 1.2M/year",
+    label: "Rp 21.5M/year",
     subtext: "ARPU (Pendapatan Rata-Rata per Pengguna perTahun) | Pertumbuhan YoY: +42% | Modal rata-rata: Rp 5-10 M",
   },
   {
