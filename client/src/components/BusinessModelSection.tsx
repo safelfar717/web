@@ -155,7 +155,7 @@ export default function BusinessModelSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gradient-to-b from-card to-black">
+    <section ref={sectionRef} className="pt-12 pb-24 bg-gradient-to-b from-card to-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2
