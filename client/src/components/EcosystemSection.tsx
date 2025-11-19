@@ -180,16 +180,16 @@ export default function EcosystemSection() {
                     style={{ left: '50%' }}
                   />
 
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm font-semibold text-primary">
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs font-bold text-primary px-3 py-1.5 bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 rounded-md backdrop-blur-sm">
                     HIGH EDUCATION
                   </div>
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm font-semibold text-muted-foreground">
+                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-semibold text-muted-foreground px-3 py-1.5 bg-gradient-to-r from-muted/30 to-muted/20 border border-border rounded-md backdrop-blur-sm">
                     LOW EDUCATION
                   </div>
-                  <div className="absolute top-1/2 -left-8 -translate-y-1/2 -rotate-90 text-sm font-semibold text-muted-foreground whitespace-nowrap">
+                  <div className="absolute top-1/2 -left-8 -translate-y-1/2 -rotate-90 text-xs font-semibold text-muted-foreground whitespace-nowrap px-3 py-1.5 bg-gradient-to-r from-muted/30 to-muted/20 border border-border rounded-md backdrop-blur-sm">
                     LOW FEATURES
                   </div>
-                  <div className="absolute top-1/2 -right-8 -translate-y-1/2 -rotate-90 text-sm font-semibold text-primary whitespace-nowrap">
+                  <div className="absolute top-1/2 -right-8 -translate-y-1/2 -rotate-90 text-xs font-bold text-primary whitespace-nowrap px-3 py-1.5 bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 rounded-md backdrop-blur-sm">
                     HIGH FEATURES
                   </div>
 
