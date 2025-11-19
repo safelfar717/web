@@ -274,8 +274,8 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-center">
                           <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center">
-                          <div className="flex items-center justify-center gap-2">
+                        <td className="py-3 px-4 text-left">
+                          <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
                             <span className="text-primary font-semibold">Comprehensive</span>
                           </div>
