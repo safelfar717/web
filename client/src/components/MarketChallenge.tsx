@@ -164,7 +164,7 @@ export default function MarketChallenge() {
                   data-store-icon-container={index === 6 ? "true" : undefined}
                 >
                   <solution.icon 
-                    className="text-primary" 
+                    className="text-gold-gradient" 
                     size={24}
                     data-store-icon={index === 6 ? "true" : undefined}
                   />
