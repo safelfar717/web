@@ -7,11 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const competitors = [
-  { name: "Stockbit", subtitle: "Social", x: 30, y: 50, size: "md" },
-  { name: "XM Trading", subtitle: "Education", x: 70, y: 30, size: "md" },
-  { name: "Binomo", subtitle: "Gamified", x: 30, y: 70, size: "sm" },
-  { name: "Binance", subtitle: "Crypto", x: 70, y: 70, size: "md" },
-  { name: "Ajaib/Bibit", subtitle: "Robo-Advisor", x: 50, y: 85, size: "sm" },
+  { name: "Stockbit", subtitle: "Social", x: 30, y: 50, size: "md", bgColor: "bg-blue-500/20", borderColor: "border-blue-500/40" },
+  { name: "XM Trading", subtitle: "Education", x: 70, y: 30, size: "md", bgColor: "bg-emerald-500/20", borderColor: "border-emerald-500/40" },
+  { name: "Binomo", subtitle: "Gamified", x: 30, y: 70, size: "sm", bgColor: "bg-purple-500/15", borderColor: "border-purple-500/35" },
+  { name: "Binance", subtitle: "Crypto", x: 70, y: 70, size: "md", bgColor: "bg-amber-500/20", borderColor: "border-amber-500/40" },
+  { name: "Ajaib/Bibit", subtitle: "Robo-Advisor", x: 50, y: 85, size: "sm", bgColor: "bg-cyan-500/15", borderColor: "border-cyan-500/35" },
 ];
 
 export default function EcosystemSection() {
@@ -29,6 +29,7 @@ export default function EcosystemSection() {
     const ctx = gsap.context(() => {
       const competitors = map.querySelectorAll('[data-competitor]');
       const tradex = map.querySelector('[data-tradex]');
+      const starIcon = map.querySelector('[data-star-icon]');
       const axes = map.querySelectorAll('[data-axis]');
       const gridLines = map.querySelectorAll('[data-grid-line]');
 
@@ -37,6 +38,7 @@ export default function EcosystemSection() {
       gsap.set(tradex, { scale: 0 });
       gsap.set(axes, { scaleX: 0 });
       gsap.set(gridLines, { scaleY: 0 });
+      if (starIcon) gsap.set(starIcon, { rotation: 0, scale: 1 });
 
       ScrollTrigger.create({
         trigger: map,
@@ -46,7 +48,7 @@ export default function EcosystemSection() {
           
           tl.to(gridLines, {
             scaleY: 1,
-            opacity: 0.1,
+            opacity: 0.4,
             duration: 0.8,
             stagger: 0.1,
             ease: "power2.out"
@@ -79,6 +81,31 @@ export default function EcosystemSection() {
             yoyo: true,
             ease: "sine.inOut"
           });
+
+          if (starIcon) {
+            gsap.to(starIcon, {
+              rotation: 360,
+              duration: 8,
+              repeat: -1,
+              ease: "linear"
+            });
+            
+            gsap.to(starIcon, {
+              scale: 1.3,
+              duration: 1.5,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut"
+            });
+            
+            gsap.to(starIcon, {
+              filter: "drop-shadow(0 0 10px rgba(212, 175, 55, 0.8))",
+              duration: 1.2,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut"
+            });
+          }
         }
       });
 
@@ -128,7 +155,7 @@ export default function EcosystemSection() {
                       <div
                         key={`v-${i}`}
                         data-grid-line="true"
-                        className="absolute top-0 bottom-0 w-px bg-primary/10"
+                        className="absolute top-0 bottom-0 w-px bg-primary/40"
                         style={{ left: `${i * 25}%` }}
                       />
                     ))}
@@ -136,7 +163,7 @@ export default function EcosystemSection() {
                       <div
                         key={`h-${i}`}
                         data-grid-line="true"
-                        className="absolute left-0 right-0 h-px bg-primary/10"
+                        className="absolute left-0 right-0 h-px bg-primary/40"
                         style={{ top: `${i * 25}%` }}
                       />
                     ))}
@@ -175,7 +202,7 @@ export default function EcosystemSection() {
                       }`}
                       style={{ left: `${comp.x}%`, top: `${comp.y}%` }}
                     >
-                      <div className="w-full h-full rounded-full bg-card border-2 border-muted flex flex-col items-center justify-center p-2 hover-elevate transition-all">
+                      <div className={`w-full h-full rounded-full ${comp.bgColor} border-2 ${comp.borderColor} flex flex-col items-center justify-center p-2 hover-elevate transition-all backdrop-blur-sm`}>
                         <div className="text-xs md:text-sm font-bold text-foreground text-center leading-tight">
                           {comp.name}
                         </div>
@@ -192,7 +219,7 @@ export default function EcosystemSection() {
                     style={{ left: '50%', top: '35%' }}
                   >
                     <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-primary/10 border-4 border-primary flex flex-col items-center justify-center p-4">
-                      <Star className="w-8 h-8 text-primary mb-1 fill-primary" />
+                      <Star data-star-icon="true" className="w-8 h-8 text-primary mb-1 fill-primary" />
                       <div className="text-lg font-bold text-primary text-center leading-tight">
                         TRADEX
                       </div>
