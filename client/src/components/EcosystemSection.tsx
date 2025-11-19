@@ -295,8 +295,8 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-center">
                           <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center">
-                          <div className="flex items-center justify-center gap-2 text-left">
+                        <td className="py-3 px-4 text-left">
+                          <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
                             <span className="text-primary font-semibold">Verified</span>
                           </div>
@@ -316,8 +316,8 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-center">
                           <BadgeCheck className="inline-block w-5 h-5 text-green-500" />
                         </td>
-                        <td className="py-3 px-4 text-center">
-                          <div className="flex items-center justify-center gap-2">
+                        <td className="py-3 px-4 text-left">
+                          <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
                             <span className="text-primary font-semibold">Enhanced</span>
                           </div>
@@ -337,8 +337,8 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-center">
                           <ShieldAlert className="inline-block w-5 h-5 text-amber-500" />
                         </td>
-                        <td className="py-3 px-4 text-center">
-                          <div className="flex items-center justify-center gap-2">
+                        <td className="py-3 px-4 text-left">
+                          <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
                             <span className="text-primary font-semibold">Instagram-like</span>
                           </div>
@@ -358,8 +358,8 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-center">
                           <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center">
-                          <div className="flex items-center justify-center gap-2">
+                        <td className="py-3 px-4 text-left">
+                          <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
                             <span className="text-primary font-semibold">All e-wallets</span>
                           </div>
@@ -379,8 +379,8 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-center">
                           <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center">
-                          <div className="flex items-center justify-center gap-2">
+                        <td className="py-3 px-4 text-left">
+                          <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
                             <span className="text-primary font-bold">UNIQUE!</span>
                           </div>
@@ -400,8 +400,8 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-center">
                           <X className="inline-block w-5 h-5 text-red-500" />
                         </td>
-                        <td className="py-3 px-4 text-center">
-                          <div className="flex items-center justify-center gap-2">
+                        <td className="py-3 px-4 text-left">
+                          <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
                             <span className="text-primary font-semibold">Verified</span>
                           </div>
