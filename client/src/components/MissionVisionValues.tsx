@@ -3,7 +3,7 @@ import { Target, Eye, Heart, Lightbulb, Users } from "lucide-react";
 
 export default function MissionVisionValues() {
   return (
-    <section className="py-24 bg-black">
+    <section className="py-24 bg-black pt-[50px] pb-[50px]">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <Card className="bg-card border-gold-20 hover-elevate" data-testid="card-mission">
