@@ -1,9 +1,110 @@
+import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, X, AlertCircle } from "lucide-react";
+import { Check, X, AlertCircle, Star } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const competitors = [
+  { name: "Stockbit", subtitle: "Social", x: 30, y: 50, size: "md" },
+  { name: "XM Trading", subtitle: "Education", x: 70, y: 30, size: "md" },
+  { name: "Binomo", subtitle: "Gamified", x: 30, y: 70, size: "sm" },
+  { name: "Binance", subtitle: "Crypto", x: 70, y: 70, size: "md" },
+  { name: "Ajaib/Bibit", subtitle: "Robo-Advisor", x: 50, y: 85, size: "sm" },
+];
 
 export default function EcosystemSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const map = mapRef.current;
+    const table = tableRef.current;
+    
+    if (!section || !map || !table) return;
+
+    const ctx = gsap.context(() => {
+      const competitors = map.querySelectorAll('[data-competitor]');
+      const tradex = map.querySelector('[data-tradex]');
+      const axes = map.querySelectorAll('[data-axis]');
+      const gridLines = map.querySelectorAll('[data-grid-line]');
+
+      gsap.set([competitors, tradex, axes, gridLines], { opacity: 0 });
+      gsap.set(competitors, { scale: 0, y: 20 });
+      gsap.set(tradex, { scale: 0 });
+      gsap.set(axes, { scaleX: 0 });
+      gsap.set(gridLines, { scaleY: 0 });
+
+      ScrollTrigger.create({
+        trigger: map,
+        start: "top 80%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+          
+          tl.to(gridLines, {
+            scaleY: 1,
+            opacity: 0.1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out"
+          })
+          .to(axes, {
+            scaleX: 1,
+            opacity: 0.3,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out"
+          }, "-=0.4")
+          .to(competitors, {
+            scale: 1,
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "back.out(1.7)"
+          }, "-=0.4")
+          .to(tradex, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "back.out(2)",
+          }, "-=0.2")
+          .to(tradex, {
+            boxShadow: "0 0 40px rgba(212, 175, 55, 0.6)",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+          });
+        }
+      });
+
+      const tableRows = table.querySelectorAll('tbody tr');
+      gsap.set(tableRows, { opacity: 0, x: -20 });
+      
+      ScrollTrigger.create({
+        trigger: table,
+        start: "top 85%",
+        onEnter: () => {
+          gsap.to(tableRows, {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out"
+          });
+        }
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 bg-card">
+    <section ref={sectionRef} className="py-24 bg-card">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-competitive-title">
@@ -19,33 +120,91 @@ export default function EcosystemSection() {
             <h3 className="text-2xl font-bold text-gold-gradient mb-6 text-center" data-testid="text-positioning-title">
               Positioning Map
             </h3>
-            <Card className="bg-background border-gold-20 max-w-4xl mx-auto">
-              <CardContent className="p-8">
-                <pre className="text-primary font-mono text-sm md:text-base overflow-x-auto whitespace-pre" data-testid="text-positioning-map">
-{`                    HIGH EDUCATION
-                          ↑
-                          |
-                          |  
-                 ┌─────────────────┐
-                 │   ★ TRADEX      │ ← You Are Here!
-                 │  (All-in-One)   │
-                 └─────────────────┘
-                          |
-         Stockbit         |        XM Trading
-         (Social)         |        (Education)
-                          |
-    ────────────────────────────────────────→
-    LOW FEATURES                    HIGH FEATURES
-                          |
-         Binomo           |        Binance
-         (Gamified)       |        (Crypto)
-                          |
-                 Ajaib/Bibit
-                 (Robo-Advisor)
-                          |
-                          ↓
-                    LOW EDUCATION`}
-                </pre>
+            <Card className="bg-background border-gold-20 max-w-5xl mx-auto overflow-hidden">
+              <CardContent className="p-8 md:p-12">
+                <div ref={mapRef} className="relative w-full aspect-square max-w-2xl mx-auto" data-testid="text-positioning-map">
+                  <div className="absolute inset-0">
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={`v-${i}`}
+                        data-grid-line="true"
+                        className="absolute top-0 bottom-0 w-px bg-primary/10"
+                        style={{ left: `${i * 25}%` }}
+                      />
+                    ))}
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={`h-${i}`}
+                        data-grid-line="true"
+                        className="absolute left-0 right-0 h-px bg-primary/10"
+                        style={{ top: `${i * 25}%` }}
+                      />
+                    ))}
+                  </div>
+
+                  <div
+                    data-axis="true"
+                    className="absolute left-0 right-0 h-0.5 bg-primary/30"
+                    style={{ top: '50%' }}
+                  />
+                  <div
+                    data-axis="true"
+                    className="absolute top-0 bottom-0 w-0.5 bg-primary/30"
+                    style={{ left: '50%' }}
+                  />
+
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-sm font-semibold text-primary">
+                    HIGH EDUCATION
+                  </div>
+                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm font-semibold text-muted-foreground">
+                    LOW EDUCATION
+                  </div>
+                  <div className="absolute top-1/2 -left-8 -translate-y-1/2 -rotate-90 text-sm font-semibold text-muted-foreground whitespace-nowrap">
+                    LOW FEATURES
+                  </div>
+                  <div className="absolute top-1/2 -right-8 -translate-y-1/2 -rotate-90 text-sm font-semibold text-primary whitespace-nowrap">
+                    HIGH FEATURES
+                  </div>
+
+                  {competitors.map((comp, idx) => (
+                    <div
+                      key={idx}
+                      data-competitor="true"
+                      className={`absolute -translate-x-1/2 -translate-y-1/2 ${
+                        comp.size === 'md' ? 'w-28 h-28' : 'w-24 h-24'
+                      }`}
+                      style={{ left: `${comp.x}%`, top: `${comp.y}%` }}
+                    >
+                      <div className="w-full h-full rounded-full bg-card border-2 border-muted flex flex-col items-center justify-center p-2 hover-elevate transition-all">
+                        <div className="text-xs md:text-sm font-bold text-foreground text-center leading-tight">
+                          {comp.name}
+                        </div>
+                        <div className="text-[10px] text-muted-foreground text-center">
+                          {comp.subtitle}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div
+                    data-tradex="true"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 w-40 h-40"
+                    style={{ left: '50%', top: '35%' }}
+                  >
+                    <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-primary/10 border-4 border-primary flex flex-col items-center justify-center p-4">
+                      <Star className="w-8 h-8 text-primary mb-1 fill-primary" />
+                      <div className="text-lg font-bold text-primary text-center leading-tight">
+                        TRADEX
+                      </div>
+                      <div className="text-xs text-primary/80 text-center">
+                        All-in-One
+                      </div>
+                      <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-primary">
+                        You Are Here!
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -57,7 +216,7 @@ export default function EcosystemSection() {
             <Card className="bg-background border-gold-20 overflow-x-auto">
               <CardContent className="p-6 md:p-8">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse min-w-[600px]" data-testid="table-competitive">
+                  <table ref={tableRef} className="w-full text-left border-collapse min-w-[600px]" data-testid="table-competitive">
                     <thead>
                       <tr className="border-b border-gold-20">
                         <th className="py-4 px-4 text-foreground font-bold">Feature</th>
