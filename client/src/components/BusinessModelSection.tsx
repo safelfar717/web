@@ -194,7 +194,7 @@ export default function BusinessModelSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/50" />
 
-              <CardContent className="relative h-full min-h-[400px] md:min-h-[450px] p-4 md:p-6 flex flex-col">
+              <CardContent className="relative h-full min-h-[400px] md:min-h-[450px] p-4 md:p-6 flex flex-col pt-[11px] pb-[11px]">
                 <div className="flex items-start justify-between mb-3 md:mb-4">
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
                     <stream.icon className="text-gold-gradient" size={24} data-testid={`icon-revenue-${index}`} />
