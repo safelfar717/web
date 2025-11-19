@@ -4,7 +4,7 @@ import MissionVisionValues from "@/components/MissionVisionValues";
 import WhyChooseTradeX from "@/components/WhyChooseTradeX";
 import TeamSection from "@/components/TeamSection";
 import JourneyTimeline from "@/components/JourneyTimeline";
-import heroBackgroundImage from "@assets/stock_images/modern_trading_platf_e285cec3.jpg";
+import heroBackgroundImage from "@assets/stock_images/futuristic_financial_b336de06.jpg";
 
 export default function About() {
   return (
@@ -14,7 +14,7 @@ export default function About() {
         <div className="relative w-full">
           <img
             src={heroBackgroundImage}
-            alt="Modern trading platform"
+            alt="Futuristic financial charts and digital technology"
             className="absolute inset-0 w-full h-full object-cover"
             data-testid="img-about-hero-bg"
           />
