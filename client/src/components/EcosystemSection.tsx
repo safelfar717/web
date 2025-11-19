@@ -251,12 +251,12 @@ export default function EcosystemSection() {
                   <table ref={tableRef} className="w-full text-left border-collapse min-w-[600px]" data-testid="table-competitive">
                     <thead>
                       <tr className="border-b border-gold-20">
-                        <th className="py-4 px-4 text-foreground font-bold bg-[#85651433]">Feature</th>
-                        <th className="py-4 px-4 text-foreground font-bold text-center bg-[#85651433]">Stockbit</th>
-                        <th className="py-4 px-4 text-foreground font-bold text-center bg-[#85651433]">Binance</th>
-                        <th className="py-4 px-4 text-foreground font-bold text-center bg-[#85651433]">Ajaib</th>
-                        <th className="py-4 px-4 text-foreground font-bold text-center bg-[#85651433]">eToro</th>
-                        <th className="py-4 px-4 font-bold text-gold-gradient text-center bg-[#85651433]">TradeX</th>
+                        <th className="py-4 px-4 text-foreground font-bold bg-primary/20">Feature</th>
+                        <th className="py-4 px-4 text-foreground font-bold text-center bg-primary/20">Stockbit</th>
+                        <th className="py-4 px-4 text-foreground font-bold text-center bg-primary/20">Binance</th>
+                        <th className="py-4 px-4 text-foreground font-bold text-center bg-primary/20">Ajaib</th>
+                        <th className="py-4 px-4 text-foreground font-bold text-center bg-primary/20">eToro</th>
+                        <th className="py-4 px-4 font-bold text-gold-gradient text-center bg-primary/20">TradeX</th>
                       </tr>
                     </thead>
                     <tbody>
