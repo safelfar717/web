@@ -414,13 +414,13 @@ export default function EcosystemSection() {
             </Card>
           </div>
 
-          <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/30 max-w-4xl mx-auto">
+          <Card className="bg-gradient-to-r from-[#D4AF37] to-[#F7E27A] border-[#D4AF37] max-w-4xl mx-auto gold-glow-hover">
             <CardContent className="p-8 text-center">
-              <p className="text-xl md:text-2xl font-bold text-primary mb-2" data-testid="text-bottom-line">
+              <p className="text-xl md:text-2xl font-semibold text-black mb-2" data-testid="text-bottom-line">
                 Bottom Line:
               </p>
-              <p className="text-lg text-foreground" data-testid="text-bottom-line-desc">
-                TradeX adalah <span className="text-primary font-bold">satu-satunya platform</span> yang combine SEMUA fitur essential dalam satu ecosystem.
+              <p className="text-lg font-semibold text-black" data-testid="text-bottom-line-desc">
+                TradeX adalah <span className="font-bold">satu-satunya platform</span> yang combine SEMUA fitur essential dalam satu ecosystem.
               </p>
             </CardContent>
           </Card>
