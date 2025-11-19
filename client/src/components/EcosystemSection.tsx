@@ -141,9 +141,7 @@ export default function EcosystemSection() {
     <section ref={sectionRef} className="py-24 bg-card">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-competitive-title">
-            COMPETITIVE LANDSCAPE
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-competitive-title">Competitive Landscape</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto" data-testid="text-competitive-subtitle">
             TradeX stands alone as the only all-in-one trading ecosystem in Indonesia
           </p>
