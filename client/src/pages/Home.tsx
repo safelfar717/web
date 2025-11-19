@@ -5,6 +5,7 @@ import ProblemSection from "@/components/ProblemSection";
 import MarketChallenge from "@/components/MarketChallenge";
 import MarketOpportunity from "@/components/MarketOpportunity";
 import EcosystemSection from "@/components/EcosystemSection";
+import BusinessModelSection from "@/components/BusinessModelSection";
 import CTASection from "@/components/CTASection";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <MarketChallenge />
       <MarketOpportunity />
       <EcosystemSection />
+      <BusinessModelSection />
       <CTASection />
       <Footer />
     </div>
