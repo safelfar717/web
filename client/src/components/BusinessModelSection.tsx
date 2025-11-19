@@ -171,7 +171,7 @@ export default function BusinessModelSection() {
             Multi-Revenue Streams untuk Sustainable Growth
           </p>
           <div className="flex items-center justify-center gap-2">
-            <Badge variant="outline" className="text-primary border-primary/50 px-4 py-1.5">
+            <Badge variant="outline" className="border-primary/50 px-4 py-1.5 text-[19px] bg-[#d6b13ad1] text-[#0d0901]">
               Total Year 1 Revenue: Rp 6.2 Miliar
             </Badge>
           </div>
