@@ -171,12 +171,12 @@ export default function EcosystemSection() {
 
                   <div
                     data-axis="true"
-                    className="absolute left-0 right-0 h-0.5 bg-primary/30"
+                    className="absolute left-0 right-0 h-0.5 bg-primary/80"
                     style={{ top: '50%' }}
                   />
                   <div
                     data-axis="true"
-                    className="absolute top-0 bottom-0 w-0.5 bg-primary/30"
+                    className="absolute top-0 bottom-0 w-0.5 bg-primary/80"
                     style={{ left: '50%' }}
                   />
 
