@@ -256,7 +256,7 @@ export default function EcosystemSection() {
                         <th className="py-4 px-4 text-foreground font-bold text-center">Binance</th>
                         <th className="py-4 px-4 text-foreground font-bold text-center">Ajaib</th>
                         <th className="py-4 px-4 text-foreground font-bold text-center">eToro</th>
-                        <th className="py-4 px-4 text-primary font-bold text-center bg-primary/5">TradeX</th>
+                        <th className="py-4 px-4 font-bold text-gold-gradient text-center bg-primary/5">TradeX</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -277,7 +277,7 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-left">
                           <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
-                            <span className="text-primary font-semibold">Comprehensive</span>
+                            <span className="font-bold text-gold-gradient">Comprehensive</span>
                           </div>
                         </td>
                       </tr>
@@ -298,7 +298,7 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-left">
                           <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
-                            <span className="text-primary font-semibold">Verified</span>
+                            <span className="font-bold text-gold-gradient">Verified</span>
                           </div>
                         </td>
                       </tr>
@@ -319,7 +319,7 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-left">
                           <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
-                            <span className="text-primary font-semibold">Enhanced</span>
+                            <span className="font-bold text-gold-gradient">Enhanced</span>
                           </div>
                         </td>
                       </tr>
@@ -340,7 +340,7 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-left">
                           <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
-                            <span className="text-primary font-semibold">Instagram-like</span>
+                            <span className="font-bold text-gold-gradient">Instagram-like</span>
                           </div>
                         </td>
                       </tr>
@@ -361,7 +361,7 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-left">
                           <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
-                            <span className="text-primary font-semibold">All e-wallets</span>
+                            <span className="font-bold text-gold-gradient">All e-wallets</span>
                           </div>
                         </td>
                       </tr>
@@ -382,7 +382,7 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-left">
                           <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
-                            <span className="text-primary font-bold">UNIQUE!</span>
+                            <span className="font-bold text-gold-gradient">UNIQUE!</span>
                           </div>
                         </td>
                       </tr>
@@ -403,7 +403,7 @@ export default function EcosystemSection() {
                         <td className="py-3 px-4 text-left">
                           <div className="flex items-center justify-start gap-2">
                             <BadgeCheck className="w-5 h-5 text-green-500" />
-                            <span className="text-primary font-semibold">Verified</span>
+                            <span className="font-bold text-gold-gradient">Verified</span>
                           </div>
                         </td>
                       </tr>
