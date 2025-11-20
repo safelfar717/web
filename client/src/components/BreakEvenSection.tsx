@@ -384,6 +384,7 @@ export default function BreakEvenSection() {
               className="w-full h-auto"
               data-testid="img-bep-dashboard"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </Card>
         </div>
 
