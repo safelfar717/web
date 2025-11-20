@@ -146,7 +146,7 @@ export default function InvestmentSection() {
 
       if (prefersReducedMotion) {
         const allElements = section.querySelectorAll("[data-animate]");
-        gsap.set(allElements, { opacity: 1, y: 0 });
+        gsap.set(allElements, { opacity: 1, y: 0, scale: 1 });
         return;
       }
 
@@ -159,7 +159,8 @@ export default function InvestmentSection() {
 
         gsap.set([headerElements, termCards, chartElements, milestoneCards, highlightBadges], {
           opacity: 0,
-          y: 40,
+          y: 30,
+          scale: 0.95,
         });
 
         const tl = gsap.timeline({
@@ -175,9 +176,10 @@ export default function InvestmentSection() {
         tl.to(headerElements, {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out",
+          scale: 1,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power2.out",
         });
 
         // Animate terms cards
@@ -186,11 +188,12 @@ export default function InvestmentSection() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power3.out",
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power2.out",
           },
-          "-=0.4"
+          "-=0.6"
         );
 
         // Animate chart
@@ -199,10 +202,11 @@ export default function InvestmentSection() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            ease: "back.out(1.2)",
+            scale: 1,
+            duration: 1.2,
+            ease: "power2.out",
           },
-          "-=0.4"
+          "-=0.6"
         );
 
         // Animate milestones
@@ -211,11 +215,12 @@ export default function InvestmentSection() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            scale: 1,
+            duration: 1.2,
             stagger: 0.12,
-            ease: "power3.out",
+            ease: "power2.out",
           },
-          "-=0.5"
+          "-=0.7"
         );
 
         // Animate highlights
@@ -224,11 +229,12 @@ export default function InvestmentSection() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: "power3.out",
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.08,
+            ease: "power2.out",
           },
-          "-=0.4"
+          "-=0.5"
         );
       }, section);
 
