@@ -18,9 +18,9 @@ export default function Navbar() {
 
   const navLinks = [
     { path: "/", label: "PitchDeck" },
-    { path: "/about", label: "About" },
     { path: "/business-model", label: "Business Model" },
     { path: "/financials", label: "Financials" },
+    { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" }
   ];
 
