@@ -92,6 +92,13 @@ const teamData = {
       color: "text-pink-400",
       borderColor: "border-pink-500/50",
       glowColor: "shadow-pink-500/20"
+    },
+    {
+      role: "Community Manager",
+      icon: Users,
+      color: "text-teal-400",
+      borderColor: "border-teal-500/50",
+      glowColor: "shadow-teal-500/20"
     }
   ],
   expenses: {
@@ -246,10 +253,20 @@ export default function TeamSection() {
         );
       }, section);
 
-      return () => ctx.revert();
+      return () => {
+        ctx.revert();
+      };
     };
 
-    initAnimation();
+    const cleanup = initAnimation();
+    
+    return () => {
+      if (cleanup) {
+        cleanup.then((cleanupFn) => {
+          if (cleanupFn) cleanupFn();
+        });
+      }
+    };
   }, []);
 
   return (
@@ -552,7 +569,7 @@ export default function TeamSection() {
               <Users className="w-6 h-6 text-emerald-400" />
               Operations Team
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {teamData.operations.map((member, index) => {
                 const IconComponent = member.icon;
                 return (
