@@ -7,6 +7,7 @@ import MarketOpportunity from "@/components/MarketOpportunity";
 import EcosystemSection from "@/components/EcosystemSection";
 import BusinessModelSection from "@/components/BusinessModelSection";
 import GoToMarketSection from "@/components/GoToMarketSection";
+import BreakEvenSection from "@/components/BreakEvenSection";
 import CTASection from "@/components/CTASection";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <EcosystemSection />
       <BusinessModelSection />
       <GoToMarketSection />
+      <BreakEvenSection />
       <CTASection />
       <Footer />
     </div>
