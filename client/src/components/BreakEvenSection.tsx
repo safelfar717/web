@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, DollarSign, Target, ArrowUpRight, Sparkles } from "lucide-react";
+import { TrendingUp, DollarSign, Target, ArrowUpRight, Sparkles, TrendingDown, X } from "lucide-react";
+import month1Bg from "@assets/mount_1763611075459.png";
 import month2Bg from "@assets/generated_images/Month_2_profitability_dashboard_b88a69c2.png";
 import month3Bg from "@assets/generated_images/Month_3_growth_analytics_1c72396a.png";
 import month4Bg from "@assets/generated_images/Month_4_expansion_metrics_470703cd.png";
@@ -10,14 +11,32 @@ import metricsBg from "@assets/generated_images/Unit_economics_metrics_dashboard
 
 const bepPhases = [
   {
+    month: "Month 1",
+    background: month1Bg,
+    borderColor: "border-red-500/50",
+    glowColor: "shadow-red-500/20",
+    isNegative: true,
+    metrics: {
+      users: 1000,
+      paying: 100,
+      revenue: "Rp 101M",
+      expenses: "Rp 180M",
+      net: "- Rp 79M",
+      margin: null,
+    },
+  },
+  {
     month: "Month 2",
     background: month2Bg,
     borderColor: "border-blue-500/50",
     glowColor: "shadow-blue-500/20",
+    isNegative: false,
     metrics: {
       users: 2500,
       paying: 1000,
       revenue: "Rp 640M",
+      expenses: null,
+      net: null,
       breakeven: "Rp 485M",
       margin: "~32%",
     },
@@ -27,10 +46,13 @@ const bepPhases = [
     background: month3Bg,
     borderColor: "border-cyan-500/50",
     glowColor: "shadow-cyan-500/20",
+    isNegative: false,
     metrics: {
       users: 5000,
       paying: 2500,
       revenue: "Rp 1.6B",
+      expenses: null,
+      net: null,
       breakeven: "Rp 1.25B",
       margin: "~22%",
     },
@@ -40,10 +62,13 @@ const bepPhases = [
     background: month4Bg,
     borderColor: "border-blue-400/50",
     glowColor: "shadow-blue-400/20",
+    isNegative: false,
     metrics: {
       users: 10000,
       paying: 5000,
       revenue: "Rp 3.2B",
+      expenses: null,
+      net: null,
       breakeven: "Rp 2.5B",
       margin: "~22%",
     },
@@ -379,45 +404,78 @@ export default function BreakEvenSection() {
                       {phase.month}
                     </Badge>
                     <div className="flex items-center gap-1">
-                      <TrendingUp className="text-gold-gradient animate-pulse" size={20} />
-                      <ArrowUpRight className="text-green-400" size={16} />
+                      {phase.isNegative ? (
+                        <>
+                          <TrendingDown className="text-red-500 animate-pulse" size={20} />
+                          <X className="text-red-400" size={16} />
+                        </>
+                      ) : (
+                        <>
+                          <TrendingUp className="text-gold-gradient animate-pulse" size={20} />
+                          <ArrowUpRight className="text-green-400" size={16} />
+                        </>
+                      )}
                     </div>
                   </div>
 
                   <div className="space-y-2.5">
                     <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
                       <span className="text-white/90">Users:</span>
-                      <span className="text-gold-gradient font-bold">
+                      <span className={phase.isNegative ? "text-white font-bold" : "text-gold-gradient font-bold"}>
                         {formatNumber(userCounts[index])}
                       </span>
                     </div>
                     <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
                       <span className="text-white/90">Paying:</span>
-                      <span className="text-gold-gradient font-bold">
+                      <span className={phase.isNegative ? "text-white font-bold" : "text-gold-gradient font-bold"}>
                         {formatNumber(payingCounts[index])}
                       </span>
                     </div>
                     <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
                       <span className="text-white/90">Revenue:</span>
-                      <span className="text-gold-gradient font-bold">
+                      <span className={phase.isNegative ? "text-white font-bold" : "text-gold-gradient font-bold"}>
                         {phase.metrics.revenue}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
-                      <span className="text-white/90">Break-even:</span>
-                      <span className="text-gold-gradient font-bold">
-                        {phase.metrics.breakeven}
-                      </span>
-                    </div>
-                    <div 
-                      className="flex justify-between items-center text-sm bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-3 py-2 border border-primary/30 shadow-md"
-                      data-highlight="true"
-                    >
-                      <span className="text-white font-medium">Margin:</span>
-                      <span className="text-gold-gradient font-bold text-base">
-                        {phase.metrics.margin}
-                      </span>
-                    </div>
+                    {phase.metrics.expenses && (
+                      <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+                        <span className="text-white/90">Expenses:</span>
+                        <span className="text-white font-bold">
+                          {phase.metrics.expenses}
+                        </span>
+                      </div>
+                    )}
+                    {phase.metrics.breakeven && (
+                      <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+                        <span className="text-white/90">Break-even:</span>
+                        <span className="text-gold-gradient font-bold">
+                          {phase.metrics.breakeven}
+                        </span>
+                      </div>
+                    )}
+                    {phase.metrics.net && (
+                      <div 
+                        className="flex justify-between items-center text-sm bg-gradient-to-r from-red-500/20 to-red-500/10 backdrop-blur-sm rounded-md px-3 py-2 border border-red-500/30 shadow-md"
+                        data-highlight="true"
+                      >
+                        <span className="text-white font-medium">Net:</span>
+                        <span className="text-red-400 font-bold text-base flex items-center gap-1">
+                          {phase.metrics.net}
+                          <X size={14} />
+                        </span>
+                      </div>
+                    )}
+                    {phase.metrics.margin && (
+                      <div 
+                        className="flex justify-between items-center text-sm bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-3 py-2 border border-primary/30 shadow-md"
+                        data-highlight="true"
+                      >
+                        <span className="text-white font-medium">Margin:</span>
+                        <span className="text-gold-gradient font-bold text-base">
+                          {phase.metrics.margin}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
