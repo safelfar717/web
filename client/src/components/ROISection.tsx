@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Sparkles, Target, DollarSign, CheckCircle2 } from "lucide-react";
+import { TrendingUp, Sparkles, Target, DollarSign, CheckCircle2, BarChart3 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import metricsBg from "@assets/generated_images/Unit_economics_metrics_dashboard_38204899.png";
@@ -10,55 +10,51 @@ gsap.registerPlugin(ScrollTrigger);
 
 const roiData = [
   {
-    title: "Conservative 96x",
+    title: "📊 Conservative Case",
     borderColor: "border-blue-500/50",
     glowColor: "shadow-blue-500/20",
     multiplier: "96x",
     metrics: {
-      initialInvestment: "Rp 500M",
-      annualFeeProfit: "Rp 600M",
-      year1Profit: 2.6,
-      year3Profit: 2.6,
-      companyValuation: 47,
-      your45Stake: 21,
-      medianInvestment: "Rp 5.5B",
-      returnOnMaxProfit: 96,
-      in3YearsInvestment: 48
+      year3RevenueMonth: 50,
+      annualRevenue: 600,
+      valuationMultiple: 4,
+      companyValuation: 2400,
+      your10Stake: 240,
+      initialInvestment: "Rp 2.5B",
+      returnMultiple: 96
     }
   },
   {
-    title: "Easy Case 240x",
+    title: "🚀 Base Case (Likely)",
     borderColor: "border-emerald-500/50",
     glowColor: "shadow-emerald-500/20",
     multiplier: "240x",
     metrics: {
-      initialInvestment: "Rp 500M",
-      annualFeeProfit: "Rp 2.1B",
-      year1Profit: 9,
-      year3Profit: 9,
-      companyValuation: 87,
-      your45Stake: 39,
-      medianInvestment: "Rp 5.5B",
-      returnOnMaxProfit: 240,
-      in3YearsInvestment: 120
+      year3RevenueMonth: 100,
+      annualRevenue: 1200,
+      valuationMultiple: 5,
+      companyValuation: 6000,
+      your10Stake: 600,
+      initialInvestment: "Rp 2.5B",
+      returnMultiple: 240
     }
   }
 ];
 
 const exitOpportunities = [
   {
-    title: "Series A (12-18 Months)",
-    description: "Equity raise at 100-200x valuation multiples when we achieve 10,000+ Paid Users in an attractive segment.",
+    title: "Series A (18 Months)",
+    description: "Raise Rp 50-100B at higher valuation. Partial exit opportunity for early investors.",
     icon: Target
   },
   {
-    title: "Strategic Acquisition (24-36 Months)",
-    description: "An additional exit route at an 30-75x through digital brokers (Ajaib,etc). Valuation multiples based on industry standards.",
+    title: "Strategic Acquisition (2-3 Years)",
+    description: "Acquisition by Stockbit, Ajaib, or regional fintech player. Full exit at premium valuation.",
     icon: DollarSign
   },
   {
-    title: "IPO or Direct Listing (3+ Years)",
-    description: "Public listing at 50-150x capital at a Rp500triliun+ valuation potential, positioning as a category-defining fintech platform.",
+    title: "IPO (5 Years)",
+    description: "Public listing on IDX or regional exchange. Maximum liquidity and valuation potential.",
     icon: TrendingUp
   }
 ];
@@ -69,39 +65,35 @@ export default function ROISection() {
   const opportunitiesRef = useRef<HTMLDivElement>(null);
   
   const conservativeValuesRef = useRef({
-    year1Profit: 0,
-    year3Profit: 0,
+    year3RevenueMonth: 0,
+    annualRevenue: 0,
     companyValuation: 0,
-    your45Stake: 0,
-    returnOnMaxProfit: 0,
-    in3YearsInvestment: 0
+    your10Stake: 0,
+    returnMultiple: 0
   });
   
-  const easyCaseValuesRef = useRef({
-    year1Profit: 0,
-    year3Profit: 0,
+  const baseCaseValuesRef = useRef({
+    year3RevenueMonth: 0,
+    annualRevenue: 0,
     companyValuation: 0,
-    your45Stake: 0,
-    returnOnMaxProfit: 0,
-    in3YearsInvestment: 0
+    your10Stake: 0,
+    returnMultiple: 0
   });
   
   const [conservativeDisplay, setConservativeDisplay] = useState({
-    year1Profit: 0,
-    year3Profit: 0,
+    year3RevenueMonth: 0,
+    annualRevenue: 0,
     companyValuation: 0,
-    your45Stake: 0,
-    returnOnMaxProfit: 0,
-    in3YearsInvestment: 0
+    your10Stake: 0,
+    returnMultiple: 0
   });
   
-  const [easyCaseDisplay, setEasyCaseDisplay] = useState({
-    year1Profit: 0,
-    year3Profit: 0,
+  const [baseCaseDisplay, setBaseCaseDisplay] = useState({
+    year3RevenueMonth: 0,
+    annualRevenue: 0,
     companyValuation: 0,
-    your45Stake: 0,
-    returnOnMaxProfit: 0,
-    in3YearsInvestment: 0
+    your10Stake: 0,
+    returnMultiple: 0
   });
 
   useEffect(() => {
@@ -139,18 +131,16 @@ export default function ROISection() {
         });
       }
 
-      // Animate conservative values using refs
       ScrollTrigger.create({
         trigger: cardsRef.current,
         start: "top 75%",
         onEnter: () => {
           gsap.to(conservativeValuesRef.current, {
-            year1Profit: roiData[0].metrics.year1Profit,
-            year3Profit: roiData[0].metrics.year3Profit,
+            year3RevenueMonth: roiData[0].metrics.year3RevenueMonth,
+            annualRevenue: roiData[0].metrics.annualRevenue,
             companyValuation: roiData[0].metrics.companyValuation,
-            your45Stake: roiData[0].metrics.your45Stake,
-            returnOnMaxProfit: roiData[0].metrics.returnOnMaxProfit,
-            in3YearsInvestment: roiData[0].metrics.in3YearsInvestment,
+            your10Stake: roiData[0].metrics.your10Stake,
+            returnMultiple: roiData[0].metrics.returnMultiple,
             duration: 2,
             ease: "power2.out",
             onUpdate: () => {
@@ -160,22 +150,20 @@ export default function ROISection() {
         }
       });
 
-      // Animate easy case values using refs
       ScrollTrigger.create({
         trigger: cardsRef.current,
         start: "top 75%",
         onEnter: () => {
-          gsap.to(easyCaseValuesRef.current, {
-            year1Profit: roiData[1].metrics.year1Profit,
-            year3Profit: roiData[1].metrics.year3Profit,
+          gsap.to(baseCaseValuesRef.current, {
+            year3RevenueMonth: roiData[1].metrics.year3RevenueMonth,
+            annualRevenue: roiData[1].metrics.annualRevenue,
             companyValuation: roiData[1].metrics.companyValuation,
-            your45Stake: roiData[1].metrics.your45Stake,
-            returnOnMaxProfit: roiData[1].metrics.returnOnMaxProfit,
-            in3YearsInvestment: roiData[1].metrics.in3YearsInvestment,
+            your10Stake: roiData[1].metrics.your10Stake,
+            returnMultiple: roiData[1].metrics.returnMultiple,
             duration: 2,
             ease: "power2.out",
             onUpdate: () => {
-              setEasyCaseDisplay({...easyCaseValuesRef.current});
+              setBaseCaseDisplay({...baseCaseValuesRef.current});
             }
           });
         }
@@ -218,7 +206,7 @@ export default function ROISection() {
 
         {/* ROI Comparison Cards */}
         <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* Conservative 96x Card */}
+          {/* Conservative Case Card */}
           <Card
             data-roi-card="true"
             className={`relative overflow-hidden ${roiData[0].borderColor} border-2 hover-elevate transition-all duration-300 shadow-lg ${roiData[0].glowColor} hover:shadow-xl`}
@@ -235,7 +223,7 @@ export default function ROISection() {
             <CardContent className="relative p-6">
               <div className="flex items-center justify-between mb-6">
                 <Badge
-                  className="bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold px-4 py-1.5 text-lg shadow-md"
+                  className="bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold px-4 py-1.5 text-base shadow-md"
                   data-testid="badge-conservative"
                 >
                   {roiData[0].title}
@@ -247,72 +235,66 @@ export default function ROISection() {
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Initial Investment</span>
-                  <span className="text-white font-bold">{roiData[0].metrics.initialInvestment}</span>
+                  <span className="text-white/90">Year 3 Revenue</span>
+                  <span className="text-gold-gradient font-bold">Rp {Math.round(conservativeDisplay.year3RevenueMonth)}M/month</span>
                 </div>
                 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Annual fee profit</span>
-                  <span className="text-gold-gradient font-bold">{roiData[0].metrics.annualFeeProfit}</span>
+                  <span className="text-white/90">Annual Revenue</span>
+                  <span className="text-gold-gradient font-bold">Rp {Math.round(conservativeDisplay.annualRevenue)}M</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Year 1 Profit</span>
-                  <span className="text-gold-gradient font-bold">Rp {conservativeDisplay.year1Profit.toFixed(1)}B</span>
-                </div>
-
-                <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Year 3 Profit</span>
-                  <span className="text-gold-gradient font-bold">Rp {conservativeDisplay.year3Profit.toFixed(1)}B</span>
+                  <span className="text-white/90">Valuation Multiple</span>
+                  <span className="text-gold-gradient font-bold">{roiData[0].metrics.valuationMultiple}× Revenue</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
                   <span className="text-white/90">Company Valuation</span>
-                  <span className="text-gold-gradient font-bold">Rp {Math.round(conservativeDisplay.companyValuation)}B</span>
+                  <span className="text-gold-gradient font-bold">Rp {(conservativeDisplay.companyValuation / 1000).toFixed(1)}T</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Your 45% Stake</span>
-                  <span className="text-gold-gradient font-bold">Rp {Math.round(conservativeDisplay.your45Stake)}B</span>
+                  <span className="text-white/90">Your 10% Stake</span>
+                  <span className="text-gold-gradient font-bold">Rp {Math.round(conservativeDisplay.your10Stake)}B</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Median Investment</span>
-                  <span className="text-white font-bold">{roiData[0].metrics.medianInvestment}</span>
+                  <span className="text-white/90">Initial Investment</span>
+                  <span className="text-white font-bold">{roiData[0].metrics.initialInvestment}</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-4 py-3 border border-primary/30 shadow-md">
-                  <span className="text-white font-medium">Return on Max Profit</span>
-                  <span className="text-gold-gradient font-bold text-lg">{Math.round(conservativeDisplay.returnOnMaxProfit)}x</span>
+                  <span className="text-white font-medium">Return Multiple</span>
+                  <span className="text-gold-gradient font-bold text-lg">{Math.round(conservativeDisplay.returnMultiple)}×</span>
                 </div>
 
-                <div className="flex justify-between items-center text-sm bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-4 py-3 border border-primary/30 shadow-md">
-                  <span className="text-white font-medium">In 3 years Your Investment</span>
-                  <span className="text-gold-gradient font-bold text-lg">Rp {Math.round(conservativeDisplay.in3YearsInvestment)}B</span>
+                <div className="text-center pt-2">
+                  <p className="text-xs text-muted-foreground italic">In 3 years from investment</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Easy Case 240x Card */}
+          {/* Base Case Card */}
           <Card
             data-roi-card="true"
             className={`relative overflow-hidden ${roiData[1].borderColor} border-2 hover-elevate transition-all duration-300 shadow-lg ${roiData[1].glowColor} hover:shadow-xl`}
-            data-testid="card-roi-easy"
+            data-testid="card-roi-base"
           >
             <img
               src={metricsBg}
-              alt="Optimistic ROI projection"
+              alt="Base case ROI projection"
               className="absolute inset-0 w-full h-full object-cover"
-              data-testid="img-roi-easy-bg"
+              data-testid="img-roi-base-bg"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/85 to-black/90" />
 
             <CardContent className="relative p-6">
               <div className="flex items-center justify-between mb-6">
                 <Badge
-                  className="bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-bold px-4 py-1.5 text-lg shadow-md"
-                  data-testid="badge-easy-case"
+                  className="bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-bold px-4 py-1.5 text-base shadow-md"
+                  data-testid="badge-base-case"
                 >
                   {roiData[1].title}
                 </Badge>
@@ -323,48 +305,42 @@ export default function ROISection() {
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Initial Investment</span>
-                  <span className="text-white font-bold">{roiData[1].metrics.initialInvestment}</span>
+                  <span className="text-white/90">Year 3 Revenue</span>
+                  <span className="text-gold-gradient font-bold">Rp {Math.round(baseCaseDisplay.year3RevenueMonth)}M/month</span>
                 </div>
                 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Annual fee profit</span>
-                  <span className="text-gold-gradient font-bold">{roiData[1].metrics.annualFeeProfit}</span>
+                  <span className="text-white/90">Annual Revenue</span>
+                  <span className="text-gold-gradient font-bold">Rp {(baseCaseDisplay.annualRevenue / 1000).toFixed(1)}B</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Year 1 Profit</span>
-                  <span className="text-gold-gradient font-bold">Rp {easyCaseDisplay.year1Profit.toFixed(1)}B</span>
-                </div>
-
-                <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Year 3 Profit</span>
-                  <span className="text-gold-gradient font-bold">Rp {easyCaseDisplay.year3Profit.toFixed(1)}B</span>
+                  <span className="text-white/90">Valuation Multiple</span>
+                  <span className="text-gold-gradient font-bold">{roiData[1].metrics.valuationMultiple}× Revenue</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
                   <span className="text-white/90">Company Valuation</span>
-                  <span className="text-gold-gradient font-bold">Rp {Math.round(easyCaseDisplay.companyValuation)}B</span>
+                  <span className="text-gold-gradient font-bold">Rp {Math.round(baseCaseDisplay.companyValuation / 1000)}T</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Your 45% Stake</span>
-                  <span className="text-gold-gradient font-bold">Rp {Math.round(easyCaseDisplay.your45Stake)}B</span>
+                  <span className="text-white/90">Your 10% Stake</span>
+                  <span className="text-gold-gradient font-bold">Rp {Math.round(baseCaseDisplay.your10Stake)}B</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-4 py-3 border border-white/10 hover:bg-white/10 transition-colors">
-                  <span className="text-white/90">Median Investment</span>
-                  <span className="text-white font-bold">{roiData[1].metrics.medianInvestment}</span>
+                  <span className="text-white/90">Initial Investment</span>
+                  <span className="text-white font-bold">{roiData[1].metrics.initialInvestment}</span>
                 </div>
 
                 <div className="flex justify-between items-center text-sm bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-4 py-3 border border-primary/30 shadow-md">
-                  <span className="text-white font-medium">Return on Max Profit</span>
-                  <span className="text-gold-gradient font-bold text-lg">{Math.round(easyCaseDisplay.returnOnMaxProfit)}x</span>
+                  <span className="text-white font-medium">Return Multiple</span>
+                  <span className="text-gold-gradient font-bold text-lg">{Math.round(baseCaseDisplay.returnMultiple)}×</span>
                 </div>
 
-                <div className="flex justify-between items-center text-sm bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-4 py-3 border border-primary/30 shadow-md">
-                  <span className="text-white font-medium">In 3 years Your Investment</span>
-                  <span className="text-gold-gradient font-bold text-lg">Rp {Math.round(easyCaseDisplay.in3YearsInvestment)}B</span>
+                <div className="text-center pt-2">
+                  <p className="text-xs text-muted-foreground italic">In 3 years from investment</p>
                 </div>
               </div>
             </CardContent>
@@ -425,12 +401,14 @@ export default function ROISection() {
                 <Sparkles className="text-primary w-5 h-5" />
               </div>
               <p className="text-lg text-foreground leading-relaxed" data-testid="text-roi-summary">
-                With proven unit economics and multiple exit pathways, TradeX offers{" "}
+                TradeX offers exceptional{" "}
                 <span className="text-gold-gradient font-bold">96-240x return potential</span> in just{" "}
-                <span className="text-gold-gradient font-bold">3 years</span>. Conservative projections show{" "}
-                <span className="text-gold-gradient font-bold">Rp 48B returns</span>, while optimistic scenarios 
-                reach <span className="text-gold-gradient font-bold">Rp 120B</span> — backed by rapid user acquisition, 
-                strong margins, and strategic positioning in Indonesia's thriving fintech market.
+                <span className="text-gold-gradient font-bold">3 years</span>. With conservative projections 
+                showing <span className="text-gold-gradient font-bold">Rp 240B returns</span> and base case 
+                reaching <span className="text-gold-gradient font-bold">Rp 600B</span> on a{" "}
+                <span className="text-gold-gradient font-bold">Rp 2.5B investment</span> — backed by rapid 
+                revenue growth, strong valuation multiples, and multiple strategic exit pathways in 
+                Indonesia's booming fintech market.
               </p>
             </CardContent>
           </Card>
