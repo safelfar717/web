@@ -92,9 +92,7 @@ export default function HeroSection() {
               variant="outline"
               className="border-primary text-white hover:bg-primary/10 text-lg px-8 bg-white/5 backdrop-blur-sm" 
               data-testid="button-learn-more"
-            >
-              Learn More
-            </Button>
+            >About Us</Button>
           </div>
         </div>
       </div>
