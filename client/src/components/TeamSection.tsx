@@ -277,13 +277,10 @@ export default function TeamSection() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/20 to-black" />
-      
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-team-title">
-            Lean 11-Person Team
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-team-title">Team & Execution</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto" data-testid="text-team-subtitle">
             Tim yang kompak dan berpengalaman untuk membangun platform trading terbaik
           </p>
