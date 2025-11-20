@@ -6,20 +6,20 @@ const teamStats = [
   {
     icon: Users,
     number: "11",
-    label: "Core Team Members",
-    description: "Experienced professionals from fintech and tech industries"
+    label: "Anggota Tim Inti",
+    description: "Profesional berpengalaman dari industri fintech dan teknologi"
   },
   {
     icon: Code,
     number: "5",
-    label: "Trading Analysts",
-    description: "Experts providing signals with 65%+ win rate"
+    label: "Analis Trading",
+    description: "Ahli yang memberikan sinyal dengan tingkat kemenangan 65%+"
   },
   {
     icon: TrendingUp,
     number: "3",
-    label: "Writing Advisors",
-    description: "Dedicated to creating high-quality content"
+    label: "Penasihat Penulisan",
+    description: "Berdedikasi untuk menciptakan konten berkualitas tinggi"
   }
 ];
 
@@ -29,10 +29,10 @@ export default function TeamSection() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-team-title">
-            Our Team
+            Tim Kami
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto" data-testid="text-team-subtitle">
-            A lean, talented team committed to revolutionizing trading education in Indonesia
+            Tim yang ramping dan berbakat yang berkomitmen untuk merevolusi pendidikan trading di Indonesia
           </p>
         </div>
 
@@ -63,9 +63,9 @@ export default function TeamSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { role: "CEO/Founder", name: "Leadership", initials: "TL" },
-            { role: "CTO/Technical Lead", name: "Technology", initials: "TT" },
-            { role: "Head of Marketing", name: "Growth", initials: "MG" }
+            { role: "CEO/Pendiri", name: "Kepemimpinan", initials: "TL" },
+            { role: "CTO/Pemimpin Teknis", name: "Teknologi", initials: "TT" },
+            { role: "Kepala Pemasaran", name: "Pertumbuhan", initials: "MG" }
           ].map((member, index) => (
             <Card key={index} className="bg-card border-gold-20 hover-elevate" data-testid={`card-team-member-${index}`}>
               <CardContent className="p-6 text-center space-y-4">

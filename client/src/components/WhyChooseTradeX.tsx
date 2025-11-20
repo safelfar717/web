@@ -4,33 +4,33 @@ import { Shield, GraduationCap, Users, TrendingUp, ShoppingCart, DollarSign } fr
 const features = [
   {
     icon: Shield,
-    title: "All-in-One Platform",
-    description: "Education, signals, copy trading, and marketplace — everything you need in one place with real-time sync"
+    title: "Platform All-in-One",
+    description: "Pendidikan, sinyal, copy trading, dan marketplace — semua yang Anda butuhkan dalam satu tempat dengan sinkronisasi real-time"
   },
   {
     icon: GraduationCap,
     title: "Expert Advisors",
-    description: "5 automated trading bots with proven strategies. Backtested performance you can trust"
+    description: "5 bot trading otomatis dengan strategi terbukti. Kinerja yang telah diuji dan dapat dipercaya"
   },
   {
     icon: Users,
     title: "Copy Trading",
-    description: "Follow and automatically copy top-performing traders. Learn from the best while you earn"
+    description: "Ikuti dan salin otomatis trader berkinerja terbaik. Belajar dari yang terbaik sambil menghasilkan"
   },
   {
     icon: TrendingUp,
-    title: "Vibrant Community",
-    description: "Join 50K+ traders. Share tips, learn together, and never trade alone again"
+    title: "Komunitas yang Aktif",
+    description: "Bergabung dengan 50K+ trader. Berbagi tips, belajar bersama, dan tidak pernah trading sendirian lagi"
   },
   {
     icon: ShoppingCart,
-    title: "Shop & Invest",
-    description: "Buy products you love and automatically invest cashback into your trading portfolio"
+    title: "Belanja & Investasi",
+    description: "Beli produk yang Anda sukai dan otomatis investasikan cashback ke portofolio trading Anda"
   },
   {
     icon: DollarSign,
-    title: "Local Payment Integration",
-    description: "Full support for IDR, QRIS, OVO, GoPay — payment methods you already use daily"
+    title: "Integrasi Pembayaran Lokal",
+    description: "Dukungan penuh untuk IDR, QRIS, OVO, GoPay — metode pembayaran yang sudah Anda gunakan sehari-hari"
   }
 ];
 
@@ -40,10 +40,10 @@ export default function WhyChooseTradeX() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-why-title">
-            Why Choose TradeX?
+            Mengapa Memilih TradeX?
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto" data-testid="text-why-subtitle">
-            The only platform built specifically for Indonesian traders with everything you need to succeed
+            Satu-satunya platform yang dibangun khusus untuk trader Indonesia dengan semua yang Anda butuhkan untuk sukses
           </p>
         </div>
 

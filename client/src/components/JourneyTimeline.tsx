@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 
 const milestones = [
-  { phase: "Phase 1", title: "Campus Domination", timeline: "Month 1-3", users: "3,000" },
-  { phase: "Phase 2", title: "Digital Expansion", timeline: "Month 4-6", users: "10,000" },
-  { phase: "Phase 3", title: "Market Leadership", timeline: "Month 7-12", users: "50,000+" }
+  { phase: "Fase 1", title: "Dominasi Kampus", timeline: "Bulan 1-3", users: "3,000" },
+  { phase: "Fase 2", title: "Ekspansi Digital", timeline: "Bulan 4-6", users: "10,000" },
+  { phase: "Fase 3", title: "Kepemimpinan Pasar", timeline: "Bulan 7-12", users: "50,000+" }
 ];
 
 export default function JourneyTimeline() {
@@ -12,10 +12,10 @@ export default function JourneyTimeline() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-journey-title">
-            Our Journey
+            Perjalanan Kami
           </h2>
           <p className="text-muted-foreground text-lg" data-testid="text-journey-subtitle">
-            From campus to market dominance in 12 months
+            Dari kampus hingga dominasi pasar dalam 12 bulan
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export default function JourneyTimeline() {
                       <div className="text-2xl font-bold text-gold-gradient" data-testid={`milestone-users-${index}`}>
                         {milestone.users}
                       </div>
-                      <div className="text-xs text-muted-foreground">Target Users</div>
+                      <div className="text-xs text-muted-foreground">Target Pengguna</div>
                     </div>
                   </CardContent>
                 </Card>

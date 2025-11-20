@@ -11,9 +11,9 @@ export default function MissionVisionValues() {
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
                 <Target className="text-primary" size={28} />
               </div>
-              <h3 className="text-2xl font-bold text-gold-gradient">Our Mission</h3>
+              <h3 className="text-2xl font-bold text-gold-gradient">Misi Kami</h3>
               <p className="text-muted-foreground">
-                To democratize trading education and community for the next generation of Indonesian investors. We believe that everyone deserves access to world-class financial education without the traditional barriers of high costs, lack of community support, and unreliable guidance.
+                Mendemokratisasi pendidikan trading dan komunitas untuk generasi investor Indonesia berikutnya. Kami percaya bahwa setiap orang berhak mendapatkan akses ke pendidikan finansial kelas dunia tanpa hambatan tradisional seperti biaya tinggi, kurangnya dukungan komunitas, dan bimbingan yang tidak dapat diandalkan.
               </p>
             </CardContent>
           </Card>
@@ -23,24 +23,24 @@ export default function MissionVisionValues() {
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
                 <Eye className="text-primary" size={28} />
               </div>
-              <h3 className="text-2xl font-bold text-gold-gradient">Our Vision</h3>
+              <h3 className="text-2xl font-bold text-gold-gradient">Visi Kami</h3>
               <p className="text-muted-foreground">
-                To become Indonesia's most trusted and comprehensive trading and investment platform, empowering millions of Indonesians to build wealth and achieve financial freedom through education, community, and proven strategies.
+                Menjadi platform trading dan investasi paling terpercaya dan komprehensif di Indonesia, memberdayakan jutaan orang Indonesia untuk membangun kekayaan dan mencapai kebebasan finansial melalui pendidikan, komunitas, dan strategi yang terbukti.
               </p>
             </CardContent>
           </Card>
         </div>
 
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-gold-gradient mb-4" data-testid="text-values-title">Our Core Values</h3>
+          <h3 className="text-3xl font-bold text-gold-gradient mb-4" data-testid="text-values-title">Nilai Inti Kami</h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { icon: Heart, title: "Transparency", desc: "Blockchain-verified performance, no fake promises" },
-            { icon: Lightbulb, title: "Innovation", desc: "Learn-to-earn model + unique store integration" },
-            { icon: Users, title: "Community", desc: "Supportive ecosystem to reduce dropout rates" },
-            { icon: Target, title: "Accessibility", desc: "Low barriers, local payments, Bahasa support" }
+            { icon: Heart, title: "Transparansi", desc: "Kinerja terverifikasi blockchain, tanpa janji palsu" },
+            { icon: Lightbulb, title: "Inovasi", desc: "Model belajar sambil menghasilkan + integrasi toko unik" },
+            { icon: Users, title: "Komunitas", desc: "Ekosistem yang mendukung untuk mengurangi tingkat dropout" },
+            { icon: Target, title: "Aksesibilitas", desc: "Hambatan rendah, pembayaran lokal, dukungan Bahasa Indonesia" }
           ].map((value, index) => (
             <Card key={index} className="bg-background border-gold-20 hover-elevate" data-testid={`card-value-${index}`}>
               <CardContent className="p-6 space-y-3 text-center">
