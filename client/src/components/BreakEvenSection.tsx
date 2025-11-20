@@ -7,7 +7,6 @@ import month3Bg from "@assets/generated_images/Month_3_growth_analytics_1c72396a
 import month4Bg from "@assets/generated_images/Month_4_expansion_metrics_470703cd.png";
 import chartBg from "@assets/generated_images/Revenue_growth_chart_visualization_92f45469.png";
 import metricsBg from "@assets/generated_images/Unit_economics_metrics_dashboard_38204899.png";
-import bepDashboard from "@assets/BEP_1763609815184.png";
 
 const bepPhases = [
   {
@@ -80,7 +79,6 @@ export default function BreakEvenSection() {
   const cardsRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   const metricsRef = useRef<HTMLDivElement>(null);
-  const dashboardRef = useRef<HTMLDivElement>(null);
   const [chartHeights, setChartHeights] = useState(chartData.map(() => 0));
   const [userCounts, setUserCounts] = useState(bepPhases.map(() => 0));
   const [payingCounts, setPayingCounts] = useState(bepPhases.map(() => 0));
@@ -101,7 +99,6 @@ export default function BreakEvenSection() {
     const cards = cardsRef.current;
     const chart = chartRef.current;
     const metrics = metricsRef.current;
-    const dashboard = dashboardRef.current;
 
     if (!section || !cards || !chart || !metrics) return;
 
@@ -140,26 +137,6 @@ export default function BreakEvenSection() {
         const metricCards = metrics.querySelectorAll("[data-metric-card]");
 
         gsap.set([bepCards, chartBars, metricCards], { opacity: 0, y: 30 });
-
-        // Dashboard image animation
-        if (dashboard) {
-          gsap.fromTo(
-            dashboard,
-            { opacity: 0, scale: 0.95 },
-            {
-              opacity: 1,
-              scale: 1,
-              duration: 1.2,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                toggleActions: "play none none none",
-                once: true,
-              },
-            }
-          );
-        }
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -373,18 +350,6 @@ export default function BreakEvenSection() {
               Sustainable Growth Model
             </Badge>
           </div>
-        </div>
-
-        {/* Dashboard Preview */}
-        <div ref={dashboardRef} className="mb-12 max-w-5xl mx-auto">
-          <Card className="relative overflow-hidden border-primary/20 shadow-2xl shadow-primary/10">
-            <img
-              src={bepDashboard}
-              alt="Break-even analysis dashboard"
-              className="w-full h-auto"
-              data-testid="img-bep-dashboard"
-            />
-          </Card>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
