@@ -8,6 +8,7 @@ import EcosystemSection from "@/components/EcosystemSection";
 import BusinessModelSection from "@/components/BusinessModelSection";
 import GoToMarketSection from "@/components/GoToMarketSection";
 import BreakEvenSection from "@/components/BreakEvenSection";
+import ROISection from "@/components/ROISection";
 import CTASection from "@/components/CTASection";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
       <BusinessModelSection />
       <GoToMarketSection />
       <BreakEvenSection />
+      <ROISection />
       <CTASection />
       <Footer />
     </div>
