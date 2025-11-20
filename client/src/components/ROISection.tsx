@@ -176,7 +176,8 @@ export default function ROISection() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 bg-gradient-to-b from-black to-card relative overflow-hidden"
+      className="py-24 bg-gradient-to-b from-card to-black relative overflow-hidden"
+      data-testid="section-roi"
     >
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
