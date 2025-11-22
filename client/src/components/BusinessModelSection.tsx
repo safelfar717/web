@@ -55,7 +55,7 @@ const revenueStreams = [
   },
   {
     icon: TrendingUp,
-    title: "EA & Signal",
+    title: "AI-Insights, EA & Signal",
     percentage: "10%",
     background: signalBg,
     offerings: [
