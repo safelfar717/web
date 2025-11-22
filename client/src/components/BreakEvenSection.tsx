@@ -11,7 +11,7 @@ import metricsBg from "@assets/generated_images/Unit_economics_metrics_dashboard
 
 const bepPhases = [
   {
-    month: "Month 1",
+    month: "Month 1 - 7",
     background: month1Bg,
     borderColor: "border-red-500/50",
     glowColor: "shadow-red-500/20",
