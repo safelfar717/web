@@ -2,15 +2,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const monthlyData = [
-  { month: "Month 1", users: "1,000", paying: "100", revenue: "Rp 101M", expenses: "Rp 180M", net: "-Rp 79M", profit: false },
-  { month: "Month 2", users: "2,500", paying: "400", revenue: "Rp 369M", expenses: "Rp 220M", net: "+Rp 149M", profit: true },
-  { month: "Month 3", users: "5,000", paying: "1,000", revenue: "Rp 897M", expenses: "Rp 260M", net: "+Rp 637M", profit: true }
+  { month: "Month 1 - 7", users: "550", paying: "300", revenue: "Rp 192M", expenses: "Rp 250M", net: "-Rp 58M", profit: false },
+  { month: "Month 8 - 15", users: "1,550", paying: "800", revenue: "Rp 512M", expenses: "Rp 512M", net: "Rp 0 (Break-even)", profit: false },
+  { month: "Month 16 - 23", users: "2,800", paying: "1,800", revenue: "Rp 1.15B", expenses: "Rp 820M", net: "+Rp 330M", profit: true }
 ];
 
 const yearMetrics = [
-  { label: "Total Revenue (90 Days)", value: "Rp 1.368B", highlight: true },
-  { label: "Total Expenses (90 Days)", value: "Rp 660M", highlight: false },
-  { label: "Net Profit (90 Days)", value: "Rp 708M", highlight: true }
+  { label: "Total Revenue (Month 1-23)", value: "Rp 1.85B", highlight: true },
+  { label: "Total Expenses (Month 1-23)", value: "Rp 1.58B", highlight: false },
+  { label: "Net Profit (Month 1-23)", value: "Rp 272M", highlight: true }
 ];
 
 const unitEconomics = [
@@ -29,10 +29,10 @@ export default function FinancialProjections() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-financial-title">
-            90-Day Revenue Ramp
+            23-Month Revenue Growth
           </h2>
           <p className="text-muted-foreground text-lg" data-testid="text-financial-subtitle">
-            Break-even in Month 2: Rapid Path to Profitability
+            Break-even in Month 8-15: Sustainable Path to Profitability
           </p>
         </div>
 
