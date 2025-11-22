@@ -5,7 +5,6 @@ import { TrendingUp, DollarSign, Target, ArrowUpRight, Sparkles, TrendingDown, X
 import month1Bg from "@assets/mount_1763611075459.png";
 import month2Bg from "@assets/generated_images/Month_2_profitability_dashboard_b88a69c2.png";
 import month3Bg from "@assets/generated_images/Month_3_growth_analytics_1c72396a.png";
-import month4Bg from "@assets/generated_images/Month_4_expansion_metrics_470703cd.png";
 import chartBg from "@assets/generated_images/Revenue_growth_chart_visualization_92f45469.png";
 import metricsBg from "@assets/generated_images/Unit_economics_metrics_dashboard_38204899.png";
 
@@ -17,71 +16,52 @@ const bepPhases = [
     glowColor: "shadow-red-500/20",
     isNegative: true,
     metrics: {
-      users: 1000,
-      paying: 100,
-      revenue: "Rp 101M",
-      expenses: "Rp 180M",
-      net: "- Rp 79M",
+      users: 550,
+      paying: 300,
+      revenue: "Rp 192M",
+      expenses: "Rp 250M",
+      net: "- Rp 58M",
       margin: null,
     },
   },
   {
-    month: "Month 2",
+    month: "Month 8 - 15",
     background: month2Bg,
     borderColor: "border-blue-500/50",
     glowColor: "shadow-blue-500/20",
     isNegative: false,
     metrics: {
-      users: 2500,
-      paying: 1000,
-      revenue: "Rp 640M",
+      users: 1550,
+      paying: 800,
+      revenue: "Rp 512M",
       expenses: null,
       net: null,
-      breakeven: "Rp 485M",
-      margin: "~32%",
+      breakeven: "Rp 512M",
+      margin: "~28%",
     },
   },
   {
-    month: "Month 3",
+    month: "Month 16 - 23",
     background: month3Bg,
-    borderColor: "border-cyan-500/50",
-    glowColor: "shadow-cyan-500/20",
+    borderColor: "border-green-500/50",
+    glowColor: "shadow-green-500/20",
     isNegative: false,
     metrics: {
-      users: 5000,
-      paying: 2500,
-      revenue: "Rp 1.6B",
+      users: 2800,
+      paying: 1800,
+      revenue: "Rp 1.15B",
       expenses: null,
       net: null,
-      breakeven: "Rp 1.25B",
-      margin: "~22%",
-    },
-  },
-  {
-    month: "Month 4",
-    background: month4Bg,
-    borderColor: "border-blue-400/50",
-    glowColor: "shadow-blue-400/20",
-    isNegative: false,
-    metrics: {
-      users: 10000,
-      paying: 5000,
-      revenue: "Rp 3.2B",
-      expenses: null,
-      net: null,
-      breakeven: "Rp 2.5B",
-      margin: "~22%",
+      breakeven: "Rp 820M",
+      margin: "~29%",
     },
   },
 ];
 
 const chartData = [
-  { month: "Month 1", revenue: 15 },
-  { month: "Month 2", revenue: 35 },
-  { month: "Month 3", revenue: 55 },
-  { month: "Month 4", revenue: 75 },
-  { month: "Month 5", revenue: 88 },
-  { month: "Month 6", revenue: 100 },
+  { month: "Month 1-7", revenue: 30 },
+  { month: "Month 8-15", revenue: 65 },
+  { month: "Month 16-23", revenue: 100 },
 ];
 
 const keyMetricsData = [
@@ -357,7 +337,7 @@ export default function BreakEvenSection() {
               className="text-4xl md:text-5xl font-bold text-gold-gradient"
               data-testid="text-breakeven-title"
             >
-              Break-Even in Month 2
+              Break-Even in Month 8-15
             </h2>
             <Sparkles className="text-primary w-6 h-6 animate-pulse" />
           </div>
@@ -661,13 +641,13 @@ export default function BreakEvenSection() {
                 Dengan <span className="text-gold-gradient font-bold">margin 73%</span> dan{" "}
                 <span className="text-gold-gradient font-bold">LTV/CAC ratio 10.24x</span>,
                 TradeX mencapai{" "}
-                <span className="text-gold-gradient font-bold">break-even di bulan ke-2</span>{" "}
+                <span className="text-gold-gradient font-bold">break-even di bulan 8-15</span>{" "}
                 dan{" "}
                 <span className="text-gold-gradient font-bold">
-                  sustainable profitability di bulan ke-4
+                  sustainable profitability di bulan 16-23
                 </span>{" "}
                 dengan unit economics yang sangat kuat. Model bisnis ini menunjukkan 
-                pertumbuhan eksponensial dengan payback period hanya{" "}
+                pertumbuhan berkelanjutan dengan payback period hanya{" "}
                 <span className="text-gold-gradient font-bold">3 bulan</span>, membuktikan 
                 efisiensi tinggi dalam akuisisi dan retensi pengguna.
               </p>
