@@ -25,10 +25,58 @@ const bepPhases = [
     },
   },
   {
-    month: "Month 8 - 15",
+    month: "Month 8 - 9",
+    background: month2Bg,
+    borderColor: "border-blue-400/50",
+    glowColor: "shadow-blue-400/20",
+    isNegative: false,
+    metrics: {
+      users: 800,
+      paying: 425,
+      revenue: "Rp 272M",
+      expenses: null,
+      net: null,
+      breakeven: "Rp 272M",
+      margin: "~12%",
+    },
+  },
+  {
+    month: "Month 10 - 11",
     background: month2Bg,
     borderColor: "border-blue-500/50",
     glowColor: "shadow-blue-500/20",
+    isNegative: false,
+    metrics: {
+      users: 1000,
+      paying: 550,
+      revenue: "Rp 352M",
+      expenses: null,
+      net: null,
+      breakeven: "Rp 352M",
+      margin: "~18%",
+    },
+  },
+  {
+    month: "Month 12 - 13",
+    background: month2Bg,
+    borderColor: "border-indigo-500/50",
+    glowColor: "shadow-indigo-500/20",
+    isNegative: false,
+    metrics: {
+      users: 1250,
+      paying: 675,
+      revenue: "Rp 432M",
+      expenses: null,
+      net: null,
+      breakeven: "Rp 432M",
+      margin: "~23%",
+    },
+  },
+  {
+    month: "Month 14 - 15",
+    background: month2Bg,
+    borderColor: "border-purple-500/50",
+    glowColor: "shadow-purple-500/20",
     isNegative: false,
     metrics: {
       users: 1550,
@@ -59,9 +107,12 @@ const bepPhases = [
 ];
 
 const chartData = [
-  { month: "Month 1-7", revenue: 30 },
-  { month: "Month 8-15", revenue: 65 },
-  { month: "Month 16-23", revenue: 100 },
+  { month: "M1-7", revenue: 30 },
+  { month: "M8-9", revenue: 42 },
+  { month: "M10-11", revenue: 55 },
+  { month: "M12-13", revenue: 68 },
+  { month: "M14-15", revenue: 80 },
+  { month: "M16-23", revenue: 100 },
 ];
 
 const keyMetricsData = [
@@ -359,7 +410,7 @@ export default function BreakEvenSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
           {/* Left Column - BEP Phases */}
-          <div ref={cardsRef} className="lg:col-span-4 space-y-4">
+          <div ref={cardsRef} className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {bepPhases.map((phase, index) => (
               <Card
                 key={index}
@@ -375,10 +426,10 @@ export default function BreakEvenSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/85 to-black/90" />
 
-                <CardContent className="relative p-5">
-                  <div className="flex items-center justify-between mb-4">
+                <CardContent className="relative p-3">
+                  <div className="flex items-center justify-between mb-2">
                     <Badge
-                      className="bg-gradient-to-r from-[#D4AF37] to-[#F7E27A] text-black font-bold px-3 py-1 shadow-md"
+                      className="bg-gradient-to-r from-[#D4AF37] to-[#F7E27A] text-black font-bold px-2 py-0.5 text-xs shadow-md"
                       data-testid={`badge-month-${index}`}
                     >
                       {phase.month}
@@ -386,39 +437,39 @@ export default function BreakEvenSection() {
                     <div className="flex items-center gap-1">
                       {phase.isNegative ? (
                         <>
-                          <TrendingDown className="text-red-500 animate-pulse" size={20} />
-                          <X className="text-red-400" size={16} />
+                          <TrendingDown className="text-red-500 animate-pulse" size={16} />
+                          <X className="text-red-400" size={12} />
                         </>
                       ) : (
                         <>
-                          <TrendingUp className="text-gold-gradient animate-pulse" size={20} />
-                          <ArrowUpRight className="text-green-400" size={16} />
+                          <TrendingUp className="text-gold-gradient animate-pulse" size={16} />
+                          <ArrowUpRight className="text-green-400" size={12} />
                         </>
                       )}
                     </div>
                   </div>
 
-                  <div className="space-y-2.5">
-                    <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between items-center text-xs bg-white/5 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/10 hover:bg-white/10 transition-colors">
                       <span className="text-white/90">Users:</span>
                       <span className={phase.isNegative ? "text-white font-bold" : "text-gold-gradient font-bold"}>
                         {formatNumber(userCounts[index])}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div className="flex justify-between items-center text-xs bg-white/5 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/10 hover:bg-white/10 transition-colors">
                       <span className="text-white/90">Paying:</span>
                       <span className={phase.isNegative ? "text-white font-bold" : "text-gold-gradient font-bold"}>
                         {formatNumber(payingCounts[index])}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+                    <div className="flex justify-between items-center text-xs bg-white/5 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/10 hover:bg-white/10 transition-colors">
                       <span className="text-white/90">Revenue:</span>
                       <span className={phase.isNegative ? "text-white font-bold" : "text-gold-gradient font-bold"}>
                         {phase.metrics.revenue}
                       </span>
                     </div>
                     {phase.metrics.expenses && (
-                      <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+                      <div className="flex justify-between items-center text-xs bg-white/5 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/10 hover:bg-white/10 transition-colors">
                         <span className="text-white/90">Expenses:</span>
                         <span className="text-white font-bold">
                           {phase.metrics.expenses}
@@ -426,7 +477,7 @@ export default function BreakEvenSection() {
                       </div>
                     )}
                     {phase.metrics.breakeven && (
-                      <div className="flex justify-between items-center text-sm bg-white/5 backdrop-blur-sm rounded-md px-3 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+                      <div className="flex justify-between items-center text-xs bg-white/5 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/10 hover:bg-white/10 transition-colors">
                         <span className="text-white/90">Break-even:</span>
                         <span className="text-gold-gradient font-bold">
                           {phase.metrics.breakeven}
@@ -435,23 +486,23 @@ export default function BreakEvenSection() {
                     )}
                     {phase.metrics.net && (
                       <div 
-                        className="flex justify-between items-center text-sm bg-gradient-to-r from-red-500/20 to-red-500/10 backdrop-blur-sm rounded-md px-3 py-2 border border-red-500/30 shadow-md"
+                        className="flex justify-between items-center text-xs bg-gradient-to-r from-red-500/20 to-red-500/10 backdrop-blur-sm rounded-md px-2 py-1.5 border border-red-500/30 shadow-md"
                         data-highlight="true"
                       >
                         <span className="text-white font-medium">Net:</span>
-                        <span className="text-red-400 font-bold text-base flex items-center gap-1">
+                        <span className="text-red-400 font-bold text-sm flex items-center gap-1">
                           {phase.metrics.net}
-                          <X size={14} />
+                          <X size={12} />
                         </span>
                       </div>
                     )}
                     {phase.metrics.margin && (
                       <div 
-                        className="flex justify-between items-center text-sm bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-3 py-2 border border-primary/30 shadow-md"
+                        className="flex justify-between items-center text-xs bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm rounded-md px-2 py-1.5 border border-primary/30 shadow-md"
                         data-highlight="true"
                       >
                         <span className="text-white font-medium">Margin:</span>
-                        <span className="text-gold-gradient font-bold text-base">
+                        <span className="text-gold-gradient font-bold text-sm">
                           {phase.metrics.margin}
                         </span>
                       </div>
@@ -463,7 +514,7 @@ export default function BreakEvenSection() {
           </div>
 
           {/* Center Column - Financial Growth Chart */}
-          <div ref={chartRef} className="lg:col-span-4">
+          <div ref={chartRef} className="lg:col-span-4 lg:row-span-2">
             <Card
               className="relative overflow-hidden border-green-500/50 border-2 h-full shadow-lg shadow-green-500/20 hover:shadow-xl hover:shadow-green-500/30 transition-all"
               data-testid="card-growth-chart"
@@ -490,23 +541,23 @@ export default function BreakEvenSection() {
                   <p className="text-white/70 text-sm">Revenue Progression</p>
                 </div>
 
-                <div className="flex-1 flex items-end justify-around gap-2 px-4 pb-8">
+                <div className="flex-1 flex items-end justify-around gap-1 px-2 pb-8">
                   {chartData.map((data, index) => (
                     <div
                       key={index}
-                      className="flex flex-col items-center gap-2 flex-1 group"
+                      className="flex flex-col items-center gap-1 flex-1 group"
                       data-chart-bar="true"
                       data-testid={`chart-bar-${index}`}
                     >
                       <div
                         className="w-full bg-gradient-to-t from-[#10b981] to-[#34d399] rounded-t-md relative overflow-hidden transition-all group-hover:shadow-lg group-hover:shadow-green-400/50"
-                        style={{ height: `${chartHeights[index] * 2}px` }}
+                        style={{ height: `${chartHeights[index] * 1.8}px` }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20" />
                         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/10 animate-pulse" />
                       </div>
-                      <span className="text-xs text-white/80 font-medium group-hover:text-white transition-colors">
-                        {data.month.replace("Month ", "M")}
+                      <span className="text-[10px] text-white/80 font-medium group-hover:text-white transition-colors">
+                        {data.month}
                       </span>
                     </div>
                   ))}
@@ -522,7 +573,7 @@ export default function BreakEvenSection() {
           </div>
 
           {/* Right Column - Metrics */}
-          <div ref={metricsRef} className="lg:col-span-4 space-y-4">
+          <div ref={metricsRef} className="lg:col-span-3 space-y-4">
             {/* Key Metrics */}
             <Card
               data-metric-card="true"
