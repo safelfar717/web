@@ -4,6 +4,7 @@ import {
   GraduationCap,
   Users,
   Sparkles,
+  Bot,
   TrendingUp,
   Copy,
   Trophy,
@@ -19,6 +20,7 @@ import copyBg from "@assets/generated_images/Copy_trading_platform_68d95174.png"
 import competitionBg from "@assets/generated_images/Trading_competitions_7e53ac4c.png";
 import storeBg from "@assets/generated_images/Store_ecommerce_robot_trading_interface_53f3b3b5.png";
 import innovativeBg from "@assets/generated_images/Combined_platform_ecosystem_visualization_89220649.png";
+import advisorBg from "@assets/generated_images/robot_trading_advisor_visual.png";
 
 const solutions = [
   {
@@ -41,6 +43,13 @@ const solutions = [
     description:
       "Buka Wawasan AI Trading Anda dari Inti Akurasi Analitik dan Presisi Trading Canggih saat ini",
     background: aiBg,
+  },
+  {
+    icon: Bot,
+    title: "Advisor Expertise & Robot Trading",
+    description:
+      "Manfaatkan Expert Advisor & Bot Trading terpercaya untuk eksekusi strategi trading 24/7 tanpa emosi",
+    background: advisorBg,
   },
   {
     icon: TrendingUp,
@@ -150,7 +159,7 @@ export default function MarketChallenge() {
               key={index}
               className="group relative overflow-hidden border-gold-20 hover-elevate transition-all duration-300 h-64"
               data-testid={`card-solution-${index}`}
-              data-store-unique={index === 6 ? "true" : undefined}
+              data-store-unique={index === 7 ? "true" : undefined}
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
@@ -161,12 +170,12 @@ export default function MarketChallenge() {
               <CardContent className="relative h-full p-6 flex flex-col justify-end">
                 <div 
                   className="mb-4 w-12 h-12 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30"
-                  data-store-icon-container={index === 6 ? "true" : undefined}
+                  data-store-icon-container={index === 7 ? "true" : undefined}
                 >
                   <solution.icon 
                     className="text-gold-gradient" 
                     size={24}
-                    data-store-icon={index === 6 ? "true" : undefined}
+                    data-store-icon={index === 7 ? "true" : undefined}
                   />
                 </div>
                 <h3
