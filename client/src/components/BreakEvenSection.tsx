@@ -107,12 +107,12 @@ const bepPhases = [
 ];
 
 const chartData = [
-  { month: "M1-7", revenue: 30 },
-  { month: "M8-9", revenue: 42 },
-  { month: "M10-11", revenue: 55 },
-  { month: "M12-13", revenue: 68 },
-  { month: "M14-15", revenue: 80 },
-  { month: "M16-23", revenue: 100 },
+  { month: "M1-7", revenue: 30, net: "-58M", isNegative: true },
+  { month: "M8-9", revenue: 42, net: "+33M", isNegative: false },
+  { month: "M10-11", revenue: 55, net: "+63M", isNegative: false },
+  { month: "M12-13", revenue: 68, net: "+99M", isNegative: false },
+  { month: "M14-15", revenue: 80, net: "+143M", isNegative: false },
+  { month: "M16-23", revenue: 100, net: "+330M", isNegative: false },
 ];
 
 const keyMetricsData = [
@@ -541,32 +541,81 @@ export default function BreakEvenSection() {
                   <p className="text-white/70 text-sm">Revenue Progression</p>
                 </div>
 
-                <div className="flex-1 flex items-end justify-around gap-1 px-2 pb-8">
+                <div className="flex-1 flex items-stretch justify-around gap-1 px-2 relative" style={{ height: '220px' }}>
+                  <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-white/30 z-10" data-testid="axis-zero-line" />
                   {chartData.map((data, index) => (
                     <div
                       key={index}
-                      className="flex flex-col items-center gap-1 flex-1 group"
+                      className="flex-1 relative group"
                       data-chart-bar="true"
                       data-testid={`chart-bar-${index}`}
                     >
-                      <div
-                        className="w-full bg-gradient-to-t from-[#10b981] to-[#34d399] rounded-t-md relative overflow-hidden transition-all group-hover:shadow-lg group-hover:shadow-green-400/50"
-                        style={{ height: `${chartHeights[index] * 1.8}px` }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/10 animate-pulse" />
-                      </div>
-                      <span className="text-[10px] text-white/80 font-medium group-hover:text-white transition-colors">
-                        {data.month}
-                      </span>
+                      {data.isNegative ? (
+                        <>
+                          <div className="absolute top-1/2 left-0 right-0 flex flex-col items-center">
+                            <div
+                              className="w-full bg-gradient-to-b from-[#ef4444] to-[#dc2626] rounded-b-md relative overflow-hidden transition-all group-hover:shadow-lg group-hover:shadow-red-400/50"
+                              style={{ height: `${chartHeights[index] * 1.5}px` }}
+                            >
+                              <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent animate-pulse" />
+                            </div>
+                          </div>
+                          <div 
+                            className="absolute left-0 right-0 flex justify-center z-20"
+                            style={{ top: 'calc(50% - 14px)' }}
+                          >
+                            <span className="text-[9px] text-red-400 font-bold" data-testid={`text-net-${index}`}>
+                              {data.net}
+                            </span>
+                          </div>
+                          <div className="absolute bottom-2 left-0 right-0 flex justify-center">
+                            <span className="text-[10px] text-white/80 font-medium group-hover:text-white transition-colors">
+                              {data.month}
+                            </span>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="absolute bottom-1/2 left-0 right-0 flex flex-col items-center justify-end">
+                            <div
+                              className="w-full bg-gradient-to-t from-[#10b981] to-[#34d399] rounded-t-md relative overflow-hidden transition-all group-hover:shadow-lg group-hover:shadow-green-400/50"
+                              style={{ height: `${chartHeights[index] * 1.5}px` }}
+                            >
+                              <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/10 animate-pulse" />
+                            </div>
+                          </div>
+                          <div 
+                            className="absolute left-0 right-0 flex justify-center z-20"
+                            style={{ bottom: `calc(50% + ${chartHeights[index] * 1.5 + 4}px)` }}
+                          >
+                            <span className="text-[9px] text-green-400 font-bold" data-testid={`text-net-${index}`}>
+                              {data.net}
+                            </span>
+                          </div>
+                          <div className="absolute bottom-2 left-0 right-0 flex justify-center">
+                            <span className="text-[10px] text-white/80 font-medium group-hover:text-white transition-colors">
+                              {data.month}
+                            </span>
+                          </div>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-center gap-2 mt-4">
-                  <div className="h-3 w-3 bg-gradient-to-br from-[#10b981] to-[#34d399] rounded-sm animate-pulse" />
-                  <span className="text-xs text-white/80">Revenue Growth</span>
-                  <ArrowUpRight className="text-green-400 w-4 h-4" />
+                <div className="flex items-center justify-center gap-4 mt-4">
+                  <div className="flex items-center gap-1">
+                    <div className="h-3 w-3 bg-gradient-to-br from-[#ef4444] to-[#dc2626] rounded-sm" />
+                    <span className="text-xs text-white/80">Loss</span>
+                    <TrendingDown className="text-red-400 w-3 h-3" />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="h-3 w-3 bg-gradient-to-br from-[#10b981] to-[#34d399] rounded-sm animate-pulse" />
+                    <span className="text-xs text-white/80">Profit</span>
+                    <ArrowUpRight className="text-green-400 w-3 h-3" />
+                  </div>
                 </div>
               </CardContent>
             </Card>
