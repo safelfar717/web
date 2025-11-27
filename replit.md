@@ -107,3 +107,14 @@ Preferred communication style: Simple, everyday language.
 - `hover-elevate` - Subtle lift effect with shadow increase
 - GSAP timeline animations for sequential reveals
 - Scroll-triggered counter animations for statistics
+
+## Documentation
+
+**Edit Guide**: A comprehensive documentation for editing this website is available at `DOKUMENTASI_EDIT_WEBSITE.md`. It covers:
+- Complete project structure
+- How to edit each page and component
+- Styling and color customization
+- Animation patterns (GSAP)
+- Adding images and assets
+- UI component usage guide
+- Tips and best practices
