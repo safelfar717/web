@@ -56,17 +56,121 @@ const competitors = [
 
 export default function EcosystemSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const positioningTitleRef = useRef<HTMLHeadingElement>(null);
+  const advantagesTitleRef = useRef<HTMLHeadingElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
+  const bottomLineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
+    const header = headerRef.current;
+    const title = titleRef.current;
+    const subtitle = subtitleRef.current;
+    const positioningTitle = positioningTitleRef.current;
+    const advantagesTitle = advantagesTitleRef.current;
     const map = mapRef.current;
     const table = tableRef.current;
+    const bottomLine = bottomLineRef.current;
 
     if (!section || !map || !table) return;
 
     const ctx = gsap.context(() => {
+      // Header animation (title and subtitle)
+      if (title && subtitle) {
+        gsap.set([title, subtitle], { opacity: 0, y: 50 });
+        
+        ScrollTrigger.create({
+          trigger: header,
+          start: "top 80%",
+          onEnter: () => {
+            const tl = gsap.timeline();
+            tl.to(title, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+            }).to(
+              subtitle,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power3.out",
+              },
+              "-=0.4"
+            );
+          },
+        });
+      }
+
+      // Sub-headings animation (Positioning Map and Competitive Advantages)
+      if (positioningTitle) {
+        gsap.set(positioningTitle, { opacity: 0, y: 30 });
+        
+        ScrollTrigger.create({
+          trigger: positioningTitle,
+          start: "top 85%",
+          onEnter: () => {
+            gsap.to(positioningTitle, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power3.out",
+            });
+          },
+        });
+      }
+
+      if (advantagesTitle) {
+        gsap.set(advantagesTitle, { opacity: 0, y: 30 });
+        
+        ScrollTrigger.create({
+          trigger: advantagesTitle,
+          start: "top 85%",
+          onEnter: () => {
+            gsap.to(advantagesTitle, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power3.out",
+            });
+          },
+        });
+      }
+
+      // Bottom Line card animation
+      if (bottomLine) {
+        gsap.set(bottomLine, { opacity: 0, scale: 0.9, y: 40 });
+        
+        ScrollTrigger.create({
+          trigger: bottomLine,
+          start: "top 85%",
+          onEnter: () => {
+            gsap.to(bottomLine, {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+            });
+
+            // Add pulsating glow effect after initial animation
+            gsap.to(bottomLine, {
+              boxShadow: "0 0 40px rgba(212, 175, 55, 0.6)",
+              duration: 1.5,
+              delay: 0.8,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+            });
+          },
+        });
+      }
+
       const competitors = map.querySelectorAll("[data-competitor]");
       const tradex = map.querySelector("[data-tradex]");
       const starIcon = map.querySelector("[data-star-icon]");
@@ -198,14 +302,16 @@ export default function EcosystemSection() {
   return (
     <section ref={sectionRef} className="py-24 bg-card">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <h2
+            ref={titleRef}
             className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
             data-testid="text-competitive-title"
           >
             Competitive Landscape
           </h2>
           <p
+            ref={subtitleRef}
             className="text-muted-foreground text-lg max-w-3xl mx-auto"
             data-testid="text-competitive-subtitle"
           >
@@ -217,6 +323,7 @@ export default function EcosystemSection() {
         <div className="space-y-12">
           <div>
             <h3
+              ref={positioningTitleRef}
               className="text-2xl font-bold text-gold-gradient mb-6 text-center"
               data-testid="text-positioning-title"
             >
@@ -322,6 +429,7 @@ export default function EcosystemSection() {
 
           <div>
             <h3
+              ref={advantagesTitleRef}
               className="text-2xl font-bold text-gold-gradient mb-6 text-center"
               data-testid="text-advantages-title"
             >
@@ -540,7 +648,10 @@ export default function EcosystemSection() {
             </Card>
           </div>
 
-          <Card className="bg-gradient-to-r from-[#D4AF37] to-[#F7E27A] border-[#D4AF37] max-w-4xl mx-auto gold-glow-hover">
+          <Card 
+            ref={bottomLineRef}
+            className="bg-gradient-to-r from-[#D4AF37] to-[#F7E27A] border-[#D4AF37] max-w-4xl mx-auto"
+          >
             <CardContent className="p-8 text-center">
               <p
                 className="text-xl md:text-2xl font-semibold text-black mb-2"
