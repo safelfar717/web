@@ -1,5 +1,10 @@
+import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const monthlyData = [
   { month: "Month 1 - 7", users: "550", paying: "300", revenue: "Rp 192M", expenses: "Rp 250M", net: "-Rp 58M", profit: false },
@@ -24,27 +29,144 @@ const unitEconomics = [
 ];
 
 export default function FinancialProjections() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const monthCardsRef = useRef<HTMLDivElement>(null);
+  const yearMetricsRef = useRef<HTMLDivElement>(null);
+  const unitEconomicsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const header = headerRef.current;
+    const title = titleRef.current;
+    const subtitle = subtitleRef.current;
+    const monthCardsContainer = monthCardsRef.current;
+    const yearMetricsContainer = yearMetricsRef.current;
+    const unitEconomicsCard = unitEconomicsRef.current;
+
+    if (!section || !monthCardsContainer || !yearMetricsContainer || !unitEconomicsCard) return;
+
+    const ctx = gsap.context(() => {
+      if (title && subtitle) {
+        gsap.set([title, subtitle], { opacity: 0, y: 50 });
+
+        ScrollTrigger.create({
+          trigger: header,
+          start: "top 80%",
+          onEnter: () => {
+            const tl = gsap.timeline();
+            tl.to(title, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+            }).to(
+              subtitle,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power3.out",
+              },
+              "-=0.4"
+            );
+          },
+        });
+      }
+
+      const monthCards = monthCardsContainer.querySelectorAll("[data-month-card]");
+      gsap.set(monthCards, { opacity: 0, y: 40, scale: 0.95 });
+
+      ScrollTrigger.create({
+        trigger: monthCardsContainer,
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(monthCards, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "back.out(1.7)",
+          });
+        },
+      });
+
+      const yearMetricCards = yearMetricsContainer.querySelectorAll("[data-year-metric]");
+      gsap.set(yearMetricCards, { opacity: 0, y: 30, scale: 0.95 });
+
+      ScrollTrigger.create({
+        trigger: yearMetricsContainer,
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(yearMetricCards, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "back.out(1.5)",
+          });
+        },
+      });
+
+      gsap.set(unitEconomicsCard, { opacity: 0, y: 40 });
+
+      const unitItems = unitEconomicsCard.querySelectorAll("[data-unit-item]");
+      gsap.set(unitItems, { opacity: 0, y: 20 });
+
+      ScrollTrigger.create({
+        trigger: unitEconomicsCard,
+        start: "top 80%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+          tl.to(unitEconomicsCard, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power3.out",
+          }).to(
+            unitItems,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              stagger: 0.08,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          );
+        },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 bg-card">
+    <section ref={sectionRef} className="py-24 bg-card">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-financial-title">
+        <div ref={headerRef} className="text-center mb-16">
+          <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-financial-title">
             23-Month Revenue Growth
           </h2>
-          <p className="text-muted-foreground text-lg" data-testid="text-financial-subtitle">
+          <p ref={subtitleRef} className="text-muted-foreground text-lg" data-testid="text-financial-subtitle">
             Break-even in Month 8-15: Sustainable Path to Profitability
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div ref={monthCardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {monthlyData.map((data, index) => (
             <Card 
               key={index} 
               className="bg-background border-gold-20 hover-elevate"
+              data-month-card
               data-testid={`card-month-${index}`}
             >
               <CardContent className="p-6 space-y-3">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between gap-2 mb-4">
                   <h3 className="text-xl font-bold text-foreground" data-testid={`text-month-label-${index}`}>
                     {data.month}
                   </h3>
@@ -83,11 +205,12 @@ export default function FinancialProjections() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div ref={yearMetricsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {yearMetrics.map((metric, index) => (
             <Card 
               key={index} 
               className={`border-gold-20 ${metric.highlight ? 'bg-gradient-to-br from-primary/10 to-transparent' : 'bg-card'}`}
+              data-year-metric
               data-testid={`card-metric-${index}`}
             >
               <CardContent className="p-6 text-center">
@@ -102,14 +225,14 @@ export default function FinancialProjections() {
           ))}
         </div>
 
-        <Card className="bg-background border-gold-20">
+        <Card ref={unitEconomicsRef} className="bg-background border-gold-20">
           <CardContent className="p-8">
             <h3 className="text-2xl font-bold text-gold-gradient mb-6 text-center" data-testid="text-unit-economics-title">
               Unit Economics
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {unitEconomics.map((item, index) => (
-                <div key={index} className="text-center" data-testid={`unit-economics-${index}`}>
+                <div key={index} className="text-center" data-unit-item data-testid={`unit-economics-${index}`}>
                   <div className="text-sm text-muted-foreground mb-1" data-testid={`text-unit-label-${index}`}>
                     {item.label}
                   </div>
