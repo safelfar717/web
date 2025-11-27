@@ -9,7 +9,8 @@ import {
   Calendar,
   FileText,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Crown
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -189,13 +190,34 @@ export default function ThankYouSection() {
                   <Sparkles className="text-primary w-8 h-8" data-sparkle />
                 </div>
                 
-                <div ref={contentRef} className="space-y-4">
-                  <p className="text-2xl md:text-3xl text-foreground font-medium">
-                    Let's Build the Future
-                  </p>
-                  <p className="text-xl md:text-2xl text-gold-gradient font-semibold">
-                    And Grow Together
-                  </p>
+                <div ref={contentRef} className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+                  <div className="relative flex-shrink-0">
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-[#D4AF37] via-[#F7E27A] to-[#D4AF37] p-[3px] shadow-2xl shadow-primary/40">
+                      <div className="w-full h-full rounded-full bg-gradient-to-br from-black/80 to-black/60 p-[2px]">
+                        <img 
+                          src={founderPhoto}
+                          alt={contactInfo.name}
+                          className="w-full h-full rounded-full object-cover object-top"
+                          data-testid="img-founder-hero"
+                        />
+                      </div>
+                    </div>
+                    <div className="absolute -bottom-2 -right-2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] flex items-center justify-center shadow-lg">
+                      <Crown className="w-5 h-5 md:w-6 md:h-6 text-black" />
+                    </div>
+                  </div>
+                  
+                  <div className="text-center md:text-left space-y-2">
+                    <p className="text-2xl md:text-3xl text-foreground font-medium">
+                      Let's Build the Future
+                    </p>
+                    <p className="text-xl md:text-2xl text-gold-gradient font-semibold">
+                      And Grow Together
+                    </p>
+                    <p className="text-sm md:text-base text-muted-foreground mt-2">
+                      — {contactInfo.name}, {contactInfo.role}
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -205,12 +227,8 @@ export default function ThankYouSection() {
                   className="flex items-center gap-4 p-4 bg-white/5 rounded-md border border-white/10 hover:bg-white/10 transition-colors"
                   data-testid="contact-name"
                 >
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/60 p-[2px] flex-shrink-0 shadow-lg shadow-primary/30">
-                    <img 
-                      src={founderPhoto}
-                      alt={contactInfo.name}
-                      className="w-full h-full rounded-full object-cover object-top"
-                    />
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                    <Crown className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Founder & CEO</p>
