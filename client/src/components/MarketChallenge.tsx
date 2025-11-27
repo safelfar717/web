@@ -12,6 +12,9 @@ import {
   Lightbulb,
 } from "lucide-react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import educationBg from "@assets/generated_images/Interactive_education_platform_81bed62b.png";
 import communityBg from "@assets/generated_images/Live_trading_community_3f62992e.png";
 import aiBg from "@assets/generated_images/AI_powered_insights_f1c05b55.png";
@@ -90,12 +93,53 @@ const solutions = [
 
 export default function MarketChallenge() {
   const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const title = titleRef.current;
+    const subtitle = subtitleRef.current;
+    const cardsContainer = cardsContainerRef.current;
+    if (!section || !title || !subtitle || !cardsContainer) return;
+
+    const cards = cardsContainer.querySelectorAll('[data-solution-card]');
 
     const ctx = gsap.context(() => {
+      gsap.set(title, { opacity: 0, y: -40 });
+      gsap.set(subtitle, { opacity: 0, y: -20 });
+      gsap.set(cards, { opacity: 0, y: 60, scale: 0.9 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      tl.to(title, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      })
+      .to(subtitle, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power3.out"
+      }, "-=0.4")
+      .to(cards, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power3.out"
+      }, "-=0.3");
+
       const storeCard = section.querySelector('[data-store-unique="true"]');
       if (storeCard) {
         gsap.to(storeCard, {
@@ -139,12 +183,14 @@ export default function MarketChallenge() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2
+            ref={titleRef}
             className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
             data-testid="text-section-title"
           >
             The Solution : "NextGen"
           </h2>
           <p
+            ref={subtitleRef}
             className="text-muted-foreground text-lg max-w-3xl mx-auto"
             data-testid="text-section-subtitle"
           >
@@ -153,12 +199,13 @@ export default function MarketChallenge() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={cardsContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {solutions.map((solution, index) => (
             <Card
               key={index}
               className="group relative overflow-hidden border-gold-20 hover-elevate transition-all duration-300 h-64"
               data-testid={`card-solution-${index}`}
+              data-solution-card
               data-store-unique={index === 7 ? "true" : undefined}
             >
               <div
