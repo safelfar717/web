@@ -300,8 +300,16 @@ export default function TeamSection() {
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center gap-4">
-                      <div className={`p-4 rounded-lg bg-black/80 border ${member.borderColor}`}>
-                        <IconComponent className={`w-8 h-8 ${member.color}`} />
+                      <div 
+                        className="relative p-1 rounded-full"
+                        style={{
+                          background: 'linear-gradient(135deg, #D4AF37 0%, #F7E27A 50%, #D4AF37 100%)',
+                          boxShadow: '0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(247, 226, 122, 0.3)',
+                        }}
+                      >
+                        <div className="w-16 h-16 rounded-full bg-black flex items-center justify-center">
+                          <IconComponent className={`w-8 h-8 ${member.color}`} />
+                        </div>
                       </div>
                       <div className="flex-1">
                         <h3 className={`text-xl font-bold ${member.color} mb-1`}>
@@ -331,8 +339,16 @@ export default function TeamSection() {
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center gap-4">
-                      <div className={`p-4 rounded-lg bg-black/80 border ${member.borderColor}`}>
-                        <IconComponent className={`w-8 h-8 ${member.color}`} />
+                      <div 
+                        className="relative p-0.5 rounded-full"
+                        style={{
+                          background: 'linear-gradient(135deg, #D4AF37 0%, #F7E27A 50%, #D4AF37 100%)',
+                          boxShadow: '0 0 15px rgba(212, 175, 55, 0.3)',
+                        }}
+                      >
+                        <div className="w-14 h-14 rounded-full bg-black flex items-center justify-center">
+                          <IconComponent className={`w-7 h-7 ${member.color}`} />
+                        </div>
                       </div>
                       <div className="flex-1">
                         <h3 className={`text-lg font-bold ${member.color} mb-1`}>
@@ -546,8 +562,16 @@ export default function TeamSection() {
                   >
                     <CardContent className="p-4">
                       <div className="flex flex-col items-center text-center gap-3">
-                        <div className={`p-3 rounded-lg bg-black/80 border ${member.borderColor}`}>
-                          <IconComponent className={`w-6 h-6 ${member.color}`} />
+                        <div 
+                          className="relative p-0.5 rounded-full"
+                          style={{
+                            background: 'linear-gradient(135deg, #D4AF37 0%, #F7E27A 50%, #D4AF37 100%)',
+                            boxShadow: '0 0 12px rgba(212, 175, 55, 0.25)',
+                          }}
+                        >
+                          <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center">
+                            <IconComponent className={`w-6 h-6 ${member.color}`} />
+                          </div>
                         </div>
                         <h4 className={`text-sm font-semibold ${member.color}`}>
                           {member.role}
@@ -578,8 +602,16 @@ export default function TeamSection() {
                   >
                     <CardContent className="p-4">
                       <div className="flex flex-col items-center text-center gap-3">
-                        <div className={`p-3 rounded-lg bg-black/80 border ${member.borderColor}`}>
-                          <IconComponent className={`w-6 h-6 ${member.color}`} />
+                        <div 
+                          className="relative p-0.5 rounded-full"
+                          style={{
+                            background: 'linear-gradient(135deg, #D4AF37 0%, #F7E27A 50%, #D4AF37 100%)',
+                            boxShadow: '0 0 12px rgba(212, 175, 55, 0.25)',
+                          }}
+                        >
+                          <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center">
+                            <IconComponent className={`w-6 h-6 ${member.color}`} />
+                          </div>
                         </div>
                         <h4 className={`text-sm font-semibold ${member.color}`}>
                           {member.role}

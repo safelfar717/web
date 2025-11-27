@@ -4,6 +4,76 @@ import { TrendingUp } from "lucide-react";
 import gsap from "gsap";
 import heroBackground from "@assets/generated_images/Trading_workspace_millennial_community_b2ff8f4b.png";
 
+function GoldParticles() {
+  const particlesRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (!particlesRef.current) return;
+    
+    const particles = particlesRef.current.querySelectorAll('.gold-particle');
+    
+    particles.forEach((particle, index) => {
+      const randomX = Math.random() * 100;
+      const randomDelay = Math.random() * 5;
+      const randomDuration = 8 + Math.random() * 12;
+      const randomSize = 2 + Math.random() * 4;
+      
+      gsap.set(particle, {
+        x: `${randomX}vw`,
+        y: '110vh',
+        width: randomSize,
+        height: randomSize,
+        opacity: 0.3 + Math.random() * 0.5,
+      });
+      
+      gsap.to(particle, {
+        y: '-10vh',
+        x: `+=${(Math.random() - 0.5) * 100}`,
+        duration: randomDuration,
+        delay: randomDelay,
+        repeat: -1,
+        ease: 'none',
+        onRepeat: () => {
+          gsap.set(particle, {
+            x: `${Math.random() * 100}vw`,
+            y: '110vh',
+          });
+        }
+      });
+      
+      gsap.to(particle, {
+        opacity: 0.1 + Math.random() * 0.4,
+        duration: 2 + Math.random() * 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: randomDelay,
+      });
+    });
+    
+    return () => {
+      particles.forEach(particle => {
+        gsap.killTweensOf(particle);
+      });
+    };
+  }, []);
+  
+  return (
+    <div ref={particlesRef} className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
+      {Array.from({ length: 40 }).map((_, i) => (
+        <div
+          key={i}
+          className="gold-particle absolute rounded-full"
+          style={{
+            background: `radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(247, 226, 122, 0.4) 50%, transparent 70%)`,
+            boxShadow: '0 0 6px rgba(212, 175, 55, 0.5)',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function HeroSection() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -12,7 +82,6 @@ export default function HeroSection() {
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
     
-    // Animate title with stagger effect for each line
     const titleLines = titleRef.current?.querySelectorAll('.title-line');
     if (titleLines) {
       tl.from(titleLines, {
@@ -24,7 +93,6 @@ export default function HeroSection() {
       });
     }
     
-    // Animate subtitle with scale and fade
     tl.from(subtitleRef.current, {
       y: 40,
       opacity: 0,
@@ -33,7 +101,6 @@ export default function HeroSection() {
       ease: "power3.out"
     }, "-=0.6");
     
-    // Animate buttons individually with bounce
     const buttons = buttonsRef.current?.querySelectorAll('button');
     if (buttons) {
       tl.from(buttons, {
@@ -58,6 +125,9 @@ export default function HeroSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
       </div>
+      
+      {/* Floating Gold Particles */}
+      <GoldParticles />
       {/* Content */}
       <div className="container mx-auto px-6 text-center relative z-10 md:pt-40 pt-[95px] pb-[95px]">
         <div className="max-w-4xl mx-auto space-y-6">
