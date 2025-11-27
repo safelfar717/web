@@ -9,12 +9,12 @@ import {
   Calendar,
   FileText,
   Sparkles,
-  ArrowRight,
-  User
+  ArrowRight
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import thankYouBg from "@assets/generated_images/thank_you_section_premium_background.png";
+import founderPhoto from "@assets/Purnomo_1764228178375.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -205,11 +205,15 @@ export default function ThankYouSection() {
                   className="flex items-center gap-4 p-4 bg-white/5 rounded-md border border-white/10 hover:bg-white/10 transition-colors"
                   data-testid="contact-name"
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0">
-                    <User className="w-6 h-6 text-primary" />
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/60 p-[2px] flex-shrink-0 shadow-lg shadow-primary/30">
+                    <img 
+                      src={founderPhoto}
+                      alt={contactInfo.name}
+                      className="w-full h-full rounded-full object-cover object-top"
+                    />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Founder</p>
+                    <p className="text-sm text-muted-foreground">Founder & CEO</p>
                     <p className="text-lg font-semibold text-gold-gradient">{contactInfo.name}</p>
                   </div>
                 </div>
