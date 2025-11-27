@@ -100,34 +100,74 @@ const revenueStreams = [
 
 export default function BusinessModelSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const summaryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
+    const title = titleRef.current;
+    const subtitle = subtitleRef.current;
+    const badge = badgeRef.current;
     const cardsContainer = cardsRef.current;
-    if (!section || !cardsContainer || prefersReducedMotion) return;
+    const summary = summaryRef.current;
+    if (!section || !title || !subtitle || !badge || !cardsContainer || !summary || prefersReducedMotion) return;
+
+    const cards = cardsContainer.querySelectorAll('[data-revenue-card]');
 
     const ctx = gsap.context(() => {
-      const cards = cardsContainer.querySelectorAll('[data-revenue-card]');
-      
-      gsap.fromTo(
-        cards,
-        {
-          opacity: 0,
-          y: 60,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 70%",
-          },
+      gsap.set(title, { opacity: 0, y: -50, scale: 0.95 });
+      gsap.set(subtitle, { opacity: 0, y: -30 });
+      gsap.set(badge, { opacity: 0, scale: 0.8, y: 20 });
+      gsap.set(cards, { opacity: 0, y: 80, scale: 0.9, rotateX: 15 });
+      gsap.set(summary, { opacity: 0, y: 50, scale: 0.95 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none reverse"
         }
-      );
+      });
+
+      tl.to(title, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.9,
+        ease: "power4.out"
+      })
+      .to(subtitle, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out"
+      }, "-=0.5")
+      .to(badge, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+      }, "-=0.4")
+      .to(cards, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotateX: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out"
+      }, "-=0.2")
+      .to(summary, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: "power3.out"
+      }, "+=0.1");
 
       const featuredCard = section.querySelector('[data-featured="true"]');
       if (featuredCard) {
@@ -159,18 +199,20 @@ export default function BusinessModelSection() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2
+            ref={titleRef}
             className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
             data-testid="text-business-model-title"
           >
             Business Model
           </h2>
           <p
+            ref={subtitleRef}
             className="text-muted-foreground text-lg max-w-3xl mx-auto mb-4"
             data-testid="text-business-model-subtitle"
           >
             Multi-Revenue Streams untuk Sustainable Growth
           </p>
-          <div className="flex items-center justify-center gap-2">
+          <div ref={badgeRef} className="flex items-center justify-center gap-2">
             <Badge variant="outline" className="border-primary/50 px-4 py-1.5 text-[19px] bg-[#d6b13ad1] text-[#0d0901]">
               Total Year 1 Revenue: Rp 6.2 Miliar
             </Badge>
@@ -260,7 +302,7 @@ export default function BusinessModelSection() {
           ))}
         </div>
 
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div ref={summaryRef} className="mt-16 max-w-4xl mx-auto">
           <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30">
             <CardContent className="p-8 text-center">
               <p className="text-lg text-foreground" data-testid="text-revenue-summary">
