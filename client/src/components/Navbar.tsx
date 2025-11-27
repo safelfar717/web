@@ -39,14 +39,14 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link key={link.path} href={link.path}>
-                <a
+                <span
                   className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
                     location === link.path ? "text-primary" : "text-foreground"
                   }`}
                   data-testid={`link-${link.label.toLowerCase().replace(" ", "-")}`}
                 >
                   {link.label}
-                </a>
+                </span>
               </Link>
             ))}
           </div>
@@ -70,7 +70,7 @@ export default function Navbar() {
           <div className="md:hidden mt-4 pb-4 space-y-4 border-t border-gold-20 pt-4 bg-black/95">
             {navLinks.map((link) => (
               <Link key={link.path} href={link.path}>
-                <a
+                <span
                   className={`block text-sm font-medium transition-colors hover:text-primary ${
                     location === link.path ? "text-primary" : "text-foreground"
                   }`}
@@ -78,7 +78,7 @@ export default function Navbar() {
                   data-testid={`mobile-link-${link.label.toLowerCase().replace(" ", "-")}`}
                 >
                   {link.label}
-                </a>
+                </span>
               </Link>
             ))}
             <Button className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F7E27A] text-black font-semibold" data-testid="button-mobile-get-started">

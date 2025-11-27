@@ -10,7 +10,6 @@ import GoToMarketSection from "@/components/GoToMarketSection";
 import BreakEvenSection from "@/components/BreakEvenSection";
 import TeamSection from "@/components/TeamSection";
 import InvestmentSection from "@/components/InvestmentSection";
-import ROISection from "@/components/ROISection";
 import FundingAskSection from "@/components/FundingAskSection";
 import ThankYouSection from "@/components/ThankYouSection";
 import CTASection from "@/components/CTASection";
@@ -29,7 +28,6 @@ export default function Home() {
       <BreakEvenSection />
       <TeamSection />
       <InvestmentSection />
-      <ROISection />
       <FundingAskSection />
       <ThankYouSection />
       <CTASection />
