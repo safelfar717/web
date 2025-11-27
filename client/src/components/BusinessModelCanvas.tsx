@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Accordion,
@@ -6,6 +7,22 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Users, DollarSign, TrendingUp, Target, Handshake, Zap, Package, Coins, Building } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const cardGradients = [
+  "bg-gradient-to-br from-purple-900/40 via-purple-800/20 to-transparent",
+  "bg-gradient-to-br from-blue-900/40 via-blue-800/20 to-transparent",
+  "bg-gradient-to-br from-cyan-900/40 via-cyan-800/20 to-transparent",
+  "bg-gradient-to-br from-emerald-900/40 via-emerald-800/20 to-transparent",
+  "bg-gradient-to-br from-amber-900/40 via-yellow-800/20 to-transparent",
+  "bg-gradient-to-br from-orange-900/40 via-orange-800/20 to-transparent",
+  "bg-gradient-to-br from-rose-900/40 via-pink-800/20 to-transparent",
+  "bg-gradient-to-br from-indigo-900/40 via-indigo-800/20 to-transparent",
+  "bg-gradient-to-br from-teal-900/40 via-teal-800/20 to-transparent",
+];
 
 const canvasData = [
   {
@@ -101,8 +118,43 @@ const canvasData = [
 ];
 
 export default function BusinessModelCanvas() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const cardsContainer = cardsRef.current;
+    if (!section || !cardsContainer) return;
+
+    const cards = cardsContainer.querySelectorAll('[data-bmc-card]');
+    
+    const ctx = gsap.context(() => {
+      gsap.set(cards, { 
+        opacity: 0, 
+        y: 60,
+        scale: 0.9
+      });
+
+      gsap.to(cards, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: cardsContainer,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 bg-black">
+    <section ref={sectionRef} className="py-24 bg-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gold-gradient mb-4" data-testid="text-bmc-title">
@@ -113,12 +165,13 @@ export default function BusinessModelCanvas() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {canvasData.map((component, index) => (
             <Card 
               key={index} 
-              className="bg-card border-gold-20 hover-elevate"
+              className={`border-gold-20 hover-elevate ${cardGradients[index]}`}
               data-testid={`card-bmc-${index}`}
+              data-bmc-card
             >
               <CardHeader>
                 <div className="flex items-center gap-3">
