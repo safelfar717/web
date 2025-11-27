@@ -172,10 +172,11 @@ export default function BreakEvenSection() {
 
       if (prefersReducedMotion) {
         const bepCards = cards.querySelectorAll("[data-bep-card]");
-        const chartBars = chart.querySelectorAll("[data-chart-bar]");
+        const lossBars = chart.querySelectorAll('[data-bar-type="loss"]');
+        const profitBars = chart.querySelectorAll('[data-bar-type="profit"]');
         const metricCards = metrics.querySelectorAll("[data-metric-card]");
         
-        gsap.set([bepCards, chartBars, metricCards], { opacity: 1, y: 0 });
+        gsap.set([bepCards, lossBars, profitBars, metricCards], { opacity: 1, y: 0, scale: 1 });
         
         if (isMountedRef.current) {
           setChartHeights(chartData.map((d) => d.revenue));
@@ -189,10 +190,9 @@ export default function BreakEvenSection() {
 
       const ctx = gsap.context(() => {
         const bepCards = cards.querySelectorAll("[data-bep-card]");
-        const chartBars = chart.querySelectorAll("[data-chart-bar]");
         const metricCards = metrics.querySelectorAll("[data-metric-card]");
 
-        gsap.set([bepCards, chartBars, metricCards], { opacity: 0, y: 30 });
+        gsap.set([bepCards, metricCards], { opacity: 0, y: 30 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -243,35 +243,143 @@ export default function BreakEvenSection() {
           },
         });
 
-        // Animate chart bars with bounce effect
+        // Separate loss and profit bars for conditional animations
+        const lossBars = chart.querySelectorAll('[data-bar-type="loss"]');
+        const profitBars = chart.querySelectorAll('[data-bar-type="profit"]');
+        const zeroLine = chart.querySelector('[data-testid="axis-zero-line"]');
+
+        // Set initial states for conditional animations
+        gsap.set(lossBars, { opacity: 0, y: -80, scale: 0.8, rotationX: -15 });
+        gsap.set(profitBars, { opacity: 0, y: 60, scale: 0.7, rotationX: 20 });
+        gsap.set(zeroLine, { scaleX: 0, opacity: 0 });
+
+        // Animate zero line first
         tl.to(
-          chartBars,
+          zeroLine,
+          {
+            scaleX: 1,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "-=0.2"
+        );
+
+        // Animate loss bars - falling from above with shake effect
+        tl.to(
+          lossBars,
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
+            scale: 1,
+            rotationX: 0,
+            duration: 0.8,
             stagger: 0.1,
-            ease: "back.out(1.2)",
+            ease: "bounce.out",
             onStart: () => {
+              // Animate the first bar (loss bar) height
               chartData.forEach((data, index) => {
-                gsap.to(
-                  {},
-                  {
-                    duration: 1,
-                    delay: index * 0.1,
-                    ease: "power2.out",
-                    onUpdate: function () {
-                      if (isMountedRef.current) {
-                        const progress = this.progress();
-                        setChartHeights((prev) => {
-                          const newHeights = [...prev];
-                          newHeights[index] = data.revenue * progress;
-                          return newHeights;
-                        });
-                      }
-                    },
-                  }
-                );
+                if (data.isNegative) {
+                  gsap.to(
+                    {},
+                    {
+                      duration: 1.2,
+                      delay: index * 0.1,
+                      ease: "elastic.out(1, 0.5)",
+                      onUpdate: function () {
+                        if (isMountedRef.current) {
+                          const progress = this.progress();
+                          setChartHeights((prev) => {
+                            const newHeights = [...prev];
+                            newHeights[index] = data.revenue * progress;
+                            return newHeights;
+                          });
+                        }
+                      },
+                    }
+                  );
+                }
+              });
+            },
+            onComplete: () => {
+              // Add shake effect for loss bars
+              gsap.to(lossBars, {
+                x: 3,
+                duration: 0.1,
+                repeat: 5,
+                yoyo: true,
+                ease: "power1.inOut",
+                onComplete: () => {
+                  gsap.set(lossBars, { x: 0 });
+                }
+              });
+              // Add red glow pulse for loss
+              gsap.to(lossBars, {
+                filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.8))",
+                duration: 0.8,
+                repeat: 2,
+                yoyo: true,
+                ease: "sine.inOut",
+              });
+            },
+          },
+          "-=0.3"
+        );
+
+        // Animate profit bars - growing from below with bounce effect
+        tl.to(
+          profitBars,
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            rotationX: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "back.out(1.7)",
+            onStart: () => {
+              // Animate profit bar heights with growth effect
+              chartData.forEach((data, index) => {
+                if (!data.isNegative) {
+                  gsap.to(
+                    {},
+                    {
+                      duration: 1,
+                      delay: (index - 1) * 0.12,
+                      ease: "power3.out",
+                      onUpdate: function () {
+                        if (isMountedRef.current) {
+                          const progress = this.progress();
+                          setChartHeights((prev) => {
+                            const newHeights = [...prev];
+                            newHeights[index] = data.revenue * progress;
+                            return newHeights;
+                          });
+                        }
+                      },
+                    }
+                  );
+                }
+              });
+            },
+            onComplete: () => {
+              // Add green glow celebration for profit bars
+              gsap.to(profitBars, {
+                filter: "drop-shadow(0 0 15px rgba(16, 185, 129, 0.9))",
+                duration: 0.6,
+                stagger: 0.1,
+                repeat: 1,
+                yoyo: true,
+                ease: "sine.inOut",
+              });
+              // Subtle scale pulse for success
+              gsap.to(profitBars, {
+                scale: 1.03,
+                duration: 0.4,
+                stagger: 0.08,
+                repeat: 1,
+                yoyo: true,
+                ease: "power1.inOut",
               });
             },
           },
@@ -548,6 +656,7 @@ export default function BreakEvenSection() {
                       key={index}
                       className="flex-1 relative group"
                       data-chart-bar="true"
+                      data-bar-type={data.isNegative ? "loss" : "profit"}
                       data-testid={`chart-bar-${index}`}
                     >
                       {data.isNegative ? (
