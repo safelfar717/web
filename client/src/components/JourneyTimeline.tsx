@@ -6,9 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const milestones = [
-  { phase: "Fase 1", title: "Dominasi Kampus", timeline: "Bulan 1-3", users: "3,000" },
-  { phase: "Fase 2", title: "Ekspansi Digital", timeline: "Bulan 4-6", users: "10,000" },
-  { phase: "Fase 3", title: "Kepemimpinan Pasar", timeline: "Bulan 7-12", users: "50,000+" }
+  { phase: "Fase 1", title: "Dominasi Kampus", timeline: "Bulan 1-3", users: "3,000", gradient: "bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]" },
+  { phase: "Fase 2", title: "Ekspansi Digital", timeline: "Bulan 4-6", users: "10,000", gradient: "bg-gradient-to-br from-[#2d1b69] via-[#1e1e3f] to-[#0d0d1a]" },
+  { phase: "Fase 3", title: "Kepemimpinan Pasar", timeline: "Bulan 7-12", users: "50,000+", gradient: "bg-gradient-to-br from-[#3d2914] via-[#2a1f0d] to-[#1a1508]" }
 ];
 
 export default function JourneyTimeline() {
@@ -131,7 +131,7 @@ export default function JourneyTimeline() {
                   className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] gold-glow hidden lg:block" 
                 />
                 
-                <Card data-milestone-card className="bg-card border-gold-20 hover-elevate mt-8 lg:mt-12">
+                <Card data-milestone-card className={`${milestone.gradient} border-gold-20 hover-elevate mt-8 lg:mt-12`}>
                   <CardContent className="p-6 space-y-3 text-center">
                     <div className="text-primary font-semibold text-sm" data-testid={`milestone-phase-${index}`}>
                       {milestone.phase}
