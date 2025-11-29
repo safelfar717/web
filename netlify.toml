@@ -15,6 +15,8 @@
 [build.environment]
   NODE_VERSION = "20"
   NPM_VERSION = "10"
+  # Ensure devDependencies (vite, esbuild, etc.) are installed during build
+  NPM_CONFIG_PRODUCTION = "false"
 
 # Production context
 [context.production]
