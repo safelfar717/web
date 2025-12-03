@@ -39,7 +39,23 @@ import {
   Globe,
   TrendingUp,
   BarChart3,
-  LineChart
+  LineChart,
+  AlertTriangle,
+  Clock,
+  Palette,
+  ClipboardCheck,
+  Briefcase,
+  ArrowRight,
+  Activity,
+  Timer,
+  RefreshCw,
+  Wifi,
+  Gauge,
+  UserCheck,
+  Repeat,
+  Video,
+  Languages,
+  ChevronRight
 } from "lucide-react";
 import timelineBackground from "@assets/generated_images/premium_timeline_development_background.png";
 import planningPhaseImg from "@assets/generated_images/planning_phase_development_visualization.png";
@@ -530,13 +546,100 @@ const detailedTimelineData = [
   }
 ];
 
-const teamAllocation = [
-  { role: "Backend Dev 1", icon: Server, tasks: ["API Foundation", "Education/Quiz", "Store/AI", "Bug Fixing", "Monitoring"] },
-  { role: "Backend Dev 2", icon: Database, tasks: ["Auth/WebSocket", "Chat/Competition", "Payment/Alerts", "Bug Fixing", "Incident Response"] },
-  { role: "Frontend Dev 1", icon: Monitor, tasks: ["Dashboard/Auth", "Chat/Practice", "Alerts/AI", "Bug Fixing", "Support"] },
-  { role: "Frontend Dev 2", icon: Layout, tasks: ["Signals", "Education/Community", "Store/Website", "UI Polish", "Support"] },
-  { role: "Mobile Dev 1", icon: Smartphone, tasks: ["Auth/Dashboard", "Chat/Practice", "Alerts/AI", "Optimization", "Support"] },
-  { role: "Mobile Dev 2", icon: Smartphone, tasks: ["Signals", "Education/Community", "Store/Auto-Invest", "Optimization", "Support"] },
+const resourceAllocationData = [
+  { role: "Backend Dev 1", icon: Server, week1_2: "API Foundation", week3_4: "Education/Quiz", week5_6: "Store/AI", week7_8: "Bug Fixing", week9: "Monitoring" },
+  { role: "Backend Dev 2", icon: Database, week1_2: "Auth/WebSocket", week3_4: "Chat/Competition", week5_6: "Payment/Alerts", week7_8: "Bug Fixing", week9: "Incident Response" },
+  { role: "Frontend Dev 1", icon: Monitor, week1_2: "Dashboard/Auth", week3_4: "Chat/Practice", week5_6: "Alerts/AI", week7_8: "Bug Fixing", week9: "Support" },
+  { role: "Frontend Dev 2", icon: Layout, week1_2: "Signals", week3_4: "Education/Community", week5_6: "Store/Website", week7_8: "UI Polish", week9: "Support" },
+  { role: "Mobile Dev 1", icon: Smartphone, week1_2: "Auth/Dashboard", week3_4: "Chat/Practice", week5_6: "Alerts/AI", week7_8: "Optimization", week9: "Support" },
+  { role: "Mobile Dev 2", icon: Smartphone, week1_2: "Signals", week3_4: "Education/Community", week5_6: "Store/Auto-Invest", week7_8: "Optimization", week9: "Support" },
+  { role: "UI/UX Designer", icon: Palette, week1_2: "Design System", week3_4: "Refinements", week5_6: "Review", week7_8: "Polish", week9: "-" },
+  { role: "QA Engineer", icon: ClipboardCheck, week1_2: "Setup/Planning", week3_4: "Integration Test", week5_6: "Payment Test", week7_8: "Full QA Sprint", week9: "Beta Testing" },
+  { role: "Project Manager", icon: Briefcase, week1_2: "Planning", week3_4: "Coordination", week5_6: "Coordination", week7_8: "UAT Management", week9: "Launch Management" },
+];
+
+const priorityMatrix = {
+  mvp: [
+    { label: "Authentication & User Management", icon: Shield },
+    { label: "Trading Signals dengan filter", icon: LineChart },
+    { label: "Education Hub + Gamification", icon: BookOpen },
+    { label: "Live Chat multi-room", icon: MessageSquare },
+    { label: "Dashboard real-time", icon: BarChart3 },
+    { label: "Advisor Expert listing", icon: Users },
+    { label: "Basic Store & Payment", icon: ShoppingCart },
+  ],
+  phase2: [
+    { label: "Smart Alerts customizable", icon: Bell },
+    { label: "WhatsApp/Telegram automation", icon: MessageSquare },
+    { label: "Competition & Tournament", icon: Trophy },
+    { label: "AI Insights basic", icon: Brain },
+    { label: "Website informational", icon: Globe },
+  ],
+  postLaunch: [
+    { label: "Advanced AI predictions dengan ML models", icon: Brain },
+    { label: "Social trading (copy trading)", icon: Users },
+    { label: "Video streaming untuk webinar", icon: Video },
+    { label: "Advanced analytics dashboard", icon: BarChart3 },
+    { label: "Multi-language support", icon: Languages },
+  ],
+};
+
+const riskManagement = [
+  { 
+    risk: "Real-time WebSocket stability",
+    mitigation: "Load testing di week 7, fallback ke polling",
+    icon: Wifi
+  },
+  { 
+    risk: "Payment gateway integration delays",
+    mitigation: "Start integration early (Day 33), use sandbox extensively",
+    icon: CreditCard
+  },
+  { 
+    risk: "Mobile app performance issues",
+    mitigation: "Performance monitoring dari awal, optimization sprint Day 49-50",
+    icon: Smartphone
+  },
+  { 
+    risk: "API dependencies blocking frontend/mobile",
+    mitigation: "Mock APIs untuk parallel development, daily sync meetings",
+    icon: Server
+  },
+  { 
+    risk: "AI features complexity",
+    mitigation: "Simplify ke rule-based recommendations, ML enhancement post-launch",
+    icon: Brain
+  },
+];
+
+const contingencyPlans = [
+  { condition: "If backend delays", action: "Frontend/Mobile use mock data untuk continue development" },
+  { condition: "If payment integration fails", action: "Launch tanpa payment dulu, enable in Week 10" },
+  { condition: "If critical bugs di Day 55", action: "Delay soft launch 2-3 hari, skip nice-to-have features" },
+  { condition: "If performance issues", action: "Scale infrastructure, optimize queries, implement caching" },
+];
+
+const successMetrics = {
+  technical: [
+    { label: "API Response Time", value: "< 200ms (p95)", icon: Timer },
+    { label: "WebSocket Uptime", value: "> 99.5%", icon: Wifi },
+    { label: "Mobile App Crash Rate", value: "< 0.5%", icon: Smartphone },
+    { label: "Page Load Time", value: "< 2 seconds", icon: Gauge },
+  ],
+  business: [
+    { label: "User Registration", value: "7 hari pertama", icon: UserCheck },
+    { label: "Daily Active Users (DAU)", value: "Track daily", icon: Activity },
+    { label: "Feature Adoption Rate", value: "Signals, Education, Chat", icon: TrendingUp },
+    { label: "Payment Conversion Rate", value: "Track weekly", icon: CreditCard },
+    { label: "User Retention", value: "Day 1, 7, 30", icon: Repeat },
+  ],
+};
+
+const nextSteps = [
+  { week: "Week 10", action: "Official public launch dengan marketing campaign", icon: Rocket },
+  { week: "Week 11-12", action: "User feedback implementation & feature enhancements", icon: RefreshCw },
+  { week: "Month 2-3", action: "Advanced AI features, social trading, advanced analytics", icon: Brain },
+  { week: "Month 4+", action: "Scale infrastructure, expand to iOS, international markets", icon: Globe },
 ];
 
 const technicalKPIs = [
@@ -786,57 +889,408 @@ export default function Timeline() {
             ))}
           </div>
           
-          <div className="mt-20">
-            <h3 className="text-2xl font-bold text-gold-gradient text-center mb-8">Team Resource Allocation</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {teamAllocation.map((member, index) => (
-                <Card key={index} className="bg-card/50 border-[#D4AF37]/20 hover-elevate">
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 rounded-lg bg-[#D4AF37]/20">
-                        <member.icon className="w-5 h-5 text-[#D4AF37]" />
-                      </div>
-                      <h4 className="font-semibold text-white">{member.role}</h4>
-                    </div>
-                    <div className="flex flex-wrap gap-1">
-                      {member.tasks.map((task, tIndex) => (
-                        <Badge key={tIndex} variant="outline" className="text-xs border-white/20 text-gray-400">
-                          {task}
-                        </Badge>
+          {/* Resource Allocation Summary Table */}
+          <div className="mt-20 resource-section" data-testid="section-resource-allocation">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] animate-pulse">
+                <BarChart3 className="w-7 h-7 text-black" />
+              </div>
+              <h3 className="text-3xl font-bold text-gold-gradient">Resource Allocation Summary</h3>
+            </div>
+            
+            <Card className="bg-gradient-to-br from-black/80 via-card/50 to-black/80 border-[#D4AF37]/30 overflow-hidden">
+              <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm" data-testid="table-resource-allocation">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-[#D4AF37]/30 via-[#F7E27A]/20 to-[#D4AF37]/30">
+                        <th className="text-left py-4 px-4 text-[#D4AF37] font-bold border-b border-[#D4AF37]/20">
+                          <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4" />
+                            Role
+                          </div>
+                        </th>
+                        <th className="text-center py-4 px-3 text-[#D4AF37] font-bold border-b border-[#D4AF37]/20">Week 1-2</th>
+                        <th className="text-center py-4 px-3 text-[#D4AF37] font-bold border-b border-[#D4AF37]/20">Week 3-4</th>
+                        <th className="text-center py-4 px-3 text-[#D4AF37] font-bold border-b border-[#D4AF37]/20">Week 5-6</th>
+                        <th className="text-center py-4 px-3 text-[#D4AF37] font-bold border-b border-[#D4AF37]/20">Week 7-8</th>
+                        <th className="text-center py-4 px-3 text-[#D4AF37] font-bold border-b border-[#D4AF37]/20">Week 9</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {resourceAllocationData.map((member, index) => (
+                        <tr 
+                          key={index} 
+                          className={`
+                            ${index % 2 === 0 ? 'bg-black/40' : 'bg-[#D4AF37]/5'}
+                            hover:bg-[#D4AF37]/10 transition-all duration-300
+                            border-b border-white/5
+                          `}
+                          data-testid={`row-resource-${index}`}
+                        >
+                          <td className="py-4 px-4">
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 rounded-lg bg-gradient-to-br from-[#D4AF37]/30 to-[#F7E27A]/10 border border-[#D4AF37]/20">
+                                <member.icon className="w-4 h-4 text-[#D4AF37]" />
+                              </div>
+                              <span className="font-semibold text-white">{member.role}</span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-3 text-center">
+                            <Badge variant="outline" className="border-blue-400/30 text-blue-300 bg-blue-500/10">
+                              {member.week1_2}
+                            </Badge>
+                          </td>
+                          <td className="py-4 px-3 text-center">
+                            <Badge variant="outline" className="border-purple-400/30 text-purple-300 bg-purple-500/10">
+                              {member.week3_4}
+                            </Badge>
+                          </td>
+                          <td className="py-4 px-3 text-center">
+                            <Badge variant="outline" className="border-orange-400/30 text-orange-300 bg-orange-500/10">
+                              {member.week5_6}
+                            </Badge>
+                          </td>
+                          <td className="py-4 px-3 text-center">
+                            <Badge variant="outline" className="border-green-400/30 text-green-300 bg-green-500/10">
+                              {member.week7_8}
+                            </Badge>
+                          </td>
+                          <td className="py-4 px-3 text-center">
+                            <Badge variant="outline" className="border-[#D4AF37]/30 text-[#D4AF37] bg-[#D4AF37]/10">
+                              {member.week9}
+                            </Badge>
+                          </td>
+                        </tr>
                       ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Priority Matrix Section */}
+          <div className="mt-20 priority-section" data-testid="section-priority-matrix">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A]">
+                <Target className="w-7 h-7 text-black" />
+              </div>
+              <h3 className="text-3xl font-bold text-gold-gradient">Priority Matrix</h3>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* MVP Must-Have */}
+              <Card className="bg-gradient-to-br from-green-500/10 via-card/50 to-green-500/5 border-green-500/30 overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-lg bg-green-500/20 border border-green-500/30">
+                      <Trophy className="w-6 h-6 text-green-400" />
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    <div>
+                      <h4 className="text-lg font-bold text-green-400">MVP (Must-Have)</h4>
+                      <p className="text-xs text-green-400/70">Ready by Day 45</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    {priorityMatrix.mvp.map((item, index) => (
+                      <div 
+                        key={index} 
+                        className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-300 hover:scale-[1.02] ${
+                          index % 2 === 0 
+                            ? 'bg-black/30 border-green-500/20' 
+                            : 'bg-green-500/5 border-green-500/10'
+                        }`}
+                      >
+                        <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                        <item.icon className="w-4 h-4 text-green-300 flex-shrink-0" />
+                        <span className="text-sm text-gray-300">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Phase 2 Should-Have */}
+              <Card className="bg-gradient-to-br from-blue-500/10 via-card/50 to-blue-500/5 border-blue-500/30 overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-lg bg-blue-500/20 border border-blue-500/30">
+                      <Layers className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-blue-400">Phase 2 (Should-Have)</h4>
+                      <p className="text-xs text-blue-400/70">Day 29-42</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    {priorityMatrix.phase2.map((item, index) => (
+                      <div 
+                        key={index} 
+                        className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-300 hover:scale-[1.02] ${
+                          index % 2 === 0 
+                            ? 'bg-black/30 border-blue-500/20' 
+                            : 'bg-blue-500/5 border-blue-500/10'
+                        }`}
+                      >
+                        <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                        <item.icon className="w-4 h-4 text-blue-300 flex-shrink-0" />
+                        <span className="text-sm text-gray-300">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Post-Launch Nice-to-Have */}
+              <Card className="bg-gradient-to-br from-purple-500/10 via-card/50 to-purple-500/5 border-purple-500/30 overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-lg bg-purple-500/20 border border-purple-500/30">
+                      <Sparkles className="w-6 h-6 text-purple-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-purple-400">Post-Launch (Nice-to-Have)</h4>
+                      <p className="text-xs text-purple-400/70">After Day 60</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    {priorityMatrix.postLaunch.map((item, index) => (
+                      <div 
+                        key={index} 
+                        className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-300 hover:scale-[1.02] ${
+                          index % 2 === 0 
+                            ? 'bg-black/30 border-purple-500/20' 
+                            : 'bg-purple-500/5 border-purple-500/10'
+                        }`}
+                      >
+                        <RefreshCw className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                        <item.icon className="w-4 h-4 text-purple-300 flex-shrink-0" />
+                        <span className="text-sm text-gray-300">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
-          
-          <div className="mt-20 text-center">
-            <Card className="inline-block bg-gradient-to-br from-[#D4AF37]/20 to-[#F7E27A]/10 border-[#D4AF37]/30 max-w-4xl">
+
+          {/* Risk Management Section */}
+          <div className="mt-20 risk-section" data-testid="section-risk-management">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-red-500 to-orange-500">
+                <AlertTriangle className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-3xl font-bold text-gold-gradient">Risk Management & Mitigation</h3>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* High-Risk Items */}
+              <Card className="bg-gradient-to-br from-red-500/10 via-card/50 to-orange-500/5 border-red-500/20">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-red-400 mb-6 flex items-center gap-2">
+                    <AlertTriangle className="w-5 h-5" />
+                    High-Risk Items
+                  </h4>
+                  <div className="space-y-4">
+                    {riskManagement.map((item, index) => (
+                      <div 
+                        key={index} 
+                        className={`p-4 rounded-xl border transition-all duration-300 ${
+                          index % 2 === 0 
+                            ? 'bg-black/40 border-red-500/20' 
+                            : 'bg-red-500/5 border-red-500/10'
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="p-2 rounded-lg bg-red-500/20 border border-red-500/30 flex-shrink-0">
+                            <item.icon className="w-4 h-4 text-red-400" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-white mb-1">{item.risk}</p>
+                            <div className="flex items-start gap-2">
+                              <Shield className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                              <p className="text-sm text-gray-400">{item.mitigation}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Contingency Plans */}
+              <Card className="bg-gradient-to-br from-amber-500/10 via-card/50 to-yellow-500/5 border-amber-500/20">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-amber-400 mb-6 flex items-center gap-2">
+                    <Shield className="w-5 h-5" />
+                    Contingency Plans
+                  </h4>
+                  <div className="space-y-4">
+                    {contingencyPlans.map((plan, index) => (
+                      <div 
+                        key={index} 
+                        className={`p-4 rounded-xl border transition-all duration-300 ${
+                          index % 2 === 0 
+                            ? 'bg-black/40 border-amber-500/20' 
+                            : 'bg-amber-500/5 border-amber-500/10'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">
+                            {plan.condition}
+                          </Badge>
+                        </div>
+                        <div className="flex items-start gap-2 pl-2">
+                          <ChevronRight className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                          <p className="text-sm text-gray-300">{plan.action}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Success Metrics Section */}
+          <div className="mt-20 metrics-section" data-testid="section-success-metrics">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A]">
+                <TrendingUp className="w-7 h-7 text-black" />
+              </div>
+              <h3 className="text-3xl font-bold text-gold-gradient">Success Metrics (Post-Launch)</h3>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Technical KPIs */}
+              <Card className="bg-gradient-to-br from-cyan-500/10 via-card/50 to-blue-500/5 border-cyan-500/20">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
+                    <Cpu className="w-5 h-5" />
+                    Technical KPIs
+                  </h4>
+                  <div className="space-y-3">
+                    {successMetrics.technical.map((metric, index) => (
+                      <div 
+                        key={index} 
+                        className={`flex items-center justify-between p-4 rounded-xl border transition-all duration-300 hover:scale-[1.01] ${
+                          index % 2 === 0 
+                            ? 'bg-black/40 border-cyan-500/20' 
+                            : 'bg-cyan-500/5 border-cyan-500/10'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-cyan-500/20 border border-cyan-500/30">
+                            <metric.icon className="w-4 h-4 text-cyan-400" />
+                          </div>
+                          <span className="text-gray-300">{metric.label}</span>
+                        </div>
+                        <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 font-mono">
+                          {metric.value}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Business KPIs */}
+              <Card className="bg-gradient-to-br from-[#D4AF37]/10 via-card/50 to-[#F7E27A]/5 border-[#D4AF37]/20">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-[#D4AF37] mb-6 flex items-center gap-2">
+                    <BarChart3 className="w-5 h-5" />
+                    Business KPIs
+                  </h4>
+                  <div className="space-y-3">
+                    {successMetrics.business.map((metric, index) => (
+                      <div 
+                        key={index} 
+                        className={`flex items-center justify-between p-4 rounded-xl border transition-all duration-300 hover:scale-[1.01] ${
+                          index % 2 === 0 
+                            ? 'bg-black/40 border-[#D4AF37]/20' 
+                            : 'bg-[#D4AF37]/5 border-[#D4AF37]/10'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/30">
+                            <metric.icon className="w-4 h-4 text-[#D4AF37]" />
+                          </div>
+                          <span className="text-gray-300">{metric.label}</span>
+                        </div>
+                        <Badge className="bg-[#D4AF37]/20 text-[#D4AF37] border-[#D4AF37]/30">
+                          {metric.value}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Next Steps Section */}
+          <div className="mt-20 next-steps-section" data-testid="section-next-steps">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] animate-bounce">
+                <Rocket className="w-7 h-7 text-black" />
+              </div>
+              <h3 className="text-3xl font-bold text-gold-gradient">Next Steps After Day 60</h3>
+            </div>
+
+            <Card className="bg-gradient-to-br from-[#D4AF37]/10 via-card/50 to-black/80 border-[#D4AF37]/30 max-w-4xl mx-auto overflow-hidden">
               <CardContent className="p-8">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Trophy className="w-8 h-8 text-[#D4AF37]" />
-                  <h3 className="text-2xl font-bold text-gold-gradient" data-testid="text-mvp-features">
-                    MVP Priority Features
-                  </h3>
+                <div className="relative">
+                  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#D4AF37] via-[#F7E27A] to-[#D4AF37]/20" />
+                  <div className="space-y-6">
+                    {nextSteps.map((step, index) => (
+                      <div 
+                        key={index} 
+                        className={`relative pl-14 transition-all duration-300 hover:translate-x-2`}
+                      >
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] border-2 border-black animate-pulse" />
+                        <div 
+                          className={`p-4 rounded-xl border transition-all duration-300 ${
+                            index % 2 === 0 
+                              ? 'bg-black/40 border-[#D4AF37]/20' 
+                              : 'bg-[#D4AF37]/5 border-[#D4AF37]/10'
+                          }`}
+                        >
+                          <div className="flex items-center gap-3 flex-wrap">
+                            <Badge className="bg-[#D4AF37] text-black font-bold">
+                              {step.week}
+                            </Badge>
+                            <div className="p-1.5 rounded-lg bg-[#D4AF37]/20">
+                              <step.icon className="w-4 h-4 text-[#D4AF37]" />
+                            </div>
+                            <span className="text-gray-300">{step.action}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-6">Ready by Day 45</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {[
-                    { icon: LineChart, label: "Trading Signals dengan filter" },
-                    { icon: BookOpen, label: "Education Hub + gamification" },
-                    { icon: MessageSquare, label: "Live Chat multi-room" },
-                    { icon: BarChart3, label: "Dashboard real-time" },
-                    { icon: Users, label: "Advisor Expert listing" },
-                    { icon: Shield, label: "User authentication & profil" },
-                    { icon: ShoppingCart, label: "Basic Store & Payment" },
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3 bg-black/30 rounded-lg p-3 border border-[#D4AF37]/20">
-                      <feature.icon className="w-5 h-5 text-[#D4AF37]" />
-                      <span className="text-sm text-gray-300">{feature.label}</span>
-                    </div>
-                  ))}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Document Info */}
+          <div className="mt-16 text-center">
+            <Card className="inline-block bg-black/50 border-[#D4AF37]/20 max-w-md">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <FileCode className="w-4 h-4 text-[#D4AF37]" />
+                    <span>Version 1.0</span>
+                  </div>
+                  <div className="w-px h-4 bg-white/20" />
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-[#D4AF37]" />
+                    <span>Day 0 (Pre-Launch)</span>
+                  </div>
                 </div>
+                <p className="text-xs text-muted-foreground mt-2">Next Review: Day 45 (MVP Checkpoint)</p>
               </CardContent>
             </Card>
           </div>
