@@ -16,10 +16,11 @@ export default function Footer() {
           <div>
             <h4 className="text-foreground font-semibold mb-4">Navigation</h4>
             <ul className="space-y-2">
-              <li><Link href="/"><a className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-home">Home</a></Link></li>
-              <li><Link href="/about"><a className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-about">About</a></Link></li>
-              <li><Link href="/business-model"><a className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-business">Business Model</a></Link></li>
-              <li><Link href="/financials"><a className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-financials">Financials</a></Link></li>
+              <li><Link href="/" className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-home">Home</Link></li>
+              <li><Link href="/about" className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-about">About</Link></li>
+              <li><Link href="/business-model" className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-business">Business Model</Link></li>
+              <li><Link href="/financials" className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-financials">Financials</Link></li>
+              <li><Link href="/timeline" className="text-muted-foreground text-sm hover:text-primary transition-colors" data-testid="footer-link-timeline">Timeline</Link></li>
             </ul>
           </div>
 

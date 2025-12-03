@@ -20,6 +20,7 @@ export default function Navbar() {
     { path: "/", label: "PitchDeck" },
     { path: "/business-model", label: "Business Model" },
     { path: "/financials", label: "Financials" },
+    { path: "/timeline", label: "Timeline" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" }
   ];
