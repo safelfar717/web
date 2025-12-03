@@ -126,6 +126,9 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
       </div>
       
+      {/* Background Overlay Decoration */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-800/20 via-transparent to-transparent animate-pulse-slow pointer-events-none" />
+      
       {/* Floating Gold Particles */}
       <GoldParticles />
       {/* Content */}
