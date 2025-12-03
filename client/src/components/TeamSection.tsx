@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -9,7 +9,22 @@ import {
   TrendingUp, 
   BarChart3, 
   MessageCircle,
-  Crown
+  Crown,
+  Calendar,
+  CheckCircle2,
+  AlertTriangle,
+  Target,
+  Rocket,
+  Shield,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  Zap,
+  Activity,
+  LineChart,
+  Smartphone,
+  TestTube,
+  Settings
 } from "lucide-react";
 
 const teamData = {
@@ -133,12 +148,166 @@ const orgChartStructure = {
   ]
 };
 
+const resourceAllocationData = {
+  weeklyAllocation: [
+    { 
+      role: "Backend Dev 1", 
+      icon: Code,
+      color: "text-purple-400",
+      weeks: ["API Foundation", "Education/Quiz", "Store/AI", "Bug Fixing", "Monitoring"]
+    },
+    { 
+      role: "Backend Dev 2", 
+      icon: Code,
+      color: "text-violet-400",
+      weeks: ["Auth/WebSocket", "Chat/Competition", "Payment/Alerts", "Bug Fixing", "Incident Response"]
+    },
+    { 
+      role: "Frontend Dev 1", 
+      icon: Code,
+      color: "text-cyan-400",
+      weeks: ["Dashboard/Auth", "Chat/Practice", "Alerts/AI", "Bug Fixing", "Support"]
+    },
+    { 
+      role: "Frontend Dev 2", 
+      icon: Code,
+      color: "text-blue-400",
+      weeks: ["Signals", "Education/Community", "Store/Website", "UI Polish", "Support"]
+    },
+    { 
+      role: "Mobile Dev 1", 
+      icon: Smartphone,
+      color: "text-indigo-400",
+      weeks: ["Auth/Dashboard", "Chat/Practice", "Alerts/AI", "Optimization", "Support"]
+    },
+    { 
+      role: "Mobile Dev 2", 
+      icon: Smartphone,
+      color: "text-pink-400",
+      weeks: ["Signals", "Education/Community", "Store/Auto-Invest", "Optimization", "Support"]
+    },
+    { 
+      role: "UI/UX Designer", 
+      icon: Palette,
+      color: "text-rose-400",
+      weeks: ["Design System", "Refinements", "Review", "Polish", "-"]
+    },
+    { 
+      role: "QA Engineer", 
+      icon: TestTube,
+      color: "text-green-400",
+      weeks: ["Setup/Planning", "Integration Test", "Payment Test", "Full QA Sprint", "Beta Testing"]
+    },
+    { 
+      role: "Project Manager", 
+      icon: Settings,
+      color: "text-amber-400",
+      weeks: ["Planning", "Coordination", "Coordination", "UAT Management", "Launch Management"]
+    }
+  ],
+  priorityMatrix: {
+    mvp: [
+      { task: "Authentication & User Management", completed: true },
+      { task: "Trading Signals dengan filter", completed: true },
+      { task: "Education Hub + Gamification", completed: true },
+      { task: "Live Chat multi-room", completed: true },
+      { task: "Dashboard real-time", completed: true },
+      { task: "Advisor Expert listing", completed: true },
+      { task: "Basic Store & Payment", completed: true }
+    ],
+    phase2: [
+      { task: "Smart Alerts customizable", completed: true },
+      { task: "WhatsApp/Telegram automation", completed: true },
+      { task: "Competition & Tournament", completed: true },
+      { task: "AI Insights basic", completed: true },
+      { task: "Website informational", completed: true }
+    ],
+    postLaunch: [
+      { task: "Advanced AI predictions dengan ML models", completed: false },
+      { task: "Social trading (copy trading)", completed: false },
+      { task: "Video streaming untuk webinar", completed: false },
+      { task: "Advanced analytics dashboard", completed: false },
+      { task: "Multi-language support", completed: false }
+    ]
+  },
+  riskManagement: [
+    {
+      risk: "Real-time WebSocket stability",
+      mitigation: "Load testing di week 7, fallback ke polling",
+      severity: "high"
+    },
+    {
+      risk: "Payment gateway integration delays",
+      mitigation: "Start integration early (Day 33), use sandbox extensively",
+      severity: "high"
+    },
+    {
+      risk: "Mobile app performance issues",
+      mitigation: "Performance monitoring dari awal, optimization sprint Day 49-50",
+      severity: "high"
+    },
+    {
+      risk: "API dependencies blocking frontend/mobile",
+      mitigation: "Mock APIs untuk parallel development, daily sync meetings",
+      severity: "medium"
+    },
+    {
+      risk: "AI features complexity",
+      mitigation: "Simplify ke rule-based recommendations, ML enhancement post-launch",
+      severity: "medium"
+    }
+  ],
+  contingencyPlans: [
+    { condition: "If backend delays", action: "Frontend/Mobile use mock data untuk continue development" },
+    { condition: "If payment integration fails", action: "Launch tanpa payment dulu, enable in Week 10" },
+    { condition: "If critical bugs di Day 55", action: "Delay soft launch 2-3 hari, skip nice-to-have features" },
+    { condition: "If performance issues", action: "Scale infrastructure, optimize queries, implement caching" }
+  ],
+  successMetrics: {
+    technical: [
+      { metric: "API response time", target: "< 200ms (p95)" },
+      { metric: "WebSocket uptime", target: "> 99.5%" },
+      { metric: "Mobile app crash rate", target: "< 0.5%" },
+      { metric: "Page load time", target: "< 2 seconds" }
+    ],
+    business: [
+      { metric: "User registration dalam 7 hari pertama", target: "Track" },
+      { metric: "Daily Active Users (DAU)", target: "Track" },
+      { metric: "Feature adoption rate", target: "Signals, Education, Chat" },
+      { metric: "Payment conversion rate", target: "Track" },
+      { metric: "User retention", target: "Day 1, Day 7, Day 30" }
+    ]
+  },
+  nextSteps: [
+    { week: "Week 10", action: "Official public launch dengan marketing campaign" },
+    { week: "Week 11-12", action: "User feedback implementation & feature enhancements" },
+    { week: "Month 2-3", action: "Advanced AI features, social trading, advanced analytics" },
+    { week: "Month 4+", action: "Scale infrastructure, expand to iOS, international markets" }
+  ]
+};
+
 export default function TeamSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const leadershipRef = useRef<HTMLDivElement>(null);
   const coFoundersRef = useRef<HTMLDivElement>(null);
   const orgChartRef = useRef<HTMLDivElement>(null);
   const teamsRef = useRef<HTMLDivElement>(null);
+  const resourceAllocationRef = useRef<HTMLDivElement>(null);
+  
+  const [expandedSections, setExpandedSections] = useState({
+    allocation: true,
+    priority: true,
+    risk: true,
+    metrics: true,
+    nextSteps: true
+  });
+  
+  const toggleSection = (section: keyof typeof expandedSections) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -635,6 +804,433 @@ export default function TeamSection() {
                   <p className="text-4xl font-bold text-red-400" data-testid="text-expenses-amount">
                     {teamData.expenses.amount}
                   </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Resource Allocation Summary */}
+        <div ref={resourceAllocationRef} className="mt-20">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div 
+                className="p-2 rounded-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #D4AF37 0%, #F7E27A 50%, #D4AF37 100%)',
+                  boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
+                }}
+              >
+                <BarChart3 className="w-8 h-8 text-black" />
+              </div>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gold-gradient mb-4" data-testid="text-resource-title">
+              Resource Allocation Summary
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+              Detailed breakdown of team allocation, priorities, and risk management
+            </p>
+          </div>
+
+          {/* Weekly Resource Allocation Table */}
+          <div className="mb-12">
+            <Card 
+              className="bg-black/40 backdrop-blur-sm border border-gold-500/20 shadow-gold-500/10 shadow-lg overflow-hidden"
+              data-resource-card
+            >
+              <CardHeader 
+                className="cursor-pointer hover-elevate"
+                onClick={() => toggleSection('allocation')}
+              >
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-xl font-bold text-gold-gradient flex items-center gap-3">
+                    <Calendar className="w-6 h-6 text-amber-400" />
+                    Weekly Team Allocation
+                  </CardTitle>
+                  {expandedSections.allocation ? (
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+              </CardHeader>
+              {expandedSections.allocation && (
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="table-allocation">
+                      <thead>
+                        <tr className="border-b border-gold-500/20">
+                          <th className="px-4 py-3 text-left text-sm font-semibold text-gray-300 bg-black/30">Role</th>
+                          <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300 bg-black/30">Week 1-2</th>
+                          <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300 bg-black/30">Week 3-4</th>
+                          <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300 bg-black/30">Week 5-6</th>
+                          <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300 bg-black/30">Week 7-8</th>
+                          <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300 bg-black/30">Week 9</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {resourceAllocationData.weeklyAllocation.map((item, index) => {
+                          const IconComponent = item.icon;
+                          return (
+                            <tr 
+                              key={index} 
+                              className="border-b border-gray-800/50 hover:bg-white/5 transition-colors"
+                              data-testid={`row-allocation-${index}`}
+                            >
+                              <td className="px-4 py-3">
+                                <div className="flex items-center gap-2">
+                                  <IconComponent className={`w-4 h-4 ${item.color}`} />
+                                  <span className={`text-sm font-medium ${item.color}`}>{item.role}</span>
+                                </div>
+                              </td>
+                              {item.weeks.map((week, weekIdx) => (
+                                <td key={weekIdx} className="px-4 py-3 text-center">
+                                  <Badge 
+                                    className="bg-gray-800/50 text-gray-300 border-gray-700/50 text-xs no-default-hover-elevate"
+                                    data-testid={`badge-week-${index}-${weekIdx}`}
+                                  >
+                                    {week}
+                                  </Badge>
+                                </td>
+                              ))}
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          </div>
+
+          {/* Priority Matrix */}
+          <div className="mb-12">
+            <Card 
+              className="bg-black/40 backdrop-blur-sm border border-gold-500/20 shadow-gold-500/10 shadow-lg"
+              data-resource-card
+            >
+              <CardHeader 
+                className="cursor-pointer hover-elevate"
+                onClick={() => toggleSection('priority')}
+              >
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-xl font-bold text-gold-gradient flex items-center gap-3">
+                    <Target className="w-6 h-6 text-amber-400" />
+                    Priority Matrix
+                  </CardTitle>
+                  {expandedSections.priority ? (
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+              </CardHeader>
+              {expandedSections.priority && (
+                <CardContent className="p-6">
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {/* MVP Features */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge className="bg-green-500/20 text-green-400 border border-green-500/50 no-default-hover-elevate">
+                          MVP (Must-Have)
+                        </Badge>
+                        <span className="text-xs text-gray-400">Ready by Day 45</span>
+                      </div>
+                      {resourceAllocationData.priorityMatrix.mvp.map((item, index) => (
+                        <div 
+                          key={index}
+                          className="flex items-center gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/20"
+                          data-testid={`priority-mvp-${index}`}
+                        >
+                          <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-300">{item.task}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Phase 2 Features */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/50 no-default-hover-elevate">
+                          Phase 2 (Should-Have)
+                        </Badge>
+                        <span className="text-xs text-gray-400">Day 29-42</span>
+                      </div>
+                      {resourceAllocationData.priorityMatrix.phase2.map((item, index) => (
+                        <div 
+                          key={index}
+                          className="flex items-center gap-3 p-3 rounded-lg bg-blue-500/5 border border-blue-500/20"
+                          data-testid={`priority-phase2-${index}`}
+                        >
+                          <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-300">{item.task}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Post-Launch Features */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500/50 no-default-hover-elevate">
+                          Post-Launch (Nice-to-Have)
+                        </Badge>
+                        <span className="text-xs text-gray-400">After Day 60</span>
+                      </div>
+                      {resourceAllocationData.priorityMatrix.postLaunch.map((item, index) => (
+                        <div 
+                          key={index}
+                          className="flex items-center gap-3 p-3 rounded-lg bg-purple-500/5 border border-purple-500/20"
+                          data-testid={`priority-postlaunch-${index}`}
+                        >
+                          <Clock className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-300">{item.task}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          </div>
+
+          {/* Risk Management */}
+          <div className="mb-12">
+            <Card 
+              className="bg-black/40 backdrop-blur-sm border border-gold-500/20 shadow-gold-500/10 shadow-lg"
+              data-resource-card
+            >
+              <CardHeader 
+                className="cursor-pointer hover-elevate"
+                onClick={() => toggleSection('risk')}
+              >
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-xl font-bold text-gold-gradient flex items-center gap-3">
+                    <AlertTriangle className="w-6 h-6 text-amber-400" />
+                    Risk Management & Mitigation
+                  </CardTitle>
+                  {expandedSections.risk ? (
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+              </CardHeader>
+              {expandedSections.risk && (
+                <CardContent className="p-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* High-Risk Items */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <Shield className="w-5 h-5 text-red-400" />
+                        High-Risk Items
+                      </h4>
+                      <div className="space-y-4">
+                        {resourceAllocationData.riskManagement.map((item, index) => (
+                          <div 
+                            key={index}
+                            className={`p-4 rounded-lg border ${
+                              item.severity === 'high' 
+                                ? 'bg-red-500/5 border-red-500/30' 
+                                : 'bg-yellow-500/5 border-yellow-500/30'
+                            }`}
+                            data-testid={`risk-item-${index}`}
+                          >
+                            <div className="flex items-start gap-3">
+                              <AlertTriangle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
+                                item.severity === 'high' ? 'text-red-400' : 'text-yellow-400'
+                              }`} />
+                              <div>
+                                <p className="font-medium text-white mb-1">{item.risk}</p>
+                                <p className="text-sm text-gray-400">
+                                  <span className="text-green-400 font-medium">Mitigation:</span> {item.mitigation}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Contingency Plans */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <Zap className="w-5 h-5 text-amber-400" />
+                        Contingency Plans
+                      </h4>
+                      <div className="space-y-4">
+                        {resourceAllocationData.contingencyPlans.map((item, index) => (
+                          <div 
+                            key={index}
+                            className="p-4 rounded-lg bg-amber-500/5 border border-amber-500/30"
+                            data-testid={`contingency-${index}`}
+                          >
+                            <p className="font-medium text-amber-400 mb-2">{item.condition}</p>
+                            <p className="text-sm text-gray-300">{item.action}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          </div>
+
+          {/* Success Metrics */}
+          <div className="mb-12">
+            <Card 
+              className="bg-black/40 backdrop-blur-sm border border-gold-500/20 shadow-gold-500/10 shadow-lg"
+              data-resource-card
+            >
+              <CardHeader 
+                className="cursor-pointer hover-elevate"
+                onClick={() => toggleSection('metrics')}
+              >
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-xl font-bold text-gold-gradient flex items-center gap-3">
+                    <Activity className="w-6 h-6 text-amber-400" />
+                    Success Metrics (To Track Post-Launch)
+                  </CardTitle>
+                  {expandedSections.metrics ? (
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+              </CardHeader>
+              {expandedSections.metrics && (
+                <CardContent className="p-6">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    {/* Technical KPIs */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-cyan-400 mb-4 flex items-center gap-2">
+                        <LineChart className="w-5 h-5" />
+                        Technical KPIs
+                      </h4>
+                      <div className="space-y-3">
+                        {resourceAllocationData.successMetrics.technical.map((item, index) => (
+                          <div 
+                            key={index}
+                            className="flex items-center justify-between p-3 rounded-lg bg-cyan-500/5 border border-cyan-500/20"
+                            data-testid={`metric-tech-${index}`}
+                          >
+                            <span className="text-sm text-gray-300">{item.metric}</span>
+                            <Badge className="bg-cyan-500/20 text-cyan-400 border-cyan-500/50 no-default-hover-elevate">
+                              {item.target}
+                            </Badge>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Business KPIs */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+                        <TrendingUp className="w-5 h-5" />
+                        Business KPIs
+                      </h4>
+                      <div className="space-y-3">
+                        {resourceAllocationData.successMetrics.business.map((item, index) => (
+                          <div 
+                            key={index}
+                            className="flex items-center justify-between p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20"
+                            data-testid={`metric-business-${index}`}
+                          >
+                            <span className="text-sm text-gray-300">{item.metric}</span>
+                            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/50 no-default-hover-elevate">
+                              {item.target}
+                            </Badge>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          </div>
+
+          {/* Next Steps After Day 60 */}
+          <div className="mb-12">
+            <Card 
+              className="bg-black/40 backdrop-blur-sm border border-gold-500/20 shadow-gold-500/10 shadow-lg"
+              data-resource-card
+            >
+              <CardHeader 
+                className="cursor-pointer hover-elevate"
+                onClick={() => toggleSection('nextSteps')}
+              >
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-xl font-bold text-gold-gradient flex items-center gap-3">
+                    <Rocket className="w-6 h-6 text-amber-400" />
+                    Next Steps After Day 60
+                  </CardTitle>
+                  {expandedSections.nextSteps ? (
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+              </CardHeader>
+              {expandedSections.nextSteps && (
+                <CardContent className="p-6">
+                  <div className="relative">
+                    {/* Timeline Line */}
+                    <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gold-500/50 via-gold-500/30 to-transparent" />
+                    
+                    <div className="space-y-6">
+                      {resourceAllocationData.nextSteps.map((item, index) => (
+                        <div 
+                          key={index}
+                          className="relative flex items-start gap-6 pl-2"
+                          data-testid={`next-step-${index}`}
+                        >
+                          {/* Timeline Dot */}
+                          <div 
+                            className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                            style={{
+                              background: 'linear-gradient(135deg, #D4AF37 0%, #F7E27A 50%, #D4AF37 100%)',
+                              boxShadow: '0 0 15px rgba(212, 175, 55, 0.4)',
+                            }}
+                          >
+                            <Rocket className="w-4 h-4 text-black" />
+                          </div>
+                          
+                          <div className="flex-1 pb-6">
+                            <div className="p-4 rounded-lg bg-gold-500/5 border border-gold-500/20 hover-elevate transition-all duration-300">
+                              <Badge className="bg-gold-500/20 text-amber-400 border-gold-500/50 mb-2 no-default-hover-elevate">
+                                {item.week}
+                              </Badge>
+                              <p className="text-gray-300">{item.action}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          </div>
+
+          {/* Document Info */}
+          <div className="max-w-2xl mx-auto">
+            <Card className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm border border-gray-700/50">
+              <CardContent className="p-6">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Document Version</p>
+                    <p className="text-sm font-semibold text-gray-300">1.0</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Last Updated</p>
+                    <p className="text-sm font-semibold text-gray-300">Day 0 (Pre-Launch)</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Next Review</p>
+                    <p className="text-sm font-semibold text-gray-300">Day 45 (MVP Checkpoint)</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
