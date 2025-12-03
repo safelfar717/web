@@ -66,234 +66,6 @@ import chatPhaseImg from "@assets/generated_images/chat_community_phase_visualiz
 
 gsap.registerPlugin(ScrollTrigger);
 
-function GoldParticles() {
-  const particlesRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (!particlesRef.current) return;
-    
-    const particles = particlesRef.current.querySelectorAll('.gold-particle');
-    
-    particles.forEach((particle) => {
-      const randomX = Math.random() * 100;
-      const randomDelay = Math.random() * 5;
-      const randomDuration = 8 + Math.random() * 12;
-      const randomSize = 2 + Math.random() * 4;
-      
-      gsap.set(particle, {
-        x: `${randomX}vw`,
-        y: '110vh',
-        width: randomSize,
-        height: randomSize,
-        opacity: 0.3 + Math.random() * 0.5,
-      });
-      
-      gsap.to(particle, {
-        y: '-10vh',
-        x: `+=${(Math.random() - 0.5) * 100}`,
-        duration: randomDuration,
-        delay: randomDelay,
-        repeat: -1,
-        ease: 'none',
-        onRepeat: () => {
-          gsap.set(particle, {
-            x: `${Math.random() * 100}vw`,
-            y: '110vh',
-          });
-        }
-      });
-      
-      gsap.to(particle, {
-        opacity: 0.1 + Math.random() * 0.4,
-        duration: 2 + Math.random() * 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: randomDelay,
-      });
-    });
-    
-    return () => {
-      particles.forEach(particle => {
-        gsap.killTweensOf(particle);
-      });
-    };
-  }, []);
-  
-  return (
-    <div ref={particlesRef} className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
-      {Array.from({ length: 40 }).map((_, i) => (
-        <div
-          key={i}
-          className="gold-particle absolute rounded-full"
-          style={{
-            background: `radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(247, 226, 122, 0.4) 50%, transparent 70%)`,
-            boxShadow: '0 0 6px rgba(212, 175, 55, 0.5)',
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-function FloatingCandlesticks() {
-  const candlesRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (!candlesRef.current) return;
-    
-    const candles = candlesRef.current.querySelectorAll('.candlestick');
-    
-    candles.forEach((candle) => {
-      const randomX = Math.random() * 100;
-      const randomDelay = Math.random() * 5;
-      const randomDuration = 8 + Math.random() * 12;
-      const randomSize = 17 + Math.random() * 8;
-      const isGreen = Math.random() > 0.5;
-      
-      gsap.set(candle, {
-        x: `${randomX}vw`,
-        y: '110vh',
-        height: randomSize,
-        opacity: 0.4 + Math.random() * 0.4,
-      });
-      
-      gsap.to(candle, {
-        y: '-10vh',
-        x: `+=${(Math.random() - 0.5) * 80}`,
-        duration: randomDuration,
-        delay: randomDelay,
-        repeat: -1,
-        ease: 'none',
-        onRepeat: () => {
-          gsap.set(candle, {
-            x: `${Math.random() * 100}vw`,
-            y: '110vh',
-          });
-        }
-      });
-      
-      gsap.to(candle, {
-        scaleY: isGreen ? 1.3 : 0.7,
-        duration: 1 + Math.random() * 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: randomDelay,
-      });
-      
-      gsap.to(candle, {
-        opacity: 0.2 + Math.random() * 0.3,
-        duration: 2 + Math.random() * 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: randomDelay + 0.5,
-      });
-    });
-    
-    return () => {
-      candles.forEach(candle => {
-        gsap.killTweensOf(candle);
-      });
-    };
-  }, []);
-  
-  return (
-    <div ref={candlesRef} className="absolute inset-0 overflow-hidden pointer-events-none z-[2]">
-      {Array.from({ length: 29 }).map((_, i) => (
-        <div
-          key={i}
-          className="candlestick absolute"
-          style={{
-            width: '4px',
-            background: i % 2 === 0 
-              ? `linear-gradient(to top, rgba(212, 175, 55, 0.9), rgba(247, 226, 122, 0.6))` 
-              : `linear-gradient(to bottom, rgba(212, 175, 55, 0.9), rgba(247, 226, 122, 0.6))`,
-            boxShadow: '0 0 8px rgba(212, 175, 55, 0.6), 0 0 16px rgba(212, 175, 55, 0.3)',
-            borderRadius: '2px',
-          }}
-        >
-          <div 
-            className="absolute left-1/2 -translate-x-1/2"
-            style={{
-              width: '1px',
-              height: '8px',
-              top: '-6px',
-              background: 'rgba(212, 175, 55, 0.7)',
-            }}
-          />
-          <div 
-            className="absolute left-1/2 -translate-x-1/2"
-            style={{
-              width: '1px',
-              height: '8px',
-              bottom: '-6px',
-              background: 'rgba(212, 175, 55, 0.7)',
-            }}
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function FloatingElements() {
-  const elementsRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (!elementsRef.current) return;
-    
-    const elements = elementsRef.current.querySelectorAll('.floating-icon');
-    
-    elements.forEach((element, index) => {
-      gsap.to(element, {
-        y: -15 + Math.random() * 30,
-        x: -10 + Math.random() * 20,
-        rotation: -5 + Math.random() * 10,
-        duration: 3 + Math.random() * 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: index * 0.2,
-      });
-    });
-    
-    return () => {
-      elements.forEach(element => {
-        gsap.killTweensOf(element);
-      });
-    };
-  }, []);
-  
-  const icons = [
-    { Icon: Rocket, position: "top-[15%] left-[10%]" },
-    { Icon: Database, position: "top-[25%] right-[15%]" },
-    { Icon: Code2, position: "top-[40%] left-[8%]" },
-    { Icon: Smartphone, position: "top-[55%] right-[10%]" },
-    { Icon: Users, position: "bottom-[35%] left-[12%]" },
-    { Icon: MessageSquare, position: "bottom-[25%] right-[8%]" },
-    { Icon: Award, position: "top-[20%] left-[85%]" },
-    { Icon: Bell, position: "bottom-[45%] right-[85%]" },
-  ];
-  
-  return (
-    <div ref={elementsRef} className="absolute inset-0 pointer-events-none z-[3] hidden lg:block">
-      {icons.map(({ Icon, position }, index) => (
-        <div
-          key={index}
-          className={`floating-icon absolute ${position} p-3 rounded-xl bg-gradient-to-br from-[#D4AF37]/20 to-[#F7E27A]/10 border border-[#D4AF37]/30 backdrop-blur-sm`}
-          style={{
-            boxShadow: '0 0 20px rgba(212, 175, 55, 0.2)',
-          }}
-        >
-          <Icon className="w-6 h-6 text-[#D4AF37]" />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 const detailedTimelineData = [
   {
     week: "Week 1-2",
@@ -729,11 +501,7 @@ export default function Timeline() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black" />
         </div>
         
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#D4AF37]/15 via-transparent to-transparent animate-pulse-slow pointer-events-none" />
-        
-        <GoldParticles />
-        <FloatingCandlesticks />
-        <FloatingElements />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#D4AF37]/15 via-transparent to-transparent pointer-events-none" />
         
         <div className="container mx-auto px-6 text-center relative z-10 pt-32 pb-16">
           <Badge className="mb-6 bg-[#D4AF37]/20 text-[#D4AF37] border-[#D4AF37]/30 px-4 py-2" data-testid="badge-timeline">
@@ -892,7 +660,7 @@ export default function Timeline() {
           {/* Resource Allocation Summary Table */}
           <div className="mt-20 resource-section" data-testid="section-resource-allocation">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] animate-pulse">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A]">
                 <BarChart3 className="w-7 h-7 text-black" />
               </div>
               <h3 className="text-3xl font-bold text-gold-gradient">Resource Allocation Summary</h3>
@@ -1233,7 +1001,7 @@ export default function Timeline() {
           {/* Next Steps Section */}
           <div className="mt-20 next-steps-section" data-testid="section-next-steps">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] animate-bounce">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#F7E27A]">
                 <Rocket className="w-7 h-7 text-black" />
               </div>
               <h3 className="text-3xl font-bold text-gold-gradient">Next Steps After Day 60</h3>
@@ -1249,7 +1017,7 @@ export default function Timeline() {
                         key={index} 
                         className={`relative pl-14 transition-all duration-300 hover:translate-x-2`}
                       >
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] border-2 border-black animate-pulse" />
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F7E27A] border-2 border-black" />
                         <div 
                           className={`p-4 rounded-xl border transition-all duration-300 ${
                             index % 2 === 0 
