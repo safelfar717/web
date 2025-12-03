@@ -1,0 +1,59 @@
+### 📅 Day 1-3: Project Setup & Architecture Design
+| Hari | Task | Platform | PIC | Dependencies | Output |
+|------|------|----------|-----|--------------|--------|
+| 1 | Kickoff meeting, tech stack finalization | Both | PM + All | - | Tech documentation |
+| 1-2 | Database schema design (Users, Signals, Education, Chat) | Backend | Backend Lead | - | ERD diagram |
+| 1-2 | API architecture & endpoints documentation | Backend | Backend Lead | DB schema | API spec (Swagger) |
+| 2-3 | UI/UX wireframes untuk core screens | Both | UI/UX Designer | - | Figma prototypes |
+| 2-3 | Development environment setup (repos, CI/CD) | Both | DevOps/Backend | - | GitHub repos ready |
+| 3 | Design system & component library | Web/Mobile | UI/UX + Frontend | Wireframes | Design tokens |
+
+**Deliverables Week 1:**
+- ✅ Complete technical documentation
+- ✅ Database architecture finalized
+- ✅ API endpoints specification
+- ✅ Design system & prototypes
+- ✅ Development environments ready
+
+---
+
+### 📅 Day 4-7: Backend Foundation & Core API
+| Hari | Task | Platform | PIC | Dependencies | Output |
+|------|------|----------|-----|--------------|--------|
+| 4-5 | Authentication system (JWT, OAuth) | Backend | Backend Dev 1 | DB setup | Auth API |
+| 4-5 | User management & profile API | Backend | Backend Dev 2 | Auth system | User CRUD API |
+| 5-6 | Trading Signals API (CRUD + filter) | Backend | Backend Dev 1 | DB schema | Signals API |
+| 5-6 | Real-time WebSocket setup untuk live data | Backend | Backend Dev 2 | - | WebSocket server |
+| 6-7 | Education Hub API (courses, progress tracking) | Backend | Backend Dev 1 | User API | Education API |
+| 6-7 | Chat system backend (rooms, messages) | Backend | Backend Dev 2 | WebSocket | Chat API |
+
+**Deliverables Week 2:**
+- ✅ Authentication & authorization working
+- ✅ Core APIs (Signals, Education, Chat) 60% complete
+- ✅ Real-time infrastructure ready
+- ✅ API documentation updated
+
+---
+
+### 📅 Day 8-14: Frontend Foundation & Mobile Setup
+| Hari | Task | Platform | PIC | Dependencies | Output |
+|------|------|----------|-----|--------------|--------|
+| 8-9 | Web: Setup React/Next.js + routing | Web | Frontend Dev 1 | Design system | Web scaffold |
+| 8-9 | Mobile: Setup React Native + navigation | Mobile | Mobile Dev 1 | Design system | Mobile scaffold |
+| 9-10 | Web: Authentication screens (login/register) | Web | Frontend Dev 1 | Auth API | Auth UI web |
+| 9-10 | Mobile: Authentication screens | Mobile | Mobile Dev 1 | Auth API | Auth UI mobile |
+| 10-12 | Web: Dashboard layout + real-time widgets | Web | Frontend Dev 1-2 | WebSocket API | Dashboard web |
+| 10-12 | Mobile: Dashboard layout + real-time widgets | Mobile | Mobile Dev 1-2 | WebSocket API | Dashboard mobile |
+| 12-14 | Web: Trading Signals page (list, filter, detail) | Web | Frontend Dev 2 | Signals API | Signals UI web |
+| 12-14 | Mobile: Trading Signals screen | Mobile | Mobile Dev 2 | Signals API | Signals UI mobile |
+
+**Deliverables Week 1-2 Combined:**
+- ✅ **MILESTONE 1:** Authentication flow working on web & mobile
+- ✅ Dashboard prototype dengan real-time data
+- ✅ Trading Signals feature 70% complete
+- ✅ Backend APIs untuk core features ready
+
+**Platform Focus:** Both (parallel development)  
+**Risk Mitigation:** Backend dev harus prioritas agar tidak blocking frontend/mobile. Daily standup untuk sync dependencies.
+
+---
