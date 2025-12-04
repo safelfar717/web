@@ -38,11 +38,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Mail size={16} className="text-primary" />
-                <span data-testid="text-email">founder@tradex.id</span>
+                <span data-testid="text-email">founder@tradex.my.id</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Globe size={16} className="text-primary" />
-                <span data-testid="text-website">www.tradex.id</span>
+                <span data-testid="text-website">www.tradex.my.id</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
                 <MapPin size={16} className="text-primary" />
